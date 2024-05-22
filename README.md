@@ -1,10 +1,10 @@
-<h1 style="text-align:center; text-shadow:2px 2px 5px rgb(190, 190, 190);">
+<h1 align="center" style="text-shadow:2px 2px 5px rgb(190, 190, 190);">
     排盘起卦工具 - 简易版
 </h1>
-<p style="text-align:center; margin:-11px 0 -11px 0; color:red;">
+<p align="center" style="margin:-11px 0 -11px 0; color:red;">
     ⚠ 内容仅供参考、学习、研究之用
 </p>
-<p style="text-align:center;">
+<p align="center">
     ☞ 在线地址：
     <a href="https://www.muxuange.cn/gongju">
     	https://www.muxuange.cn
