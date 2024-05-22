@@ -141,7 +141,6 @@ public class LiuYaoTest {
  */
 public class MeiHuaTest {
     public static void main(String[] args) {
-
         // 使用公历年月日时分秒初始化
         MeiHua meiHua = new MeiHua(2024, 1, 1, 0, 0, 0);
         System.out.println(meiHua);

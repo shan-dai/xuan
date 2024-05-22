@@ -446,10 +446,10 @@ public class FeiQiMen {
     private void initialize(FeiQiMenSetting setting) {
 
         // 1.1、判断日期类型并返回公历日期、农历日期
-        Map<String, Object> DateTypeMap = FeiQiMenUtil.isDateType(setting);
+        Map<String, Object> dateMap = FeiQiMenUtil.isDateType(setting);
         // 1.2、设置日期
-        this.solar = (Solar) DateTypeMap.get("solar"); // 设置公历日期
-        this.lunar = (Lunar) DateTypeMap.get("lunar"); // 设置农历日期
+        this.solar = (Solar) dateMap.get("solar"); // 设置公历日期
+        this.lunar = (Lunar) dateMap.get("lunar"); // 设置农历日期
 
         // 2、设置星期
         this.week = "周" + getLunar().getWeekInChinese();

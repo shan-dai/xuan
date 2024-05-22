@@ -30,7 +30,7 @@ public class BaZiUtil {
 
         // 3、按公历日期计算
         if (dateType == 0) {
-            // 2.1、通过日期初始化
+            // 3.1、通过日期初始化
             solar = new Solar(date); // 公历日期
             lunar = solar.getLunar(); // 农历日期
         }
