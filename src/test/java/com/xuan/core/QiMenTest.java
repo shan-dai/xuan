@@ -1,4 +1,4 @@
-package com.xuan.core.qimen;
+package com.xuan.core;
 
 import com.xuan.core.qimen.fei.FeiQiMen;
 import com.xuan.core.qimen.fei.FeiQiMenSetting;
@@ -63,7 +63,7 @@ public class QiMenTest {
         System.out.println("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐\n");
 
         System.out.println("姓名：" + setting.getName());
-        System.out.println("性别：" + (setting.getSex() == 0 ? "女♀" : "男♂"));
+        System.out.println("性别：" + (setting.getSex() == 0 ? "女" : "男"));
         System.out.println("测事：" + setting.getOccupy());
         System.out.println("地区：" + setting.getAddress());
         System.out.println("$ 排盘标识：" + setting.getPaiPanMark());
@@ -217,7 +217,7 @@ public class QiMenTest {
         System.out.println("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐\n");
 
         System.out.println("姓名：" + setting.getName());
-        System.out.println("性别：" + (setting.getSex() == 0 ? "女♀" : "男♂"));
+        System.out.println("性别：" + (setting.getSex() == 0 ? "女" : "男"));
         System.out.println("测事：" + setting.getOccupy());
         System.out.println("地区：" + setting.getAddress());
         System.out.println("$ 排盘标识：" + setting.getPaiPanMark());

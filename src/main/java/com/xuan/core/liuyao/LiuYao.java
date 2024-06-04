@@ -627,7 +627,7 @@ public class LiuYao {
                  动爻数：（年数+月数+日数+时数）÷6得出余数，若为0则统一用6表示
          */
 
-        Map<String, Integer> diZhiShu = LiuYaoMaps.DI_ZHI_SHU; // 地支对应的数字
+        Map<String, Integer> diZhiShu = LiuYaoMap.DI_ZHI_SHU; // 地支对应的数字
 
         int yearNumber = diZhiShu.get(getYearZhi());  // 年数
         int monthNumber = getLunar().getMonth(); // 月数
@@ -646,8 +646,8 @@ public class LiuYao {
         int dongYaoNumber = (yearNumber + monthNumber + dayNumber + hourNumber) % 6;
         dongYaoNumber = dongYaoNumber == 0 ? 6 : dongYaoNumber;
 
-        Map<List<Integer>, String> liuShiSiGuaAs = LiuYaoMaps.LIU_SHI_SI_GUA_AS; // 六十四卦卦象
-        Map<String, List<String>> liuYaoYaoXiang = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_AS; // 六十四卦的六爻爻象
+        Map<List<Integer>, String> liuShiSiGuaAs = LiuYaoMap.LIU_SHI_SI_GUA_AS; // 六十四卦卦象
+        Map<String, List<String>> liuYaoYaoXiang = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_AS; // 六十四卦的六爻爻象
         // 4.1、根据上卦数和下卦数获取本卦卦象
         String benGuaAs = liuShiSiGuaAs.get(Arrays.asList(shangGuaNumber, xiaGuaNumber));
         // 4.2、根据本卦卦象获取六爻爻象
@@ -690,7 +690,7 @@ public class LiuYao {
     private void shangGua() {
 
         // 1、通过[六爻爻象]获取：上卦卦名、上卦卦象
-        Map<List<String>, List<String>> map = LiuYaoMaps.NAME_AND_AS;
+        Map<List<String>, List<String>> map = LiuYaoMap.NAME_AND_AS;
 
         // 2、设置上卦的卦名、卦象
         this.shangGua = map.get(getLiuYaoAs()).get(0); // 上卦卦名
@@ -704,7 +704,7 @@ public class LiuYao {
     private void xiaGua() {
 
         // 1、通过[六爻爻象]获取：下卦卦名、下卦卦象
-        Map<List<String>, List<String>> map = LiuYaoMaps.NAME_AND_AS;
+        Map<List<String>, List<String>> map = LiuYaoMap.NAME_AND_AS;
 
         // 2、设置下卦的卦名、卦象
         this.xiaGua = map.get(getLiuYaoAs()).get(2); // 下卦卦名
@@ -718,7 +718,7 @@ public class LiuYao {
     private void benGua() {
 
         // 1、六十四卦卦名、六十四卦卦象（六爻爻象为键）
-        Map<List<String>, List<String>> sixYaoToSixGuaNameAndAs = LiuYaoMaps.NAME_AND_AS;
+        Map<List<String>, List<String>> sixYaoToSixGuaNameAndAs = LiuYaoMap.NAME_AND_AS;
 
         // 2、设置本卦的卦名、卦象、爻象
         this.benGua = sixYaoToSixGuaNameAndAs.get(getLiuYaoAs()).get(4); // 本卦卦名
@@ -726,13 +726,13 @@ public class LiuYao {
         this.benGuaLiuYaoAs = getLiuYaoAs(); // 本卦爻象（即六爻爻象）
 
         // 3、设置本卦的六爻名称、世应、六亲、干支、五行、六神、爻辞
-        this.benGuaLiuYaoName = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getBenGuaAs()); // 名称
-        this.benGuaLiuYaoShiYing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getBenGuaAs()); // 世应
-        this.benGuaLiuYaoLiuQin = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getBenGuaAs()); // 六亲
-        this.benGuaLiuYaoGanZhi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getBenGuaAs()); // 干支
-        this.benGuaLiuYaoWuXing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getBenGuaAs()); // 五行
-        this.benGuaLiuYaoLiuShen = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
-        this.benGuaLiuYaoYaoCi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getBenGuaAs()); // 爻辞
+        this.benGuaLiuYaoName = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getBenGuaAs()); // 名称
+        this.benGuaLiuYaoShiYing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getBenGuaAs()); // 世应
+        this.benGuaLiuYaoLiuQin = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getBenGuaAs()); // 六亲
+        this.benGuaLiuYaoGanZhi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getBenGuaAs()); // 干支
+        this.benGuaLiuYaoWuXing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getBenGuaAs()); // 五行
+        this.benGuaLiuYaoLiuShen = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
+        this.benGuaLiuYaoYaoCi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getBenGuaAs()); // 爻辞
 
     }
 
@@ -742,7 +742,7 @@ public class LiuYao {
     private void bianGua() {
 
         // 1、六十四卦卦名、六十四卦卦象（六爻爻象为键）
-        Map<List<String>, List<String>> sixYaoToSixGuaNameAndAs = LiuYaoMaps.NAME_AND_AS;
+        Map<List<String>, List<String>> sixYaoToSixGuaNameAndAs = LiuYaoMap.NAME_AND_AS;
 
         // 2、定义数组
         List<String> liuYaoAs = new ArrayList<>(); // 保存六爻爻象（适用于变卦）
@@ -771,13 +771,13 @@ public class LiuYao {
         this.bianGuaLiuYaoAs = liuYaoAs; // 变卦爻象
 
         // 5、设置变卦的六爻名称、世应、六亲、干支、五行、六神、爻辞
-        this.bianGuaLiuYaoName = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getBianGuaAs()); // 名称
-        this.bianGuaLiuYaoShiYing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getBianGuaAs()); // 世应
-        this.bianGuaLiuYaoLiuQin = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getBianGuaAs()); // 六亲
-        this.bianGuaLiuYaoGanZhi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getBianGuaAs()); // 干支
-        this.bianGuaLiuYaoWuXing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getBianGuaAs()); // 五行
-        this.bianGuaLiuYaoLiuShen = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
-        this.bianGuaLiuYaoYaoCi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getBianGuaAs()); // 爻辞
+        this.bianGuaLiuYaoName = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getBianGuaAs()); // 名称
+        this.bianGuaLiuYaoShiYing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getBianGuaAs()); // 世应
+        this.bianGuaLiuYaoLiuQin = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getBianGuaAs()); // 六亲
+        this.bianGuaLiuYaoGanZhi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getBianGuaAs()); // 干支
+        this.bianGuaLiuYaoWuXing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getBianGuaAs()); // 五行
+        this.bianGuaLiuYaoLiuShen = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
+        this.bianGuaLiuYaoYaoCi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getBianGuaAs()); // 爻辞
 
     }
 
@@ -787,16 +787,16 @@ public class LiuYao {
     private void huGua() {
 
         // 设置互卦的卦象、卦名、六爻爻象、名称、世应、六亲、干支、五行、六神、爻辞
-        this.huGuaAs = LiuYaoMaps.HU_CUO_ZONG.get(getBenGuaAs()).get(0); // 互卦卦象
-        this.huGua = LiuYaoMaps.LIU_SHI_SI_GUA.get(getHuGuaAs()); // 互卦卦名
-        this.huGuaLiuYaoAs = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_AS.get(getHuGuaAs()); // 爻象
-        this.huGuaLiuYaoName = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getHuGuaAs()); // 名称
-        this.huGuaLiuYaoShiYing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getHuGuaAs()); // 世应
-        this.huGuaLiuYaoLiuQin = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getHuGuaAs()); // 六亲
-        this.huGuaLiuYaoGanZhi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getHuGuaAs()); // 干支
-        this.huGuaLiuYaoWuXing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getHuGuaAs()); // 五行
-        this.huGuaLiuYaoLiuShen = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
-        this.huGuaLiuYaoYaoCi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getHuGuaAs()); // 爻辞
+        this.huGuaAs = LiuYaoMap.HU_CUO_ZONG.get(getBenGuaAs()).get(0); // 互卦卦象
+        this.huGua = LiuYaoMap.LIU_SHI_SI_GUA.get(getHuGuaAs()); // 互卦卦名
+        this.huGuaLiuYaoAs = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_AS.get(getHuGuaAs()); // 爻象
+        this.huGuaLiuYaoName = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getHuGuaAs()); // 名称
+        this.huGuaLiuYaoShiYing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getHuGuaAs()); // 世应
+        this.huGuaLiuYaoLiuQin = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getHuGuaAs()); // 六亲
+        this.huGuaLiuYaoGanZhi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getHuGuaAs()); // 干支
+        this.huGuaLiuYaoWuXing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getHuGuaAs()); // 五行
+        this.huGuaLiuYaoLiuShen = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
+        this.huGuaLiuYaoYaoCi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getHuGuaAs()); // 爻辞
 
     }
 
@@ -806,16 +806,16 @@ public class LiuYao {
     private void cuoGua() {
 
         // 设置错卦的卦象、卦名、六爻爻象、名称、世应、六亲、干支、五行、六神、爻辞
-        this.cuoGuaAs = LiuYaoMaps.HU_CUO_ZONG.get(getBenGuaAs()).get(1); // 错卦卦象
-        this.cuoGua = LiuYaoMaps.LIU_SHI_SI_GUA.get(getCuoGuaAs()); // 错卦卦名
-        this.cuoGuaLiuYaoAs = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_AS.get(getCuoGuaAs()); // 爻象
-        this.cuoGuaLiuYaoName = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getCuoGuaAs()); // 名称
-        this.cuoGuaLiuYaoShiYing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getCuoGuaAs()); // 世应
-        this.cuoGuaLiuYaoLiuQin = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getCuoGuaAs()); // 六亲
-        this.cuoGuaLiuYaoGanZhi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getCuoGuaAs()); // 干支
-        this.cuoGuaLiuYaoWuXing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getCuoGuaAs()); // 五行
-        this.cuoGuaLiuYaoLiuShen = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
-        this.cuoGuaLiuYaoYaoCi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getCuoGuaAs()); // 爻辞
+        this.cuoGuaAs = LiuYaoMap.HU_CUO_ZONG.get(getBenGuaAs()).get(1); // 错卦卦象
+        this.cuoGua = LiuYaoMap.LIU_SHI_SI_GUA.get(getCuoGuaAs()); // 错卦卦名
+        this.cuoGuaLiuYaoAs = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_AS.get(getCuoGuaAs()); // 爻象
+        this.cuoGuaLiuYaoName = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getCuoGuaAs()); // 名称
+        this.cuoGuaLiuYaoShiYing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getCuoGuaAs()); // 世应
+        this.cuoGuaLiuYaoLiuQin = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getCuoGuaAs()); // 六亲
+        this.cuoGuaLiuYaoGanZhi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getCuoGuaAs()); // 干支
+        this.cuoGuaLiuYaoWuXing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getCuoGuaAs()); // 五行
+        this.cuoGuaLiuYaoLiuShen = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
+        this.cuoGuaLiuYaoYaoCi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getCuoGuaAs()); // 爻辞
 
     }
 
@@ -825,16 +825,16 @@ public class LiuYao {
     private void zongGua() {
 
         // 设置综卦的卦象、卦名、六爻爻象、名称、世应、六亲、干支、五行、六神、爻辞
-        this.zongGuaAs = LiuYaoMaps.HU_CUO_ZONG.get(getBenGuaAs()).get(2); // 综卦卦象
-        this.zongGua = LiuYaoMaps.LIU_SHI_SI_GUA.get(getZongGuaAs()); // 综卦卦名
-        this.zongGuaLiuYaoAs = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_AS.get(getZongGuaAs()); // 爻象
-        this.zongGuaLiuYaoName = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getZongGuaAs()); // 名称
-        this.zongGuaLiuYaoShiYing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getZongGuaAs()); // 世应
-        this.zongGuaLiuYaoLiuQin = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getZongGuaAs()); // 六亲
-        this.zongGuaLiuYaoGanZhi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getZongGuaAs()); // 干支
-        this.zongGuaLiuYaoWuXing = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getZongGuaAs()); // 五行
-        this.zongGuaLiuYaoLiuShen = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
-        this.zongGuaLiuYaoYaoCi = LiuYaoMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getZongGuaAs()); // 爻辞
+        this.zongGuaAs = LiuYaoMap.HU_CUO_ZONG.get(getBenGuaAs()).get(2); // 综卦卦象
+        this.zongGua = LiuYaoMap.LIU_SHI_SI_GUA.get(getZongGuaAs()); // 综卦卦名
+        this.zongGuaLiuYaoAs = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_AS.get(getZongGuaAs()); // 爻象
+        this.zongGuaLiuYaoName = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING.get(getZongGuaAs()); // 名称
+        this.zongGuaLiuYaoShiYing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_SHI_YING.get(getZongGuaAs()); // 世应
+        this.zongGuaLiuYaoLiuQin = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_QIN.get(getZongGuaAs()); // 六亲
+        this.zongGuaLiuYaoGanZhi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_GAN_ZHI.get(getZongGuaAs()); // 干支
+        this.zongGuaLiuYaoWuXing = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_WU_XING.get(getZongGuaAs()); // 五行
+        this.zongGuaLiuYaoLiuShen = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_LIU_SHEN.get(getDayGan()); // 六神
+        this.zongGuaLiuYaoYaoCi = LiuYaoMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI.get(getZongGuaAs()); // 爻辞
 
     }
 
@@ -843,7 +843,7 @@ public class LiuYao {
      */
     private void guaCi() {
 
-        Map<String, String> liuShiSiGuaGuaCi = LiuYaoMaps.LIU_SHI_SI_GUA_GUA_CI; // 六十四卦卦辞
+        Map<String, String> liuShiSiGuaGuaCi = LiuYaoMap.LIU_SHI_SI_GUA_GUA_CI; // 六十四卦卦辞
 
         this.benGuaGuaCi = liuShiSiGuaGuaCi.get(getBenGua()); // 本卦卦辞
         this.bianGuaGuaCi = liuShiSiGuaGuaCi.get(getBianGua()); // 变卦卦辞
@@ -858,7 +858,7 @@ public class LiuYao {
      */
     private void yiMa() {
 
-        this.yiMa = LiuYaoMaps.YI_MA.get(getHourZhi());
+        this.yiMa = LiuYaoMap.YI_MA.get(getHourZhi());
 
     }
 
@@ -867,7 +867,7 @@ public class LiuYao {
      */
     private void tianMa() {
 
-        this.tianMa = LiuYaoMaps.TIAN_MA.get(getMonthZhi());
+        this.tianMa = LiuYaoMap.TIAN_MA.get(getMonthZhi());
 
     }
 
@@ -876,7 +876,7 @@ public class LiuYao {
      */
     private void tianYuanLu() {
 
-        this.tianYuanLu = LiuYaoMaps.TIAN_YUAN_LU.get(getDayGan());
+        this.tianYuanLu = LiuYaoMap.TIAN_YUAN_LU.get(getDayGan());
 
     }
 
@@ -885,7 +885,7 @@ public class LiuYao {
      */
     private void tianYiGuiRen() {
 
-        this.tianYiGuiRen = LiuYaoMaps.TIAN_YI_GUI_REN.get(getDayGan());
+        this.tianYiGuiRen = LiuYaoMap.TIAN_YI_GUI_REN.get(getDayGan());
 
     }
 
@@ -894,8 +894,8 @@ public class LiuYao {
      */
     private void taiJiGuiRen() {
 
-        List<String> yearZhi = LiuYaoMaps.TAI_JI_GUI_REN.get(getYearGan()); // 根据年干获取太极贵人所要落入的地支
-        List<String> dayZhi = LiuYaoMaps.TAI_JI_GUI_REN.get(getDayGan()); // 根据日干获取太极贵人所要落入的地支
+        List<String> yearZhi = LiuYaoMap.TAI_JI_GUI_REN.get(getYearGan()); // 根据年干获取太极贵人所要落入的地支
+        List<String> dayZhi = LiuYaoMap.TAI_JI_GUI_REN.get(getDayGan()); // 根据日干获取太极贵人所要落入的地支
         this.taiJiGuiRen = returnShenSha(yearZhi, dayZhi);
 
     }
@@ -905,7 +905,7 @@ public class LiuYao {
      */
     private void tianDeGuiRen() {
 
-        this.tianDeGuiRen = LiuYaoMaps.TIAN_DE_GUI_REN.get(getMonthZhi());
+        this.tianDeGuiRen = LiuYaoMap.TIAN_DE_GUI_REN.get(getMonthZhi());
 
     }
 
@@ -914,7 +914,7 @@ public class LiuYao {
      */
     private void yueDeGuiRen() {
 
-        this.yueDeGuiRen = LiuYaoMaps.YUE_DE_GUI_REN.get(getMonthZhi());
+        this.yueDeGuiRen = LiuYaoMap.YUE_DE_GUI_REN.get(getMonthZhi());
 
     }
 
@@ -923,7 +923,7 @@ public class LiuYao {
      */
     private void tangFuGuoYin() {
 
-        this.tangFuGuoYin = LiuYaoMaps.TANG_FU_GUO_YIN.get(getYearZhi());
+        this.tangFuGuoYin = LiuYaoMap.TANG_FU_GUO_YIN.get(getYearZhi());
 
     }
 
@@ -932,7 +932,7 @@ public class LiuYao {
      */
     private void xianChi() {
 
-        this.xianChi = LiuYaoMaps.XIAN_CHI.get(getDayZhi());
+        this.xianChi = LiuYaoMap.XIAN_CHI.get(getDayZhi());
 
     }
 
@@ -941,7 +941,7 @@ public class LiuYao {
      */
     private void tianXi() {
 
-        this.tianXi = LiuYaoMaps.TIAN_XI.get(getMonthZhi());
+        this.tianXi = LiuYaoMap.TIAN_XI.get(getMonthZhi());
 
     }
 
@@ -950,7 +950,7 @@ public class LiuYao {
      */
     private void huangEn() {
 
-        this.huangEn = LiuYaoMaps.HUANG_EN.get(getMonthZhi());
+        this.huangEn = LiuYaoMap.HUANG_EN.get(getMonthZhi());
 
     }
 
@@ -959,7 +959,7 @@ public class LiuYao {
      */
     private void wenChang() {
 
-        this.wenChang = LiuYaoMaps.WEN_CHANG.get(getDayGan());
+        this.wenChang = LiuYaoMap.WEN_CHANG.get(getDayGan());
 
     }
 
@@ -968,8 +968,8 @@ public class LiuYao {
      */
     private void huaGai() {
 
-        List<String> yearZhi = LiuYaoMaps.HUA_GAI.get(getYearZhi()); // 根据年干获取华盖所要落入的地支
-        List<String> dayZhi = LiuYaoMaps.HUA_GAI.get(getDayZhi()); // 根据日干获取华盖所要落入的地支
+        List<String> yearZhi = LiuYaoMap.HUA_GAI.get(getYearZhi()); // 根据年干获取华盖所要落入的地支
+        List<String> dayZhi = LiuYaoMap.HUA_GAI.get(getDayZhi()); // 根据日干获取华盖所要落入的地支
         this.huaGai = returnShenSha(yearZhi, dayZhi);
 
     }
@@ -979,8 +979,8 @@ public class LiuYao {
      */
     private void jiangXing() {
 
-        List<String> yearZhi = LiuYaoMaps.JIANG_XING.get(getYearZhi()); // 根据年干获取将星所要落入的地支
-        List<String> dayZhi = LiuYaoMaps.JIANG_XING.get(getDayZhi()); // 根据日干获取将星所要落入的地支
+        List<String> yearZhi = LiuYaoMap.JIANG_XING.get(getYearZhi()); // 根据年干获取将星所要落入的地支
+        List<String> dayZhi = LiuYaoMap.JIANG_XING.get(getDayZhi()); // 根据日干获取将星所要落入的地支
         this.jiangXing = returnShenSha(yearZhi, dayZhi);
 
     }
@@ -990,7 +990,7 @@ public class LiuYao {
      */
     private void zaiSha() {
 
-        this.zaiSha = LiuYaoMaps.ZAI_SHA.get(getDayZhi());
+        this.zaiSha = LiuYaoMap.ZAI_SHA.get(getDayZhi());
 
     }
 
@@ -999,7 +999,7 @@ public class LiuYao {
      */
     private void jieSha() {
 
-        this.jieSha = LiuYaoMaps.JIE_SHA.get(getDayZhi());
+        this.jieSha = LiuYaoMap.JIE_SHA.get(getDayZhi());
 
     }
 
@@ -1008,7 +1008,7 @@ public class LiuYao {
      */
     private void mouXing() {
 
-        this.mouXing = LiuYaoMaps.MOU_XING.get(getDayZhi());
+        this.mouXing = LiuYaoMap.MOU_XING.get(getDayZhi());
 
     }
 
@@ -1017,7 +1017,7 @@ public class LiuYao {
      */
     private void tianYi() {
 
-        this.tianYi = LiuYaoMaps.TIAN_YI.get(getMonthZhi());
+        this.tianYi = LiuYaoMap.TIAN_YI.get(getMonthZhi());
 
     }
 

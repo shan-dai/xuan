@@ -531,7 +531,7 @@ public class ZhuanQiMen {
     private void jiJie() {
 
         // 根据月支获取季节
-        this.jiJie = ZhuanQiMenMaps.DI_ZHI_JI_JIE.get(getMonthZhi());
+        this.jiJie = ZhuanQiMenMap.DI_ZHI_JI_JIE.get(getMonthZhi());
 
     }
 
@@ -544,7 +544,7 @@ public class ZhuanQiMen {
 
         // 1、年家奇门、月家奇门
         if (setting.getQiMenType() == 0 || setting.getQiMenType() == 1) {
-            Map<String, String> riZhuFuTou = ZhuanQiMenMaps.RI_ZHU_FU_TOU; // 日柱对应的符头
+            Map<String, String> riZhuFuTou = ZhuanQiMenMap.RI_ZHU_FU_TOU; // 日柱对应的符头
             this.fuTou = riZhuFuTou.get(getDayGanZhi()); // 符头
             this.jieQi = getLunar().getPrevJieQi(setting.getJieQi() == 0).getName(); // 获取上一个节气
             return;
@@ -562,7 +562,7 @@ public class ZhuanQiMen {
                    3、情况四之三：若先碰到节气但未碰到符头，需保存节气并向前查找符头；
             */
             String dayGanZhi = getDayGanZhi(); // 日干支
-            String[] sanYuanFuTou = ZhuanQiMenMaps.SAN_YUAN_FU_TOU; // 三元符头
+            String[] sanYuanFuTou = ZhuanQiMenMap.SAN_YUAN_FU_TOU; // 三元符头
 
             for (int i = 0; i < sanYuanFuTou.length; i++) {
                 // 情况一：当天日干支是符头、当天是节气，则保存符头和节气（▲例：农历二〇二二年八月廿八）
@@ -652,7 +652,7 @@ public class ZhuanQiMen {
         // 1、年家奇门
         if (setting.getQiMenType() == 0) {
             // 1.1、公历0~9999年两个日期范围内的三元、局数
-            Map<Integer, List<Object>> sanYuanDateRange = ZhuanQiMenMaps.SAN_YUAN_DATE_RANGE;
+            Map<Integer, List<Object>> sanYuanDateRange = ZhuanQiMenMap.SAN_YUAN_DATE_RANGE;
             // 1.2、遍历数据并计算局数（即：[甲子戊]所落入的宫位）
             for (int i = 0; i < sanYuanDateRange.size(); i++) {
                 List<Object> list = sanYuanDateRange.get(i);
@@ -678,7 +678,7 @@ public class ZhuanQiMen {
 
         // 2、月家奇门
         if (setting.getQiMenType() == 1) {
-            Map<String, List<String>> xunShou = ZhuanQiMenMaps.SIX_JIA_ZI_XUN_SHOU; // 六十甲子对应的旬首
+            Map<String, List<String>> xunShou = ZhuanQiMenMap.SIX_JIA_ZI_XUN_SHOU; // 六十甲子对应的旬首
             // 2.1、判断起局方式（0:使用年支起局。1:使用年干支的符头地支起局）
             String diZhi; // 地支
             if (setting.getQiJuMode() == 0) {
@@ -727,7 +727,7 @@ public class ZhuanQiMen {
         // 3、日家奇门
         if (setting.getQiMenType() == 2) {
             // 3.1、计算三元
-            Map<String, String> riZhuFuTouMap = ZhuanQiMenMaps.RI_ZHU_SAN_YUAN; // 日柱对应的三元
+            Map<String, String> riZhuFuTouMap = ZhuanQiMenMap.RI_ZHU_SAN_YUAN; // 日柱对应的三元
             this.sanYuan = riZhuFuTouMap.get(getDayGanZhi()); // 三元
             // 3.2、计算局数，获取日期是当年中的第几天
             Calendar c = Calendar.getInstance();
@@ -749,10 +749,10 @@ public class ZhuanQiMen {
         // 4、时家奇门
         if (setting.getQiMenType() == 3) {
             // 4.1、计算三元
-            Map<String, String> riZhuFuTouMap = ZhuanQiMenMaps.RI_ZHU_SAN_YUAN; // 日柱对应的三元
+            Map<String, String> riZhuFuTouMap = ZhuanQiMenMap.RI_ZHU_SAN_YUAN; // 日柱对应的三元
             this.sanYuan = riZhuFuTouMap.get(getDayGanZhi());
             // 4.2、计算局数
-            Map<String, List<Integer>> juShuMap = ZhuanQiMenMaps.JU_SHU; // 二十四节气对应局数
+            Map<String, List<Integer>> juShuMap = ZhuanQiMenMap.JU_SHU; // 二十四节气对应局数
             List<Integer> juShu = juShuMap.get(getJieQi()); // 根据节气获取[上元、中元、下元]对应的局数
             // 4.3、根据三元判断所用局数
             if ("上元".equals(getSanYuan())) this.juShu = juShu.get(0);
@@ -777,7 +777,7 @@ public class ZhuanQiMen {
 
         // 2、日家奇门
         if (setting.getQiMenType() == 2) {
-            Map<String, List<String>> map = ZhuanQiMenMaps.YIN_YANG_DUN_JIE_QI; // 阴阳遁对应的二十四节气
+            Map<String, List<String>> map = ZhuanQiMenMap.YIN_YANG_DUN_JIE_QI; // 阴阳遁对应的二十四节气
             // 若节气在[冬至~夏至前]，则使用阳遁
             List<String> yangJie = map.get("阳遁"); // 阳遁节气
             for (String key : yangJie) {
@@ -791,7 +791,7 @@ public class ZhuanQiMen {
 
         // 3、时家奇门
         if (setting.getQiMenType() == 3) {
-            Map<String, String> map = ZhuanQiMenMaps.JIE_QI_YIN_YANG_DUN; // 二十四节气对应阴阳遁
+            Map<String, String> map = ZhuanQiMenMap.JIE_QI_YIN_YANG_DUN; // 二十四节气对应阴阳遁
             this.yinYangDun = map.get(getJieQi());
         }
 
@@ -803,7 +803,7 @@ public class ZhuanQiMen {
     private void xunShou() {
 
         // 1、六十甲子对应的旬首
-        Map<String, List<String>> sixJiaZiXunShou = ZhuanQiMenMaps.SIX_JIA_ZI_XUN_SHOU;
+        Map<String, List<String>> sixJiaZiXunShou = ZhuanQiMenMap.SIX_JIA_ZI_XUN_SHOU;
 
         // 2、根据时干支获取旬首
         String xunShou = sixJiaZiXunShou.get(getHourGanZhi()).get(0); // 旬首（如：甲子）
@@ -822,12 +822,12 @@ public class ZhuanQiMen {
 
         // 1.1、阳遁
         if ("阳遁".equals(getYinYangDun())) {
-            this.diQiYi = ZhuanQiMenMaps.DI_YANG_QI_YI.get(getJuShu()); // 奇仪
-            this.diLiuJia = ZhuanQiMenMaps.DI_YANG_LIU_JIA.get(getJuShu()); // 六甲
+            this.diQiYi = ZhuanQiMenMap.DI_YANG_QI_YI.get(getJuShu()); // 奇仪
+            this.diLiuJia = ZhuanQiMenMap.DI_YANG_LIU_JIA.get(getJuShu()); // 六甲
         } else {
             // 1.2、阴遁
-            this.diQiYi = ZhuanQiMenMaps.DI_YIN_QI_YI.get(getJuShu()); // 奇仪
-            this.diLiuJia = ZhuanQiMenMaps.DI_YIN_LIU_JIA.get(getJuShu()); // 六甲
+            this.diQiYi = ZhuanQiMenMap.DI_YIN_QI_YI.get(getJuShu()); // 奇仪
+            this.diLiuJia = ZhuanQiMenMap.DI_YIN_LIU_JIA.get(getJuShu()); // 六甲
         }
 
     }
@@ -851,9 +851,9 @@ public class ZhuanQiMen {
 
         // 2、根据旬首落宫获取[值符]和[值使]
         // 2.1、设置值符
-        this.zhiFu = ZhuanQiMenMaps.JIU_XING_INITIAL[getXunShouGong() - 1];
+        this.zhiFu = ZhuanQiMenMap.JIU_XING_INITIAL[getXunShouGong() - 1];
         // 2.2、设置值使
-        if ("天禽".equals(ZhuanQiMenMaps.JIU_XING_INITIAL[getXunShouGong() - 1]) || getXunShouGong() == 5) {
+        if ("天禽".equals(ZhuanQiMenMap.JIU_XING_INITIAL[getXunShouGong() - 1]) || getXunShouGong() == 5) {
             String zhiShi;
             if (setting.getZhiShi() == 1) {
                 zhiShi = zhiShi2(getYinYangDun()); // 计算并返回值使（天禽星为值符时：根据阴阳遁判断）
@@ -864,7 +864,7 @@ public class ZhuanQiMen {
             }
             this.zhiShi = zhiShi;
         } else {
-            this.zhiShi = ZhuanQiMenMaps.BA_MEN_INITIAL[getXunShouGong() - 1];
+            this.zhiShi = ZhuanQiMenMap.BA_MEN_INITIAL[getXunShouGong() - 1];
         }
 
     }
@@ -875,10 +875,10 @@ public class ZhuanQiMen {
     private void liuJiaXunKong() {
 
         // 1、设置六甲旬空
-        this.liuJiaXunKong = ZhuanQiMenMaps.LIU_JIA_XUN_KONG.get(getXunShou());
+        this.liuJiaXunKong = ZhuanQiMenMap.LIU_JIA_XUN_KONG.get(getXunShou());
 
         // 2、设置六甲旬空落宫
-        this.liuJiaXunKongGong = ZhuanQiMenMaps.LIU_JIA_XUN_KONG_GONG.get(getLiuJiaXunKong());
+        this.liuJiaXunKongGong = ZhuanQiMenMap.LIU_JIA_XUN_KONG_GONG.get(getLiuJiaXunKong());
 
         // 3、设置六甲旬空落宫标识
         List<String> list = CommonUtil.addCharToList(9);
@@ -897,10 +897,10 @@ public class ZhuanQiMen {
         String hourZhi = getHourZhi(); // 时支
 
         // 1、设置驿马
-        this.yiMa = ZhuanQiMenMaps.YI_MA.get(hourZhi);
+        this.yiMa = ZhuanQiMenMap.YI_MA.get(hourZhi);
 
         // 2、设置驿马落宫
-        this.yiMaGong = ZhuanQiMenMaps.YI_MA_GONG.get(getYiMa());
+        this.yiMaGong = ZhuanQiMenMap.YI_MA_GONG.get(getYiMa());
 
         // 3、设置驿马落宫标识
         List<String> list = CommonUtil.addCharToList(9);
@@ -954,7 +954,7 @@ public class ZhuanQiMen {
         }
 
         // 3、将九星依次加入宫位中
-        Map<Integer, List<String>> jiuXingShun = ZhuanQiMenMaps.JIU_XING_SHUN; // 九星位置（顺转九宫）
+        Map<Integer, List<String>> jiuXingShun = ZhuanQiMenMap.JIU_XING_SHUN; // 九星位置（顺转九宫）
         for (int i = 0; i < jiuXingShun.size(); i++) {
             List<String> jiuXing = jiuXingShun.get(i);
             // 3.1、若值符为'天禽'，则使用'天芮'进行判断
@@ -986,7 +986,7 @@ public class ZhuanQiMen {
         this.tianPanQiYiToTq = tianPanQiYiToTq;
 
         // 5、计算原宫九星所携带的奇仪（不包含'天禽星'所携带的奇仪）
-        Map<String, Integer> jiuXingInitial = ZhuanQiMenMaps.JIU_XING_INITIAL2; // 九星原始宫位（1~9宫）
+        Map<String, Integer> jiuXingInitial = ZhuanQiMenMap.JIU_XING_INITIAL2; // 九星原始宫位（1~9宫）
         List<String> tianPanQiYiExTq = new ArrayList<>(); // 存放原宫九星所携带的奇仪（不包含'天禽星'所携带的奇仪）
         int index;
         for (int i = 0; i < 9; i++) {
@@ -1016,7 +1016,7 @@ public class ZhuanQiMen {
     private void renPan() {
 
         String hourZhi = getHourZhi(); // 时支
-        String[] zhi = ZhuanQiMenMaps.DI_ZHI; // 地支
+        String[] zhi = ZhuanQiMenMap.DI_ZHI; // 地支
         String xunShouZhi = getXunShou().substring(1, 2); // 旬首的地支
 
         // 1、获取旬首中的地支在第几号索引
@@ -1076,7 +1076,7 @@ public class ZhuanQiMen {
 
         // 5、计算人盘
         List<String> list = new ArrayList<>();
-        Map<Integer, List<String>> baMenShun = ZhuanQiMenMaps.BA_MEN_SHUN_ZHUAN; // 八门位置（顺转九宫）
+        Map<Integer, List<String>> baMenShun = ZhuanQiMenMap.BA_MEN_SHUN_ZHUAN; // 八门位置（顺转九宫）
         for (int i = 0; i < baMenShun.size(); i++) {
             List<String> baMen = baMenShun.get(i);
             for (int j = 0; j < baMen.size(); j++) {
@@ -1110,10 +1110,10 @@ public class ZhuanQiMen {
         // 2、判断阴阳遁
         if ("阳遁".equals(getYinYangDun())) {
             // 2.1、阳遁顺转九宫【此处按小值符追随天盘大值符计算。当然还有另外一种方式：小值符追随地盘值符】
-            this.shenPan = ZhuanQiMenMaps.BA_SHEN_SHUN_ZHUAN.get(newZhiFuGong);
+            this.shenPan = ZhuanQiMenMap.BA_SHEN_SHUN_ZHUAN.get(newZhiFuGong);
         } else {
             // 2.2、阴遁逆转九宫【此处按小值符追随天盘大值符计算。当然还有另外一种方式：小值符追随地盘值符】
-            this.shenPan = ZhuanQiMenMaps.BA_SHEN_NI_ZHUAN.get(newZhiFuGong);
+            this.shenPan = ZhuanQiMenMap.BA_SHEN_NI_ZHUAN.get(newZhiFuGong);
         }
 
     }
@@ -1129,8 +1129,8 @@ public class ZhuanQiMen {
                太乙/元一：值使门
          */
 
-        this.tianYi = ZhuanQiMenMaps.JIU_XING_INITIAL[getNewZhiFuGong() - 1]; // 天乙
-        this.diYi = ZhuanQiMenMaps.BA_MEN_INITIAL[getNewZhiShiGong() - 1]; // 地乙
+        this.tianYi = ZhuanQiMenMap.JIU_XING_INITIAL[getNewZhiFuGong() - 1]; // 天乙
+        this.diYi = ZhuanQiMenMap.BA_MEN_INITIAL[getNewZhiShiGong() - 1]; // 地乙
         this.taiYi = getZhiShi(); // 太乙
 
     }
@@ -1394,8 +1394,8 @@ public class ZhuanQiMen {
     private void yueJiang() {
 
         String monthZhi = getMonthZhi(); // 月支
-        this.yueJiang = ZhuanQiMenMaps.YUE_JIANG.get(monthZhi).get(0); // 月将
-        this.yueJiangShen = ZhuanQiMenMaps.YUE_JIANG.get(monthZhi).get(1); // 月将神
+        this.yueJiang = ZhuanQiMenMap.YUE_JIANG.get(monthZhi).get(0); // 月将
+        this.yueJiangShen = ZhuanQiMenMap.YUE_JIANG.get(monthZhi).get(1); // 月将神
 
     }
 
@@ -1422,7 +1422,7 @@ public class ZhuanQiMen {
      */
     private void baMenJingYing() {
 
-        this.baMenJingYing = ZhuanQiMenUtil.menDongJingYing(ZhuanQiMenMaps.BA_MEN_KE_YING, getRenPan());
+        this.baMenJingYing = ZhuanQiMenUtil.menDongJingYing(ZhuanQiMenMap.BA_MEN_KE_YING, getRenPan());
 
     }
 
@@ -1431,7 +1431,7 @@ public class ZhuanQiMen {
      */
     private void baMenDongYing() {
 
-        this.baMenDongYing = ZhuanQiMenUtil.menDongJingYing(ZhuanQiMenMaps.BA_MEN_DONG_YING, getRenPan());
+        this.baMenDongYing = ZhuanQiMenUtil.menDongJingYing(ZhuanQiMenMap.BA_MEN_DONG_YING, getRenPan());
 
     }
 
@@ -1607,7 +1607,7 @@ public class ZhuanQiMen {
      */
     private static String zhiShi3(String jieQi) {
 
-        Map<Integer, List<String>> isBaMen = ZhuanQiMenMaps.IS_BA_MEN; // 根据二十四节气获取八门
+        Map<Integer, List<String>> isBaMen = ZhuanQiMenMap.IS_BA_MEN; // 根据二十四节气获取八门
 
         // 根据二十四节气判断八门
         for (int i = 0; i < isBaMen.size(); i++) {

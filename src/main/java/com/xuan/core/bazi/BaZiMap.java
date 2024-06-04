@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author 善待
  */
-public class BaZiMaps {
+public class BaZiMap {
 
     /**
      * 天干五行

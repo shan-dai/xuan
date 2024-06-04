@@ -257,7 +257,7 @@ public class MeiHuaUtil {
             // 获取时数
             Lunar lunar = new Lunar(setting.getDate());
             String timeZhi = lunar.getTimeZhi(); // 获取'时地支'
-            hourNumber += MeiHuaMaps.DI_ZHI_SHU.get(timeZhi); // 获取'时地支'对应的数字并设置【时数】
+            hourNumber += MeiHuaMap.DI_ZHI_SHU.get(timeZhi); // 获取'时地支'对应的数字并设置【时数】
         }
 
         return shangXiaDongNumber2(number1Count, number2Count, hourNumber);

@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author 善待
  */
-public class MeiHuaMaps {
+public class MeiHuaMap {
 
     /**
      * 地支对应的数字

@@ -151,7 +151,7 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<String>> shiGanKeYing(List<String> diPan, List<String> tianPanQiYi) {
 
-        Map<List<String>, List<String>> shiGanKeYing = FeiQiMenMaps.SHI_GAN_KE_YING; // 十干克应
+        Map<List<String>, List<String>> shiGanKeYing = FeiQiMenMap.SHI_GAN_KE_YING; // 十干克应
 
         Map<Integer, List<String>> map = new HashMap<>(); // 保存十干克应关系
         for (int i = 0; i < 9; i++) {
@@ -175,8 +175,8 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<String>> baMenKeYing(List<String> renPan, List<String> diPan, List<String> tianPanQiYi) {
 
-        String[] baMenInitial = FeiQiMenMaps.BA_MEN_INITIAL; // 八门原始宫位（1~9宫）
-        Map<List<String>, String> baMenKeYing = FeiQiMenMaps.BA_MEN_KE_YING; // 八门克应
+        String[] baMenInitial = FeiQiMenMap.BA_MEN_INITIAL; // 八门原始宫位（1~9宫）
+        Map<List<String>, String> baMenKeYing = FeiQiMenMap.BA_MEN_KE_YING; // 八门克应
 
         List<String> menMen = new ArrayList<>(); // 保存[人盘八门+地盘八门]的生克制化关系
         List<String> menDiGan = new ArrayList<>(); // 保存[人盘八门+地盘天干]的生克制化关系
@@ -229,7 +229,7 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<String>> menDongJingYing(Map<List<String>, String> menDongOrJing, List<String> renPan) {
 
-        String[] baMenInitial = FeiQiMenMaps.BA_MEN_INITIAL;// 八门初始位置
+        String[] baMenInitial = FeiQiMenMap.BA_MEN_INITIAL;// 八门初始位置
 
         Map<Integer, List<String>> map = new HashMap<>(); // 存放[门+门]信息
         for (int i = 0; i < renPan.size(); i++) {
@@ -260,7 +260,7 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<String>> xingMenKeYing(List<String> tianPan, List<String> renPan) {
 
-        Map<List<String>, String> xingMenKeYing = FeiQiMenMaps.XING_MEN_KE_YING; // 星门克应
+        Map<List<String>, String> xingMenKeYing = FeiQiMenMap.XING_MEN_KE_YING; // 星门克应
 
         Map<Integer, List<String>> map = new HashMap<>(); // 存放九宫的[九星+八门]对应信息
         for (int i = 0; i < 9; i++) {
@@ -285,7 +285,7 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<String>> jiuXingShiYing(String hourZhi, List<String> tianPan) {
 
-        Map<List<String>, String> jiuXingShiYing = FeiQiMenMaps.JIU_XING_SHI_YING; // 九星时应
+        Map<List<String>, String> jiuXingShiYing = FeiQiMenMap.JIU_XING_SHI_YING; // 九星时应
 
         Map<Integer, List<String>> map = new HashMap<>(); // 存放九宫的[九星+时辰]对应信息
         for (int i = 0; i < 9; i++) {
@@ -305,9 +305,9 @@ public class FeiQiMenUtil {
      */
     public static List<List<String>> baGuaWangShuai(String jiJie) {
 
-        String[] houTianBaGua = FeiQiMenMaps.HOU_TIAN_BA_GUA; // 八卦（1~9宫）
-        Map<String, Integer> siJiIndex = FeiQiMenMaps.SI_JI_INDEX; // 四季索引
-        Map<String, List<String>> baGuaWangShuai = FeiQiMenMaps.BA_GUA_WANG_SHUAI_JI_JIE; // 八卦旺衰（根据季节计算）
+        String[] houTianBaGua = FeiQiMenMap.HOU_TIAN_BA_GUA; // 八卦（1~9宫）
+        Map<String, Integer> siJiIndex = FeiQiMenMap.SI_JI_INDEX; // 四季索引
+        Map<String, List<String>> baGuaWangShuai = FeiQiMenMap.BA_GUA_WANG_SHUAI_JI_JIE; // 八卦旺衰（根据季节计算）
 
         List<List<String>> list = new ArrayList<>(); // 保存八卦旺衰
         for (int i = 0; i < 9; i++) {
@@ -333,8 +333,8 @@ public class FeiQiMenUtil {
      */
     public static List<List<String>> baMenWangShuai(List<String> renPan, String jiJie) {
 
-        Map<String, Integer> siJiIndex = FeiQiMenMaps.SI_JI_INDEX; // 四季索引
-        Map<String, List<String>> baMenWangShuai = FeiQiMenMaps.BA_MEN_WANG_SHUAI_JI_JIE; // 八门旺衰（根据季节计算）
+        Map<String, Integer> siJiIndex = FeiQiMenMap.SI_JI_INDEX; // 四季索引
+        Map<String, List<String>> baMenWangShuai = FeiQiMenMap.BA_MEN_WANG_SHUAI_JI_JIE; // 八门旺衰（根据季节计算）
 
         List<List<String>> list = new ArrayList<>(); // 保存八门旺衰
         for (int i = 0; i < 9; i++) {
@@ -360,8 +360,8 @@ public class FeiQiMenUtil {
      */
     public static List<List<String>> jiuXingWangShuai(List<String> tianPan, String monthZhi) {
 
-        Map<String, Integer> diZhiIndex = FeiQiMenMaps.DI_ZHI_INDEX; // 十二地支索引
-        Map<String, List<String>> jiuXingWangShuai = FeiQiMenMaps.JIU_XING_WANG_SHUAI_MONTH_ZHI; // 九星旺衰（根据月支计算）
+        Map<String, Integer> diZhiIndex = FeiQiMenMap.DI_ZHI_INDEX; // 十二地支索引
+        Map<String, List<String>> jiuXingWangShuai = FeiQiMenMap.JIU_XING_WANG_SHUAI_MONTH_ZHI; // 九星旺衰（根据月支计算）
 
         List<List<String>> list = new ArrayList<>(); // 保存九星旺衰
         for (int i = 0; i < 9; i++) {
@@ -383,7 +383,7 @@ public class FeiQiMenUtil {
      */
     public static List<List<String>> jiuShenLuoGongStatus(List<String> shenPan) {
 
-        Map<String, String> jiuShenJiXiong = FeiQiMenMaps.JIU_SHEN_JI_XIONG; // 九神吉凶
+        Map<String, String> jiuShenJiXiong = FeiQiMenMap.JIU_SHEN_JI_XIONG; // 九神吉凶
 
         List<List<String>> list = new ArrayList<>(); // 保存九神落宫状态
         for (int i = 0; i < 9; i++) {
@@ -404,7 +404,7 @@ public class FeiQiMenUtil {
      */
     public static List<List<String>> baMenLuoGongStatus(List<String> renPan) {
 
-        Map<String, List<String>> baMenLuoGongStatus = FeiQiMenMaps.BA_MEN_LUO_GONG_STATUS; // 八门落宫状态
+        Map<String, List<String>> baMenLuoGongStatus = FeiQiMenMap.BA_MEN_LUO_GONG_STATUS; // 八门落宫状态
 
         List<List<String>> list = new ArrayList<>(); // 保存八门落宫状态
         for (int i = 0; i < 9; i++) {
@@ -429,7 +429,7 @@ public class FeiQiMenUtil {
      */
     public static List<List<String>> jiuXingLuoGongStatus(List<String> tianPan) {
 
-        Map<String, List<String>> jiuXingLuoGongStatus = FeiQiMenMaps.JIU_XING_LUO_GONG_STATUS; // 九星落宫状态
+        Map<String, List<String>> jiuXingLuoGongStatus = FeiQiMenMap.JIU_XING_LUO_GONG_STATUS; // 九星落宫状态
 
         List<List<String>> list = new ArrayList<>(); // 保存九星落宫状态
         for (int i = 0; i < 9; i++) {
@@ -454,8 +454,8 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<List<String>>> diPanQiYiLuoGongLink(List<String> diPan) {
 
-        Map<List<String>, String> qiYiLuoGongStatus = FeiQiMenMaps.QI_YI_LUO_GONG_STATUS; // 奇仪落宫状态
-        Map<Integer, List<String>> jiuGongDiZhi = FeiQiMenMaps.JIU_GONG_DI_ZHI; // 九宫中的地支（1~9宫）
+        Map<List<String>, String> qiYiLuoGongStatus = FeiQiMenMap.QI_YI_LUO_GONG_STATUS; // 奇仪落宫状态
+        Map<Integer, List<String>> jiuGongDiZhi = FeiQiMenMap.JIU_GONG_DI_ZHI; // 九宫中的地支（1~9宫）
 
         Map<Integer, List<List<String>>> map = new HashMap<>(); // 保存地盘奇仪与落宫地支的关系
         for (int i = 0; i < 9; i++) {
@@ -491,8 +491,8 @@ public class FeiQiMenUtil {
      */
     public static Map<Integer, List<List<String>>> tianPanQiYiLuoGongLink(List<String> tianPanQiYi) {
 
-        Map<List<String>, String> qiYiLuoGongStatus = FeiQiMenMaps.QI_YI_LUO_GONG_STATUS; // 奇仪落宫状态
-        Map<Integer, List<String>> jiuGongDiZhi = FeiQiMenMaps.JIU_GONG_DI_ZHI; // 九宫中的地支（1~9宫）
+        Map<List<String>, String> qiYiLuoGongStatus = FeiQiMenMap.QI_YI_LUO_GONG_STATUS; // 奇仪落宫状态
+        Map<Integer, List<String>> jiuGongDiZhi = FeiQiMenMap.JIU_GONG_DI_ZHI; // 九宫中的地支（1~9宫）
 
         Map<Integer, List<List<String>>> map = new HashMap<>(); // 保存天盘奇仪与落宫地支的关系
         for (int i = 0; i < 9; i++) {

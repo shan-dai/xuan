@@ -1,5 +1,7 @@
-package com.xuan.core.bazi;
+package com.xuan.core;
 
+import com.xuan.core.bazi.BaZi;
+import com.xuan.core.bazi.BaZiSetting;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -10,6 +12,9 @@ import java.util.Date;
  */
 public class BaZiTest {
 
+    /**
+     * 八字
+     */
     @Test
     public void baZiTest() {
 
@@ -55,7 +60,7 @@ public class BaZiTest {
         System.out.println("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐\n");
 
         System.out.println("姓名：" + setting.getName());
-        System.out.println("性别：" + (setting.getSex() == 0 ? "女♀" : "男♂"));
+        System.out.println("性别：" + (setting.getSex() == 0 ? "女" : "男"));
         System.out.println("测事：" + setting.getOccupy());
         System.out.println("地区：" + setting.getAddress());
 

@@ -1,5 +1,7 @@
-package com.xuan.core.meihua;
+package com.xuan.core;
 
+import com.xuan.core.meihua.MeiHua;
+import com.xuan.core.meihua.MeiHuaSetting;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -10,6 +12,9 @@ import java.util.Date;
  */
 public class MeiHuaTest {
 
+    /**
+     * 梅花易数
+     */
     @Test
     public void meiHuaTest() {
 
@@ -59,7 +64,7 @@ public class MeiHuaTest {
         System.out.println("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐\n");
 
         System.out.println("姓名：" + setting.getName());
-        System.out.println("性别：" + (setting.getSex() == 0 ? "女♀" : "男♂"));
+        System.out.println("性别：" + (setting.getSex() == 0 ? "女" : "男"));
         System.out.println("测事：" + setting.getOccupy());
         System.out.println("地区：" + setting.getAddress());
 

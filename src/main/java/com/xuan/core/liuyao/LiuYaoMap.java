@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author 善待
  */
-public class LiuYaoMaps {
+public class LiuYaoMap {
 
     /**
      * 地支对应的数字

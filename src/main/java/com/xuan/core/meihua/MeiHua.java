@@ -559,7 +559,7 @@ public class MeiHua {
                  动爻数：（年数+月数+日数+时数）÷6得出余数，若为0则统一用6表示
          */
 
-        Map<String, Integer> diZhiShu = MeiHuaMaps.DI_ZHI_SHU; // 地支对应的数字
+        Map<String, Integer> diZhiShu = MeiHuaMap.DI_ZHI_SHU; // 地支对应的数字
 
         int yearNumber = diZhiShu.get(getYearZhi()); // 年数
         int monthNumber = getLunar().getMonth(); // 月数
@@ -585,8 +585,8 @@ public class MeiHua {
      */
     private void shangGua() {
 
-        this.shangGua = MeiHuaMaps.XIAN_YIAN_BA_GUA.get(getShangGuaNumber()); // 根据上卦数获取上卦
-        this.shangGuaAs = MeiHuaMaps.BA_GUA_AS.get(getShangGua()); // 根据上卦获取上卦卦象
+        this.shangGua = MeiHuaMap.XIAN_YIAN_BA_GUA.get(getShangGuaNumber()); // 根据上卦数获取上卦
+        this.shangGuaAs = MeiHuaMap.BA_GUA_AS.get(getShangGua()); // 根据上卦获取上卦卦象
 
     }
 
@@ -595,8 +595,8 @@ public class MeiHua {
      */
     private void xiaGua() {
 
-        this.xiaGua = MeiHuaMaps.XIAN_YIAN_BA_GUA.get(getXiaGuaNumber()); // 根据下卦数获取下卦
-        this.xiaGuaAs = MeiHuaMaps.BA_GUA_AS.get(getXiaGua()); // 根据下卦获取下卦卦象
+        this.xiaGua = MeiHuaMap.XIAN_YIAN_BA_GUA.get(getXiaGuaNumber()); // 根据下卦数获取下卦
+        this.xiaGuaAs = MeiHuaMap.BA_GUA_AS.get(getXiaGua()); // 根据下卦获取下卦卦象
 
     }
 
@@ -621,8 +621,8 @@ public class MeiHua {
         */
 
         // 1、本卦及卦象
-        this.benGua = MeiHuaMaps.LIU_SHI_SI_GUA_NAME.get(Arrays.asList(getShangGuaNumber(), getXiaGuaNumber())); // 根据上卦数和下卦数获取本卦
-        this.benGuaAs = MeiHuaMaps.LIU_SHI_SI_GUA_AS.get(getBenGua()); // 根据本卦获取本卦卦象
+        this.benGua = MeiHuaMap.LIU_SHI_SI_GUA_NAME.get(Arrays.asList(getShangGuaNumber(), getXiaGuaNumber())); // 根据上卦数和下卦数获取本卦
+        this.benGuaAs = MeiHuaMap.LIU_SHI_SI_GUA_AS.get(getBenGua()); // 根据本卦获取本卦卦象
 
         // 2、本卦的上卦及下卦
         this.benGuaShangGua = getShangGua(); // 本卦的上卦
@@ -650,23 +650,23 @@ public class MeiHua {
         int bianXiaGuaNumber; // 变卦的下卦数
         if (getDongYaoNumber() >= 1 && getDongYaoNumber() <= 3) {
             // 1.1、动爻数为(1\2\3)时：上卦不变、下卦变
-            bianXiaGuaNumber = MeiHuaMaps.BIAN_GUA.get(getXiaGuaNumber()).get(getDongYaoNumber() - 1); // 变卦的下卦数
-            this.bianGua = MeiHuaMaps.LIU_SHI_SI_GUA_NAME.get(Arrays.asList(getShangGuaNumber(), bianXiaGuaNumber)); // 根据上卦数和下卦数获取变卦
+            bianXiaGuaNumber = MeiHuaMap.BIAN_GUA.get(getXiaGuaNumber()).get(getDongYaoNumber() - 1); // 变卦的下卦数
+            this.bianGua = MeiHuaMap.LIU_SHI_SI_GUA_NAME.get(Arrays.asList(getShangGuaNumber(), bianXiaGuaNumber)); // 根据上卦数和下卦数获取变卦
         } else {
             // 1.2、动爻数为(4\5\6)时：上卦变、下卦不变
-            bianShangGuaNumber = MeiHuaMaps.BIAN_GUA.get(getShangGuaNumber()).get(getDongYaoNumber() - 4); // 变卦的上卦数
-            this.bianGua = MeiHuaMaps.LIU_SHI_SI_GUA_NAME.get(Arrays.asList(bianShangGuaNumber, getXiaGuaNumber())); // 根据上卦数和下卦数获取变卦
+            bianShangGuaNumber = MeiHuaMap.BIAN_GUA.get(getShangGuaNumber()).get(getDongYaoNumber() - 4); // 变卦的上卦数
+            this.bianGua = MeiHuaMap.LIU_SHI_SI_GUA_NAME.get(Arrays.asList(bianShangGuaNumber, getXiaGuaNumber())); // 根据上卦数和下卦数获取变卦
         }
-        this.bianGuaAs = MeiHuaMaps.LIU_SHI_SI_GUA_AS.get(getBianGua()); // 根据变卦获取变卦卦象
+        this.bianGuaAs = MeiHuaMap.LIU_SHI_SI_GUA_AS.get(getBianGua()); // 根据变卦获取变卦卦象
 
         // 2、变卦的上卦及下卦
-        Map<String, List<String>> liuShiSiGuaTwoGuaName = MeiHuaMaps.LIU_SHI_SI_GUA_TWO_GUA_NAME; // 六十四卦包含的两个卦名
+        Map<String, List<String>> liuShiSiGuaTwoGuaName = MeiHuaMap.LIU_SHI_SI_GUA_TWO_GUA_NAME; // 六十四卦包含的两个卦名
         List<String> list = liuShiSiGuaTwoGuaName.get(getBianGua());
         this.bianGuaShangGua = list.get(0); // 变卦的上卦
         this.bianGuaXiaGua = list.get(1); // 变卦的下卦
 
         // 3、变卦的上卦卦象及下卦卦象
-        Map<String, String> baGuaAs = MeiHuaMaps.BA_GUA_AS; // 八卦卦象
+        Map<String, String> baGuaAs = MeiHuaMap.BA_GUA_AS; // 八卦卦象
         this.bianGuaShangGuaAs = baGuaAs.get(getBianGuaShangGua()); // 变卦的上卦卦象
         this.bianGuaXiaGuaAs = baGuaAs.get(getBianGuaXiaGua()); // 变卦的下卦卦象
 
@@ -743,7 +743,7 @@ public class MeiHua {
      */
     private void guaCi() {
 
-        Map<String, String> liuShiSiGuaGuaCi = MeiHuaMaps.LIU_SHI_SI_GUA_GUA_CI; // 六十四卦卦辞
+        Map<String, String> liuShiSiGuaGuaCi = MeiHuaMap.LIU_SHI_SI_GUA_GUA_CI; // 六十四卦卦辞
 
         this.benGuaGuaCi = liuShiSiGuaGuaCi.get(getBenGua()); // 本卦卦辞
         this.bianGuaGuaCi = liuShiSiGuaGuaCi.get(getBianGua()); // 变卦卦辞
@@ -758,7 +758,7 @@ public class MeiHua {
      */
     private void liuYaoYaoMing() {
 
-        Map<String, List<String>> yaoMing = MeiHuaMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING; // 六十四卦的六爻爻名
+        Map<String, List<String>> yaoMing = MeiHuaMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_MING; // 六十四卦的六爻爻名
 
         this.benGuaLiuYaoName = yaoMing.get(getBenGuaAs()); // 本卦的六爻爻名
         this.bianGuaLiuYaoName = yaoMing.get(getBianGuaAs()); // 变卦的六爻爻名
@@ -773,7 +773,7 @@ public class MeiHua {
      */
     private void liuYaoAs() {
 
-        Map<String, List<String>> yaoXiang = MeiHuaMaps.LIU_SHI_SI_GUA_LIU_YAO_AS; // 六十四卦的六爻爻象
+        Map<String, List<String>> yaoXiang = MeiHuaMap.LIU_SHI_SI_GUA_LIU_YAO_AS; // 六十四卦的六爻爻象
 
         this.benGuaLiuYaoAs = yaoXiang.get(getBenGuaAs()); // 本卦的六爻爻象
         this.bianGuaLiuYaoAs = yaoXiang.get(getBianGuaAs()); // 变卦的六爻爻象
@@ -788,7 +788,7 @@ public class MeiHua {
      */
     private void liuYaoYaoCi() {
 
-        Map<String, List<String>> yaoCi = MeiHuaMaps.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI; // 六十四卦的六爻爻辞
+        Map<String, List<String>> yaoCi = MeiHuaMap.LIU_SHI_SI_GUA_LIU_YAO_YAO_CI; // 六十四卦的六爻爻辞
 
         this.benGuaLiuYaoYaoCi = yaoCi.get(getBenGuaAs()); // 本卦的六爻爻辞
         this.bianGuaLiuYaoYaoCi = yaoCi.get(getBianGuaAs()); // 变卦的六爻爻辞
@@ -911,17 +911,17 @@ public class MeiHua {
     private Map<String, String> getGua(int index) {
 
         // 1、获取卦名及卦象
-        String guaName = MeiHuaMaps.HU_CUO_ZONG.get(getBenGua()).get(index); // 卦名
-        String guaAs = MeiHuaMaps.LIU_SHI_SI_GUA_AS.get(guaName);// 卦象
+        String guaName = MeiHuaMap.HU_CUO_ZONG.get(getBenGua()).get(index); // 卦名
+        String guaAs = MeiHuaMap.LIU_SHI_SI_GUA_AS.get(guaName);// 卦象
 
         // 2、卦的上卦及下卦
-        Map<String, List<String>> liuShiSiGuaTwoGuaName = MeiHuaMaps.LIU_SHI_SI_GUA_TWO_GUA_NAME; // 六十四卦包含的两个卦名
+        Map<String, List<String>> liuShiSiGuaTwoGuaName = MeiHuaMap.LIU_SHI_SI_GUA_TWO_GUA_NAME; // 六十四卦包含的两个卦名
         List<String> list = liuShiSiGuaTwoGuaName.get(guaName);
         String shangGua = list.get(0); // 卦的上卦
         String xiaGua = list.get(1); // 卦的下卦
 
         // 3、卦的上卦卦象及下卦卦象
-        Map<String, String> baGuaAs = MeiHuaMaps.BA_GUA_AS; // 八卦卦象
+        Map<String, String> baGuaAs = MeiHuaMap.BA_GUA_AS; // 八卦卦象
         String shangGuaAs = baGuaAs.get(shangGua); // 卦的上卦卦象
         String xiaGuaAs = baGuaAs.get(xiaGua); // 卦的下卦卦象
 
@@ -966,9 +966,9 @@ public class MeiHua {
         }
 
         // 2、获取用卦与体卦之间的关系
-        Map<String, String> baGuaWuXing = MeiHuaMaps.BA_GUA_WU_XING; // 八卦五行
+        Map<String, String> baGuaWuXing = MeiHuaMap.BA_GUA_WU_XING; // 八卦五行
         String info = mark + yongGuaMark + yongGua + "(" + baGuaWuXing.get(yongGua) + ")为用卦、" + tiGuaMark + tiGua + "(" + baGuaWuXing.get(tiGua) + ")为体卦，";
-        Map<String, String> yongTiGuanXi = MeiHuaMaps.YONG_TI_GUAN_XI; // 用卦与体卦的关系（用卦+体卦）
+        Map<String, String> yongTiGuanXi = MeiHuaMap.YONG_TI_GUAN_XI; // 用卦与体卦的关系（用卦+体卦）
 
         // 3、返回信息
         return info + yongTiGuanXi.get(yongGua + tiGua);

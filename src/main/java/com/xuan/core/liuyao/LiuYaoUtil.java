@@ -162,7 +162,7 @@ public class LiuYaoUtil {
 
         // 1、自动起卦模式
         if (setting.getQiGuaMode() == 1) {
-            Map<List<Integer>, List<String>> map = LiuYaoMaps.AUTO_RANDOM_YAO; // 【少阳、少阴、老阳、老阴】对应信息
+            Map<List<Integer>, List<String>> map = LiuYaoMap.AUTO_RANDOM_YAO; // 【少阳、少阴、老阳、老阴】对应信息
             // 1.1、计算六爻（循环6次，分别对应：初爻(一爻)、二爻、三爻、四爻、五爻、上爻(六爻)）
             for (int i = 0; i < 6; i++) {
                 // 随机产生0~1中的3个数字
@@ -179,7 +179,7 @@ public class LiuYaoUtil {
 
         // 2、手动起卦模式
         if (setting.getQiGuaMode() == 2) {
-            Map<Integer, List<String>> map = LiuYaoMaps.MANUAL_RANDOM_YAO; // 【少阳、少阴、老阳、老阴】对应信息
+            Map<Integer, List<String>> map = LiuYaoMap.MANUAL_RANDOM_YAO; // 【少阳、少阴、老阳、老阴】对应信息
             // 2.1、封装六爻
             List<Integer> packageList = CommonUtil.packageList(setting.getYiYao(), setting.getErYao(), setting.getSanYao(), setting.getSiYao(), setting.getWuYao(), setting.getLiuYao());
             // 2.2、计算六爻【循环6次，分别对应：初爻(一爻)、二爻、三爻、四爻、五爻、上爻(六爻)】
