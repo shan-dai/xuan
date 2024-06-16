@@ -4,7 +4,7 @@
 </h1>
 <p align="center">
     在线地址：
-    <a href="https://www.muxuange.cn/gongju">
+    <a href="https://www.muxuange.cn/tool">
     	https://www.muxuange.cn
     </a>
 </p>

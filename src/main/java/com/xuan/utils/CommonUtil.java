@@ -129,7 +129,7 @@ public class CommonUtil {
         }
         for (String string : minList) {
             Integer count = map.get(string);
-            if (count != null) {
+            if (null != count) {
                 map.put(string, ++count);
                 continue;
             }

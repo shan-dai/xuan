@@ -21,7 +21,7 @@ public class BaiduMapsUtil {
     /**
      * 开发者密钥
      */
-    private static final String AK = ""; // 密钥申请地址：https://lbsyun.baidu.com/apiconsole/key#/home
+    private static final String ak = ""; // 密钥申请地址：https://lbsyun.baidu.com/apiconsole/key#/home
 
 //****************************************************************************************************************************************************
 
@@ -36,11 +36,11 @@ public class BaiduMapsUtil {
         /* 接口文档地址：https://lbsyun.baidu.com/faq/api?title=webapi/guide/webservice-geocoding-base */
 
         // 1、参数校验
-        if (StringUtils.isBlank(AK)) throw new NullPointerException("⚠ 请填写开发者密钥");
+        if (StringUtils.isBlank(ak)) throw new NullPointerException("⚠ 请填写开发者密钥");
         if (StringUtils.isBlank(address)) throw new NullPointerException("⚠ 请填写地区");
 
         // 2、发送URL请求
-        String url = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=" + AK;
+        String url = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=" + ak;
         JSONObject data = sendUrl(url);
 
         // 3、获取数据
@@ -68,11 +68,11 @@ public class BaiduMapsUtil {
         /* 接口文档地址：https://lbsyun.baidu.com/faq/api?title=webapi/guide/webservice-geocoding-abroad-base */
 
         // 1、参数校验
-        if (StringUtils.isBlank(AK)) throw new NullPointerException("⚠ 请填写开发者密钥");
+        if (StringUtils.isBlank(ak)) throw new NullPointerException("⚠ 请填写开发者密钥");
         if (StringUtils.isBlank(lng) || StringUtils.isBlank(lat)) throw new NullPointerException("⚠ 请填完善经纬度");
 
         // 2、发送URL请求
-        String url = "https://api.map.baidu.com/reverse_geocoding/v3/?location=" + lat + "," + lng + "&output=json&coordtype=wgs84ll&extensions_poi=1&extensions_town=true&ak=" + AK;
+        String url = "https://api.map.baidu.com/reverse_geocoding/v3/?location=" + lat + "," + lng + "&output=json&coordtype=wgs84ll&extensions_poi=1&extensions_town=true&ak=" + ak;
         JSONObject data = sendUrl(url);
 
         // 3、获取数据
@@ -98,7 +98,7 @@ public class BaiduMapsUtil {
         /* 接口文档地址：https://lbsyun.baidu.com/faq/api?title=webapi/ip-api-base */
 
         // 1、参数校验
-        if (StringUtils.isBlank(AK)) throw new NullPointerException("⚠ 请填写开发者密钥");
+        if (StringUtils.isBlank(ak)) throw new NullPointerException("⚠ 请填写开发者密钥");
         if (StringUtils.isNotBlank(ip) && CommonUtil.checkIp(ip)) {
             if ("localhost".equals(ip) || "127.0.0.1".equals(ip) || "::1".equals(ip)) {
                 ip = "";
@@ -108,7 +108,7 @@ public class BaiduMapsUtil {
         }
 
         // 2、发送URL请求
-        String url = "https://api.map.baidu.com/location/ip?ip=" + ip + "&coor=bd09ll&&ak=" + AK;
+        String url = "https://api.map.baidu.com/location/ip?ip=" + ip + "&coor=bd09ll&&ak=" + ak;
         JSONObject data = sendUrl(url);
 
         // 3、获取数据
