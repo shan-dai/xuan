@@ -1,6 +1,9 @@
 package com.xuan.utils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -66,6 +69,34 @@ public class DateUtil {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         dateStr = sdf.format(date);
         return dateStr;
+
+    }
+
+    /**
+     * 计算两个日期的时间间隔
+     *
+     * @param startDate 开始日期
+     * @param endDate   结束日期
+     * @return 时间间隔
+     */
+    public static Map<String, Long> dateInterval(String startDate, String endDate) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime sDate = LocalDateTime.parse(startDate, formatter); // 开始日期
+        LocalDateTime eDate = LocalDateTime.parse(endDate, formatter); // 结束日期
+
+        Long days = ChronoUnit.DAYS.between(sDate, eDate);
+        Long hours = ChronoUnit.HOURS.between(sDate, eDate) % 24;
+        Long minutes = ChronoUnit.MINUTES.between(sDate, eDate) % 60;
+        Long seconds = ChronoUnit.SECONDS.between(sDate, eDate) % 60;
+
+        Map<String, Long> map = new HashMap<>();
+        map.put("days", days); // 相差天数
+        map.put("hours", hours); // 相差小时数
+        map.put("minutes", minutes); // 相差分钟数
+        map.put("seconds", seconds); // 相差秒数
+
+        return map;
 
     }
 

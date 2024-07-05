@@ -31,7 +31,7 @@ public class MeiHuaTest {
         MeiHuaSetting setting = new MeiHuaSetting();
         setting.setSex(1); // 性别（0:女。1:男）
         setting.setName("某某人"); // 姓名
-        setting.setOccupy("某某事"); // 测事
+        setting.setOccupy("某某事"); // 占事
         setting.setAddress("某某地区"); // 地区
         setting.setDate(date); // 日期
         setting.setDateType(0); // 日期类型（0:公历。1:农历）

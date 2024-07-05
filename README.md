@@ -9,7 +9,7 @@
     </a>
 </p>
 <p align="center" style="font-size:17px; background-color:rgb(245, 245, 245); border-radius:50px;">
-    v1.0.0
+    v1.0.22
 </p>
 
 # **【八字排盘】**

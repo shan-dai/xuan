@@ -1,10 +1,13 @@
 package com.xuan.core.bazi;
 
 import com.nlf.calendar.EightChar;
+import com.nlf.calendar.JieQi;
 import com.nlf.calendar.Lunar;
 import com.nlf.calendar.Solar;
 import com.nlf.calendar.eightchar.*;
+import com.xuan.core.bazi.shensha.BaZiShenShaUtil;
 import com.xuan.utils.CommonUtil;
+import com.xuan.utils.DateUtil;
 import lombok.Getter;
 
 import java.util.*;
@@ -18,6 +21,27 @@ import java.util.*;
 public class BaZi {
 
     /**
+     * 姓名
+     */
+    private String name;
+    /**
+     * 性别（男。女）
+     */
+    private String sex;
+    /**
+     * 乾造\坤造
+     */
+    private String zao;
+    /**
+     * 占事
+     */
+    private String occupy;
+    /**
+     * 地区
+     */
+    private String address;
+
+    /**
      * 公历日期
      */
     private Solar solar;
@@ -29,6 +53,36 @@ public class BaZi {
      * 星期
      */
     private String week;
+    /**
+     * 季节
+     */
+    private String season;
+
+    /**
+     * 生肖
+     */
+    private String zodiac;
+    /**
+     * 星座
+     */
+    private String constellation;
+
+    /**
+     * 八字
+     */
+    private List<String> baZi;
+    /**
+     * 八字五行
+     */
+    private List<String> baZiWuXing;
+    /**
+     * 八字旬空
+     */
+    private List<String> baZiXunKong;
+    /**
+     * 八字纳音
+     */
+    private List<String> baZiNaYin;
 
     /**
      * 年干
@@ -46,6 +100,23 @@ public class BaZi {
      * 时干
      */
     private String hourGan;
+
+    /**
+     * 年干支主星
+     */
+    private String yearGanZhiZhuXing;
+    /**
+     * 月干支主星
+     */
+    private String monthGanZhiZhuXing;
+    /**
+     * 日干支主星
+     */
+    private String dayGanZhiZhuXing;
+    /**
+     * 时干支主星
+     */
+    private String hourGanZhiZhuXing;
 
     /**
      * 年支
@@ -133,104 +204,36 @@ public class BaZi {
     private String hourGanZhiWuXing;
 
     /**
-     * 年干支纳音
-     */
-    private String yearGanZhiNaYin;
-    /**
-     * 月干支纳音
-     */
-    private String monthGanZhiNaYin;
-    /**
-     * 日干支纳音
-     */
-    private String dayGanZhiNaYin;
-    /**
-     * 时干支纳音
-     */
-    private String hourGanZhiNaYin;
-
-    /**
-     * 年干支旬空
-     */
-    private String yearGanZhiXunKong;
-    /**
-     * 月干支旬空
-     */
-    private String monthGanZhiXunKong;
-    /**
-     * 日干支旬空
-     */
-    private String dayGanZhiXunKong;
-    /**
-     * 时干支旬空
-     */
-    private String hourGanZhiXunKong;
-
-    /**
-     * 八字
-     */
-    private List<String> baZi;
-    /**
-     * 八字五行
-     */
-    private List<String> baZiWuXing;
-    /**
-     * 八字旬空
-     */
-    private List<String> baZiXunKong;
-    /**
-     * 八字纳音
-     */
-    private List<String> baZiNaYin;
-
-    /**
-     * 年干支主星（如：正财）
-     */
-    private String yearGanZhiZhuXing;
-    /**
-     * 月干支主星（如：正财）
-     */
-    private String monthGanZhiZhuXing;
-    /**
-     * 日干支主星（如：元男）
-     */
-    private String dayGanZhiZhuXing;
-    /**
-     * 时干支主星（如：正财）
-     */
-    private String hourGanZhiZhuXing;
-
-    /**
-     * 年支藏干（如：子）
+     * 年支藏干
      */
     private List<String> yearZhiCangGan;
     /**
-     * 月支藏干（如：子）
+     * 月支藏干
      */
     private List<String> monthZhiCangGan;
     /**
-     * 日支藏干（如：子）
+     * 日支藏干
      */
     private List<String> dayZhiCangGan;
     /**
-     * 时支藏干（如：子）
+     * 时支藏干
      */
     private List<String> hourZhiCangGan;
 
     /**
-     * 年干支副星（如：正财）
+     * 年干支副星
      */
     private List<String> yearGanZhiFuXing;
     /**
-     * 月干支副星（如：正财）
+     * 月干支副星
      */
     private List<String> monthGanZhiFuXing;
     /**
-     * 日干支副星（如：正财）
+     * 日干支副星
      */
     private List<String> dayGanZhiFuXing;
     /**
-     * 时干支副星（如：正财）
+     * 时干支副星
      */
     private List<String> hourGanZhiFuXing;
 
@@ -252,6 +255,40 @@ public class BaZi {
     private String hourGanZhiDiShi;
 
     /**
+     * 年干支旬空
+     */
+    private String yearGanZhiXunKong;
+    /**
+     * 月干支旬空
+     */
+    private String monthGanZhiXunKong;
+    /**
+     * 日干支旬空
+     */
+    private String dayGanZhiXunKong;
+    /**
+     * 时干支旬空
+     */
+    private String hourGanZhiXunKong;
+
+    /**
+     * 年干支纳音
+     */
+    private String yearGanZhiNaYin;
+    /**
+     * 月干支纳音
+     */
+    private String monthGanZhiNaYin;
+    /**
+     * 日干支纳音
+     */
+    private String dayGanZhiNaYin;
+    /**
+     * 时干支纳音
+     */
+    private String hourGanZhiNaYin;
+
+    /**
      * 年干支神煞
      */
     private List<String> yearGanZhiShenSha;
@@ -269,31 +306,6 @@ public class BaZi {
     private List<String> hourGanZhiShenSha;
 
     /**
-     * 八字五行缺失（如：五行齐全）
-     */
-    private List<String> baZiWuXingQueShi;
-    /**
-     * 八字五行格局（如：2木 1火 2土 2金 1水）
-     */
-    private List<String> baZiWuXingGeJu;
-    /**
-     * 身体强弱（如：强）
-     */
-    private String bodyIntensity;
-    /**
-     * 喜用神（如：木）
-     */
-    private List<String> xiYongShen;
-    /**
-     * 喜用神方位（如：北）
-     */
-    private List<String> xiYongShenFangWei;
-
-    /**
-     * 五行旺衰
-     */
-    private List<String> wuXingWangShuai;
-    /**
      * 天干留意
      */
     private List<String> tianGanLiuYi;
@@ -301,6 +313,64 @@ public class BaZi {
      * 地支留意
      */
     private List<String> diZhiLiuYi;
+
+    /**
+     * 起运
+     */
+    private String qiYun;
+    /**
+     * 起运日期
+     */
+    private String qiYunDate;
+    /**
+     * 人元司令分野
+     */
+    private String renYuan;
+
+    /**
+     * 出生节气
+     */
+    private String birthSolarTerms;
+
+    /**
+     * 上一节气
+     */
+    private String prevJieQi;
+    /**
+     * 上一节气日期
+     */
+    private String prevJieQiDate;
+    /**
+     * 距上一节气天数
+     */
+    private int prevJieQiDayNumber;
+
+    /**
+     * 下一节气
+     */
+    private String nextJieQi;
+    /**
+     * 下一节气日期
+     */
+    private String nextJieQiDate;
+    /**
+     * 距下一节气天数
+     */
+    private int nextJieQiDayNumber;
+
+    /**
+     * 星宿
+     */
+    private String xingXiu;
+    /**
+     * 星宿吉凶
+     */
+    private String xiuJiXiong;
+    /**
+     * 星宿吉凶歌诀
+     */
+    private String xiuJiXiongGeJue;
+
     /**
      * 胎元
      */
@@ -317,54 +387,7 @@ public class BaZi {
      * 身宫
      */
     private String shenGong;
-    /**
-     * 胎元纳音
-     */
-    private String taiYuanNaYin;
-    /**
-     * 胎息纳音
-     */
-    private String taiXiNaYin;
-    /**
-     * 命宫纳音
-     */
-    private String mingGongNaYin;
-    /**
-     * 身宫纳音
-     */
-    private String shenGongNaYin;
-    /**
-     * 起运
-     */
-    private String qiYun;
-    /**
-     * 起运日期
-     */
-    private String qiYunDate;
-    /**
-     * 生肖
-     */
-    private String shengXiao;
-    /**
-     * 星座
-     */
-    private String xingZuo;
-    /**
-     * 宿
-     */
-    private String xiu;
-    /**
-     * 宿吉凶
-     */
-    private String xiuJiXiong;
-    /**
-     * 宿吉凶歌诀
-     */
-    private String xiuJiXiongGeJue;
-    /**
-     * 星宿
-     */
-    private String xingXiu;
+
     /**
      * 命
      */
@@ -372,15 +395,38 @@ public class BaZi {
     /**
      * 命卦
      */
-    private List<String> mingGua;
+    private String mingGua;
     /**
-     * 日柱论命
+     * 命卦信息
      */
-    private String dayZhuLunMing;
+    private String mingGuaInfo;
+
     /**
-     * 姻缘
+     * 五行缺失
      */
-    private String yinYuan;
+    private List<String> baZiWuXingQueShi;
+    /**
+     * 五行数量
+     */
+    private List<String> baZiWuXingCount;
+    /**
+     * 五行旺衰
+     */
+    private List<String> wuXingWangShuai;
+
+    /**
+     * 身体强弱
+     */
+    private String bodyIntensity;
+    /**
+     * 喜用神
+     */
+    private List<String> xiYongShen;
+    /**
+     * 喜用神方位
+     */
+    private List<String> xiYongShenFangWei;
+
     /**
      * 骨重
      */
@@ -388,7 +434,19 @@ public class BaZi {
     /**
      * 骨重信息
      */
-    private String guZhongInfo;
+    private String guZhongPiZhu;
+
+
+    /**
+     * 日柱论命
+     */
+    private String dayZhuLunMing;
+
+    /**
+     * 姻缘
+     */
+    private String yinYuan;
+
     /**
      * 五行分析
      */
@@ -407,9 +465,13 @@ public class BaZi {
      */
     private List<List<String>> liuNian;
     /**
-     * 流月
+     * 大运流月
      */
-    private List<List<String>> liuYue;
+    private List<List<String>> daYunLiuYue;
+    /**
+     * 小运流月
+     */
+    private List<List<String>> xiaoYunLiuYue;
 
     /**
      * 大运十神
@@ -424,9 +486,13 @@ public class BaZi {
      */
     private List<List<String>> liuNianShiShen;
     /**
-     * 流月十神
+     * 大运流月十神
      */
-    private List<List<String>> liuYueShiShen;
+    private List<List<String>> daYunLiuYueShiShen;
+    /**
+     * 小运流月十神
+     */
+    private List<List<String>> xiaoYunLiuYueShiShen;
 
     /**
      * 正财运年份、年龄、干支
@@ -445,14 +511,7 @@ public class BaZi {
      */
     private List<List<String>> pianTaoHua;
 
-    /**
-     * 大运运势
-     */
-    private List<List<String>> daYunYunShi;
-    /**
-     * 流年运势
-     */
-    private List<List<String>> liuNianYunShi;
+    private BaZiShenShaUtil baZiShenShaUtil; // 八字-神煞工具
 
 //****************************************************************************************************************************************************
 
@@ -518,6 +577,7 @@ public class BaZi {
         initialize(setting);
 
         // 计算数据
+        zodiac(setting); // 计算生肖、星座
         baZi(); // 计算八字
         baZiWuXing(); // 计算八字五行
         baZiNaYin(); // 计算八字纳音
@@ -526,32 +586,32 @@ public class BaZi {
         diZhiCangGan(); // 计算地支藏干
         fuXing(); // 计算副星
         diShi(); // 计算地势
-        shenSha(setting); // 计算并封装四柱神煞
-        baZiWuXingQueShi(); // 计算八字五行缺失
-        baZiWuXingGeJu(); // 计算八字五行格局
+        shenSha(); // 计算常用神煞
+        tianGanLiuYi(); // 计算天干留意
+        diZhiLiuYi(); // 计算地支留意
+        qiYun(setting); // 计算起运
+        renYuan(setting); // 计算人元司令分野
+        jieQi(); // 计算上一节气及日期、下一节气及日期、出生节气 TODO：当天数小于1天时会出现显示bug，待修复。
+        xingXiu(); // 计算星宿、星宿吉凶、星宿吉凶歌诀
+        taiGong(); // 计算胎元、胎息、命宫、身宫
+        mingGua(); // 计算命、命卦、命卦信息
+        wuXingQueShi(); // 计算五行缺失
+        wuXingCount(); // 计算五行数量
+        wuXingWangShuai(); // 计算五行旺衰
         bodyIntensity(); // 计算身体强弱
         xiYongShen(); // 计算喜用神
         xiYongShenFangWei(); // 计算喜用神方位
-        wuXingWangShuai(); // 计算五行旺衰
-        tianGanLiuYi(); // 计算天干留意
-        diZhiLiuYi(); // 计算地支留意
-        taiGong(); // 计算胎元、胎息、命宫、身宫
-        qiYun(setting); // 计算起运
-        shengXiaoXingZuo(setting); // 计算生肖、星座
-        xiu(); // 计算宿、宿吉凶、宿吉凶歌诀、星宿
-        ming(setting); // 计算命、命卦
-        dayZhuLunMing(); // 日柱论命
-        yinYuan(); // 姻缘
-        guZhong(setting); // 运程
-        wuXingFenXi(); // 五行分析
+        guZhong(); // 计算骨重
+        dayZhuLunMing(); // 计算日柱论命
+        yinYuan(); // 计算姻缘
+        wuXingFenXi(); // 计算五行分析
         DaYun[] daYun = daYun(setting);// 计算大运及大运十神
         xiaoYun(daYun); // 计算小运及小运十神
         LiuNian[] liuNian = liuNian(daYun);// 计算流年及流年十神
-        liuYue(liuNian); // 计算流月及流月十神
+        daYunLiuYue(liuNian); // 计算大运流月及大运流月十神
+        xiaoYunLiuYue(); // 计算小运流月及小运流月十神
         caiYun(); // 计算财运年份、年龄、干支
         taoHua(setting); // 计算桃花年份、年龄、干支
-        daYunYunShi(); // 大运运势
-        liuNianYunShi(); // 流年运势
 
     }
 
@@ -562,37 +622,68 @@ public class BaZi {
      */
     private void initialize(BaZiSetting setting) {
 
-        // 1.1、判断日期类型并返回公历日期、农历日期
+        // 1、设置基础信息
+        this.name = setting.getName();
+        this.sex = setting.getSex() == 0 ? "女" : "男";
+        this.zao = "男".equals(getSex()) ? "乾造" : "坤造";
+        this.occupy = setting.getOccupy();
+        this.address = setting.getAddress();
+
+        // 2.1、判断日期类型并返回公历日期、农历日期
         Map<String, Object> dateMap = BaZiUtil.isDateType(setting);
-        // 1.2、设置日期数据
+        // 2.2、设置日期数据
         this.solar = (Solar) dateMap.get("solar"); // 设置公历日期
         this.lunar = (Lunar) dateMap.get("lunar"); // 设置农历日期
 
-        // 2、设置星期
+        // 3、设置星期
         this.week = "周" + getLunar().getWeekInChinese();
 
-        // 3.1、判断干支设置并返回干支
+        // 4、设置季节
+        this.season = getLunar().getSeason().substring(1, 2); // 季节简称（如：春）
+
+        // 5.1、判断干支设置并返回干支
         Map<String, List<String>> ganZhiMap = BaZiUtil.isGanZhi(setting, getSolar().getLunar());
-        // 3.2、设置年干支
+        // 5.2、设置年干支
         List<String> yearGanZhi = ganZhiMap.get("yearGanZhi");
         this.yearGan = yearGanZhi.get(0); // 年干
         this.yearZhi = yearGanZhi.get(1); // 年支
         this.yearGanZhi = yearGanZhi.get(2); // 年干支
-        // 3.3、设置月干支
+        // 5.3、设置月干支
         List<String> monthGanZhi = ganZhiMap.get("monthGanZhi");
         this.monthGan = monthGanZhi.get(0); // 月干
         this.monthZhi = monthGanZhi.get(1); // 月支
         this.monthGanZhi = monthGanZhi.get(2); // 月干支
-        // 3.4、设置日干支
+        // 5.4、设置日干支
         List<String> dayGanZhi = ganZhiMap.get("dayGanZhi");
         this.dayGan = dayGanZhi.get(0); // 日干
         this.dayZhi = dayGanZhi.get(1); // 日支
         this.dayGanZhi = dayGanZhi.get(2); // 日干支
-        // 3.5、设置时干支
+        // 5.5、设置时干支
         List<String> hourGanZhi = ganZhiMap.get("hourGanZhi");
         this.hourGan = hourGanZhi.get(0); // 时干
         this.hourZhi = hourGanZhi.get(1); // 时支
         this.hourGanZhi = hourGanZhi.get(2); // 时干支
+
+    }
+
+    /**
+     * 计算生肖、星座
+     *
+     * @param setting 八字-设置
+     */
+    private void zodiac(BaZiSetting setting) {
+
+        // 1、设置生肖
+        if (setting.getYearGanZhiSet() == 0) {
+            this.zodiac = getLunar().getYearShengXiao(); // 以正月初一起算
+        } else if (setting.getYearGanZhiSet() == 1) {
+            this.zodiac = getLunar().getYearShengXiaoByLiChun(); // 以立春当天起算
+        } else if (setting.getYearGanZhiSet() == 2) {
+            this.zodiac = getLunar().getYearShengXiaoExact(); // 以立春交接时刻起算
+        }
+
+        // 2、设置星座
+        this.constellation = getSolar().getXingZuo() + "座";
 
     }
 
@@ -775,9 +866,300 @@ public class BaZi {
     }
 
     /**
-     * 计算八字五行缺失
+     * 计算常用神煞
      */
-    private void baZiWuXingQueShi() {
+    private void shenSha() {
+
+        String yearGanZhiNaYinWuXing = getYearGanZhiNaYin().substring(2, 3); // 年干支纳音五行
+        this.baZiShenShaUtil = new BaZiShenShaUtil(getBaZi(), yearGanZhiNaYinWuXing, getSeason(), getSex());
+
+        this.yearGanZhiShenSha = getBaZiShenShaUtil().getYearGanZhiShenSha();   // 年干支神煞
+        this.monthGanZhiShenSha = getBaZiShenShaUtil().getMonthGanZhiShenSha(); // 月干支神煞
+        this.dayGanZhiShenSha = getBaZiShenShaUtil().getDayGanZhiShenSha();     // 日干支神煞
+        this.hourGanZhiShenSha = getBaZiShenShaUtil().getHourGanZhiShenSha();   // 时干支神煞
+
+    }
+
+    /**
+     * 计算天干留意
+     */
+    private void tianGanLiuYi() {
+
+        Set<String> set = new HashSet<>();
+
+        // 1、判断天干相生
+//        Map<String, String> xiangSheng = BaZiMap.TIAN_GAN_XIANG_SHENG; // 天干相生（天干+天干为键）
+//        saveTianGanLiuYi(set, xiangSheng);
+
+        // 2、判断天干相合
+        Map<String, String> xiangHe = BaZiMap.TIAN_GAN_XIANG_HE; // 天干相合（天干+天干为键）
+        saveTianGanLiuYi(set, xiangHe);
+
+        // 3、判断天干相冲
+        Map<String, String> xiangChong = BaZiMap.TIAN_GAN_XIANG_CHONG; // 天干相冲（天干+天干为键）
+        saveTianGanLiuYi(set, xiangChong);
+
+        // 4、判断天干相克
+        Map<String, String> xiangKe = BaZiMap.TIAN_GAN_XIANG_KE; // 天干相克（天干+天干为键）
+        saveTianGanLiuYi(set, xiangKe);
+
+        set.removeIf(Objects::isNull); // 删除所有null
+        this.tianGanLiuYi = new ArrayList<>(set);
+
+    }
+
+    /**
+     * 计算地支留意
+     */
+    private void diZhiLiuYi() {
+
+        Set<String> set = new HashSet<>();
+
+        // 1、判断地支半合
+        Map<String, String> banHe = BaZiMap.DI_ZHI_BAN_HE; // 地支半合（地支+地支为键）
+        saveDiZhiLiuYi(set, banHe);
+
+        // 2、判断地支拱合
+        Map<String, String> gongHe = BaZiMap.DI_ZHI_GONG_HE; // 地支拱合（地支+地支为键）
+        saveDiZhiLiuYi(set, gongHe);
+
+        // 3、判断地支暗合
+        Map<String, String> anHe = BaZiMap.DI_ZHI_AN_HE; // 地支暗合（地支+地支为键）
+        saveDiZhiLiuYi(set, anHe);
+
+        // 4、判断地支三合
+        Map<String, String> sanHe = BaZiMap.DI_ZHI_SAN_HE; // 地支三合（地支+地支为键）
+        saveDiZhiLiuYi(set, sanHe);
+
+        // 5、判断地支六合
+        Map<String, String> liuHe = BaZiMap.DI_ZHI_LIU_HE; // 地支六合（地支+地支为键）
+        saveDiZhiLiuYi(set, liuHe);
+
+        // 6、判断地支相刑
+        Map<String, String> xiangXing = BaZiMap.DI_ZHI_XIANG_XING; // 地支相刑（地支+地支为键）
+        saveDiZhiLiuYi(set, xiangXing);
+
+        // 7、判断地支三刑
+        Map<String, String> sanXing = BaZiMap.DI_ZHI_SAN_XING; // 地支三刑（地支+地支+地支为键）
+        saveDiZhiLiuYi2(set, sanXing);
+
+        // 8、判断地支相冲
+        Map<String, String> xiangChong = BaZiMap.DI_ZHI_XIANG_CHONG; // 地支相冲（地支+地支为键）
+        saveDiZhiLiuYi(set, xiangChong);
+
+        // 9、判断地支相破
+        Map<String, String> xiangPo = BaZiMap.DI_ZHI_XIANG_PO; // 地支相破（地支+地支为键）
+        saveDiZhiLiuYi(set, xiangPo);
+
+        // 10、判断地支相害
+        Map<String, String> xiangHai = BaZiMap.DI_ZHI_XIANG_HAI; // 地支相害（地支+地支为键）
+        saveDiZhiLiuYi(set, xiangHai);
+
+        set.removeIf(Objects::isNull); // 删除所有null
+        this.diZhiLiuYi = new ArrayList<>(set);
+
+    }
+
+    /**
+     * 计算起运
+     *
+     * @param setting 八字-设置
+     */
+    private void qiYun(BaZiSetting setting) {
+
+        EightChar ec = getLunar().getEightChar();
+        ec.setSect(setting.getDayGanZhiSet()); // 日干支设置，同子时流派（0:晚子时日柱按明天。1:晚子时日柱按当天）
+
+        // 初始化运（设置性别、起运流派）
+        Yun yun = ec.getYun(setting.getSex(), setting.getQiYunLiuPai() + 1);
+
+        String qiYun = "出生";
+        if (yun.getStartYear() != 0) qiYun += yun.getStartYear() + "年";
+        if (yun.getStartMonth() != 0) qiYun += yun.getStartMonth() + "个月";
+        if (yun.getStartDay() != 0) qiYun += yun.getStartDay() + "天";
+        if (yun.getStartHour() != 0) qiYun += yun.getStartHour() + "分钟";
+        qiYun += "后开始起运";
+
+        this.qiYun = qiYun;
+        this.qiYunDate = yun.getStartSolar().toYmdHms();
+
+    }
+
+    /**
+     * 计算人元司令分野
+     *
+     * @param setting 八字-设置
+     */
+    private void renYuan(BaZiSetting setting) {
+
+        String renYuan = "";
+
+        // 1、判断计算方式
+        if (setting.getRenYuan() == 0) {
+            // 1.1、子平真诠法决
+            Map<String, List<String>> ziRenYuan = BaZiMap.ZI_REN_YUAN;
+            renYuan = ziRenYuan.get(getMonthZhi()).get(getPrevJieQiDayNumber());
+        } else if (setting.getRenYuan() == 1) {
+            // 1.2、渊海子平法决
+            Map<String, List<String>> yuanRenYuan = BaZiMap.YUAN_REN_YUAN;
+            renYuan = yuanRenYuan.get(getMonthZhi()).get(getPrevJieQiDayNumber());
+        } else if (setting.getRenYuan() == 2) {
+            // 1.3、星平会海法决
+            Map<String, List<String>> xingRenYuan = BaZiMap.XING_REN_YUAN;
+            renYuan = xingRenYuan.get(getMonthZhi()).get(getPrevJieQiDayNumber());
+        } else if (setting.getRenYuan() == 3) {
+            // 1.4、三命通会法决
+            Map<String, List<String>> xingRenYuan = BaZiMap.SAN_REN_YUAN;
+            renYuan = xingRenYuan.get(getMonthZhi()).get(getPrevJieQiDayNumber());
+        } else if (setting.getRenYuan() == 4) {
+            // 1.5、神峰通考法决
+            Map<String, List<String>> xingRenYuan = BaZiMap.SHEN_REN_YUAN;
+            renYuan = xingRenYuan.get(getMonthZhi()).get(getPrevJieQiDayNumber());
+        } else if (setting.getRenYuan() == 5) {
+            // 1.6、万育吾之法决
+            Map<String, List<String>> xingRenYuan = BaZiMap.WAN_REN_YUAN;
+            renYuan = xingRenYuan.get(getMonthZhi()).get(getPrevJieQiDayNumber());
+        }
+
+        // 2、处理数据
+        Map<String, String> ganYinYangWuXing = BaZiMap.GAN_WU_XING; // 天干五行
+        if (!"".equals(renYuan)) {
+            String wuXing = ganYinYangWuXing.get(renYuan); // 获取人元五行
+            this.renYuan = renYuan + wuXing + "值令";
+        }
+
+    }
+
+    /**
+     * 计算上一节气及日期、下一节气及日期、出生节气
+     */
+    private void jieQi() {
+
+        Solar solar = getSolar(); // 公历日期
+        Lunar lunar = getLunar(); // 农历日期
+
+        // 1、计算上一节气、上一节气日期
+        JieQi prevJieQi = lunar.getPrevJie(true);
+        this.prevJieQi = prevJieQi.toString(); // 上一节气
+        String prevSolar = prevJieQi.getSolar().toYmdHms();
+        this.prevJieQiDate = prevSolar; // 上一节气日期
+
+        // 2、计算下一节气、下一节气日期
+        JieQi nextJieQi = lunar.getNextJie(true);
+        this.nextJieQi = nextJieQi.toString(); // 下一节气
+        String nextSolar = nextJieQi.getSolar().toYmdHms();
+        this.nextJieQiDate = nextSolar; // 下一节气日期
+
+        // 3、计算上一节气与所选日期的时间间隔
+        Map<String, Long> prevMap = DateUtil.dateInterval(prevSolar, solar.toYmdHms());
+
+        // 4、计算所选日期与下一节气的时间间隔
+        Map<String, Long> nextMap = DateUtil.dateInterval(solar.toYmdHms(), nextSolar);
+
+        // 5、设置数据
+        this.prevJieQiDayNumber = Math.toIntExact(prevMap.get("days")); // 所选日期距上一节气天数
+        this.nextJieQiDayNumber = Math.toIntExact(nextMap.get("days")); // 所选日期距下一节气天数
+        String prevStr = "出生于" + prevJieQi + "后" + prevMap.get("days") + "天" + prevMap.get("hours") + "小时" + prevMap.get("minutes") + "分" + prevMap.get("seconds") + "秒";
+        String nexStr = nextJieQi + "前" + nextMap.get("days") + "天" + nextMap.get("hours") + "小时" + nextMap.get("minutes") + "分" + nextMap.get("seconds") + "秒";
+//        String prevStr = "出生于" + prevJieQi + "后" + prevMap.get("days") + "天" + prevMap.get("hours") + "小时";
+//        String nexStr = nextJieQi + "前" + nextMap.get("days") + "天" + nextMap.get("hours") + "小时";
+        this.birthSolarTerms = prevStr + "，" + nexStr;
+
+    }
+
+    /**
+     * 计算星宿、星宿吉凶、星宿吉凶歌诀
+     */
+    private void xingXiu() {
+
+        this.xingXiu = getLunar().getXiu() + "宿" + getLunar().getGong() + "方" + getLunar().getShou(); // 星宿
+        this.xiuJiXiong = getLunar().getXiuLuck(); // 星宿吉凶
+        this.xiuJiXiongGeJue = getLunar().getXiuSong(); // 星宿吉凶歌诀
+
+    }
+
+    /**
+     * 计算胎元、胎息、命宫、身宫
+     */
+    private void taiGong() {
+
+        EightChar ec = getLunar().getEightChar();
+
+        this.taiYuan = ec.getTaiYuan() + "（" + ec.getTaiYuanNaYin() + "）"; // 胎元
+        this.taiXi = ec.getTaiXi() + "（" + ec.getTaiXiNaYin() + "）"; // 胎息
+        this.mingGong = ec.getMingGong() + "（" + ec.getMingGongNaYin() + "）"; // 命宫
+        this.shenGong = ec.getShenGong() + "（" + ec.getShenGongNaYin() + "）"; // 身宫
+
+    }
+
+    /**
+     * 计算命、命卦、命卦信息
+     */
+    private void mingGua() {
+
+        /*
+            一、男命：
+                1、年份中的每一个数字（例如：2000年→ 2+0+0+0=2）。
+                2、相加得到数字A（例如：2）。
+                3、用得到数字A的每一个数字相加再得到数字B（例如：2）。
+                4、若数字B小于10，则使用(11-数字B);若数字B大于10，则使用(数字B-11)。
+
+            二、女命：
+                1、年份中的每一个数字（例如：2000年→ 2+0+0+0=2）。
+                2、相加得到一个数字A（例如：2）。
+                3、用数字A+4得到数字B（例如：2+4=6）。
+                4、若数字B大于9，再用数字B-9；如没有余数或除尽则视为9。
+         */
+
+        // 1、计算命
+        this.ming = getYearGanZhiNaYin() + "命";
+
+        Map<Integer, List<String>> map = BaZiMap.MING_GUA; // 命卦
+
+        // 2、计算年份合数
+        int yearCount = 0; // 年份合数
+        String yearStr = String.valueOf(getSolar().getYear());
+        for (int i = 0; i < yearStr.length(); i++) {
+            yearCount += Integer.parseInt(yearStr.split("")[i]);
+        }
+
+        // 3、男命
+        if ("男".equals(getSex())) {
+            // 3.1、若年份合数大于10，则继续使用年份合数相加，直至小于10为止
+            while (true) {
+                if (yearCount > 10) {
+                    String yearCountStr = String.valueOf(yearCount);
+                    yearCount = 0;
+                    for (int i = 0; i < yearCountStr.length(); i++) {
+                        yearCount += Integer.parseInt(yearCountStr.split("")[i]);
+                    }
+                } else break;
+            }
+            // 3.2、使用（11-数字之和）得出男命命卦宫位
+            List<String> list = map.get(11 - yearCount);
+            this.mingGua = list.get(0); // 获取命卦
+            this.mingGuaInfo = list.get(2); // 获取命卦信息
+        } else {
+            // 4、女命
+            int womManMingGuaGong = yearCount + 4; // 数字B
+            // 4.1、若数字B大于9，再用数字B-9；如没有余数或除尽则视为9
+            while (true) {
+                if (womManMingGuaGong > 9) {
+                    womManMingGuaGong -= 9;
+                } else break;
+            }
+            // 4.2、得出女命命卦宫位
+            List<String> list = map.get(womManMingGuaGong);
+            this.mingGua = list.get(0); // 获取命卦
+            this.mingGuaInfo = list.get(2); // 获取命卦信息
+        }
+
+    }
+
+    /**
+     * 计算五行缺失
+     */
+    private void wuXingQueShi() {
 
         Map<String, String> ganW = BaZiMap.GAN_WU_XING; // 天干五行
         Map<String, String> zhiW = BaZiMap.ZHI_WU_XING; // 地支五行
@@ -806,9 +1188,9 @@ public class BaZi {
     }
 
     /**
-     * 计算八字五行格局
+     * 计算五行数量
      */
-    private void baZiWuXingGeJu() {
+    private void wuXingCount() {
 
         // 1.1、添加干支五行
         List<String> ganZHiWuXingList = Arrays.asList(
@@ -818,28 +1200,43 @@ public class BaZi {
         // 1.2、获取八字五行中出现的重复元素及出现次数
         Map<String, Integer> map = CommonUtil.getListIdentical(ganZHiWuXingList);
 
-        // 2、保存五行格局数据
-        List<String> baZiWuXingGeJu = new ArrayList<>();
+        // 2、保存五行数量
+        List<String> baZiWuXingCount = new ArrayList<>();
         for (String key : map.keySet()) {
-            baZiWuXingGeJu.add(map.get(key) + key);
+            baZiWuXingCount.add(map.get(key) + key);
         }
 
-        this.baZiWuXingGeJu = baZiWuXingGeJu;
+        this.baZiWuXingCount = baZiWuXingCount;
 
     }
 
     /**
-     * 计算身体强弱（如：身强）
+     * 计算五行旺衰
+     */
+    private void wuXingWangShuai() {
+
+        Map<String, List<String>> wangShuai = BaZiMap.WU_XING_WANG_SHUAI; // 五行旺衰（按月支判断）
+        this.wuXingWangShuai = wangShuai.get(getMonthZhi());
+
+
+    }
+
+    /**
+     * 计算身体强弱
      */
     private void bodyIntensity() {
 
         /*
-            根据[日元]和[月令]之间的五行生克关系计算（日元：日干。月令：月支）
+            1、根据[日元]和[月令]之间的五行生克关系计算。
 
-              1、解释：日元代表自己，月令代表父母或兄弟。
-              2、口诀：同我、生我为强；克我、我生、我克为弱。
+                解释：日元代表自己，月令代表父母或兄弟。
+                口诀：同我、生我为强；克我、我生、我克为弱。
+            ----------------------------------------------------
 
-            TODO：此处只采用[日元]和[月令]之间的五行生克关系、[日元]和[其他干支]之间的算分进行计算，暂不考虑其他因素。
+            2、根据[日元]和[其他干支]之间的算分进行计算。
+
+            ----------------------------------------------------
+            TODO：此处采用第2种方法：根据[日元]和[其他干支]之间的算分进行计算，暂不考虑其他各种因素。
          */
 
         Map<String, String> shengKe = BaZiMap.GAN_ZHI_WU_XING_SHENG_KE; // 天干和干支的五行生克关系
@@ -970,217 +1367,41 @@ public class BaZi {
     }
 
     /**
-     * 计算五行旺衰
+     * 计算骨重
      */
-    private void wuXingWangShuai() {
+    private void guZhong() {
 
-        Map<String, List<String>> wangShuai = BaZiMap.WU_XING_WANG_SHUAI; // 五行旺衰（按月支判断）
-        this.wuXingWangShuai = wangShuai.get(getMonthZhi());
+        Map<String, Integer> yearMap = BaZiMap.YEAR_GU_ZHONG; // 出生年骨重
+        Map<String, Integer> monthMap = BaZiMap.MONTH_GU_ZHONG; // 出生月骨重
+        Map<String, Integer> dayMap = BaZiMap.DAY_GU_ZHONG; // 出生日骨重
+        Map<String, Integer> hourMap = BaZiMap.HOUR_GU_ZHONG; // 出生时辰骨重
 
-    }
+        int yearGuZhong = yearMap.get(getYearGanZhi()); // 出生年骨重
+        int monthGuZhong = monthMap.get(getMonthZhi()); // 出生月骨重
+        int dayGuZhong = dayMap.get(getLunar().getDayInChinese()); // 出生日骨重
+        int hourGuZhong = hourMap.get(getHourZhi()); // 出生时辰骨重
 
-    /**
-     * 计算天干留意
-     */
-    private void tianGanLiuYi() {
+        int guZhong = yearGuZhong + monthGuZhong + dayGuZhong + hourGuZhong; // 命主骨重
+        guZhong = Math.max(guZhong, 21); // 最轻骨重
 
-        Set<String> set = new HashSet<>();
-
-        // 1、判断天干相生
-        Map<String, String> xiangSheng = BaZiMap.TIAN_GAN_XIANG_SHENG; // 天干相生（天干+天干为键）
-        saveTianGanLiuYi(set, xiangSheng);
-
-        // 2、判断天干相合
-        Map<String, String> xiangHe = BaZiMap.TIAN_GAN_XIANG_HE; // 天干相合（天干+天干为键）
-        saveTianGanLiuYi(set, xiangHe);
-
-        // 3、判断天干相冲
-        Map<String, String> xiangChong = BaZiMap.TIAN_GAN_XIANG_CHONG; // 天干相冲（天干+天干为键）
-        saveTianGanLiuYi(set, xiangChong);
-
-        // 4、判断天干相克
-        Map<String, String> xiangKe = BaZiMap.TIAN_GAN_XIANG_KE; // 天干相克（天干+天干为键）
-        saveTianGanLiuYi(set, xiangKe);
-
-        set.removeIf(Objects::isNull); // 删除所有null
-        this.tianGanLiuYi = new ArrayList<>(set);
-
-    }
-
-    /**
-     * 地支留意
-     */
-    private void diZhiLiuYi() {
-
-        Set<String> set = new HashSet<>();
-
-        // 1、判断地支三合
-        Map<String, String> sanHe = BaZiMap.DI_ZHI_SAN_HE; // 地支三合（地支+地支为键）
-        saveDiZhiLiuYi(set, sanHe);
-
-        // 2、判断地支六合
-        Map<String, String> liuHe = BaZiMap.DI_ZHI_LIU_HE; // 地支六合（地支+地支为键）
-        saveDiZhiLiuYi(set, liuHe);
-
-        // 3、判断地支相冲
-        Map<String, String> xiangChong = BaZiMap.DI_ZHI_XIANG_CHONG; // 地支相冲（地支+地支为键）
-        saveDiZhiLiuYi(set, xiangChong);
-
-        // 4、判断地支相破
-        Map<String, String> xiangPo = BaZiMap.DI_ZHI_XIANG_PO; // 地支相破（地支+地支为键）
-        saveDiZhiLiuYi(set, xiangPo);
-
-        // 5、判断地支相害
-        Map<String, String> xiangHai = BaZiMap.DI_ZHI_XIANG_HAI; // 地支相害（地支+地支为键）
-        saveDiZhiLiuYi(set, xiangHai);
-
-        set.removeIf(Objects::isNull); // 删除所有null
-        this.diZhiLiuYi = new ArrayList<>(set);
-
-    }
-
-    /**
-     * 计算胎元、胎息、命宫、身宫
-     */
-    private void taiGong() {
-
-        EightChar eightChar = getLunar().getEightChar();
-
-        this.taiYuan = eightChar.getTaiYuan(); // 胎元
-        this.taiXi = eightChar.getTaiXi(); // 胎息
-        this.mingGong = eightChar.getMingGong(); // 命宫
-        this.shenGong = eightChar.getShenGong(); // 身宫
-        this.taiYuanNaYin = eightChar.getTaiYuanNaYin(); // 胎元纳音
-        this.taiXiNaYin = eightChar.getTaiXiNaYin(); // 胎息纳音
-        this.mingGongNaYin = eightChar.getMingGongNaYin(); // 命宫纳音
-        this.shenGongNaYin = eightChar.getShenGongNaYin(); // 身宫纳音
-
-    }
-
-    /**
-     * 计算起运
-     *
-     * @param setting 八字-设置
-     */
-    private void qiYun(BaZiSetting setting) {
-
-        EightChar ec = getLunar().getEightChar();
-        ec.setSect(setting.getDayGanZhiSet()); // 日干支设置，同子时流派（0:晚子时日柱按明天。1:晚子时日柱按当天）
-
-        // 初始化运（设置性别、起运流派）
-        Yun yun = ec.getYun(setting.getSex(), setting.getQiYunLiuPai() + 1);
-
-        String qiYun = "出生";
-        if (yun.getStartYear() != 0) qiYun += yun.getStartYear() + "年";
-        if (yun.getStartMonth() != 0) qiYun += yun.getStartMonth() + "个月";
-        if (yun.getStartDay() != 0) qiYun += yun.getStartDay() + "天";
-        if (yun.getStartHour() != 0) qiYun += yun.getStartHour() + "分钟";
-        qiYun += "后开始起运";
-
-        this.qiYun = qiYun;
-        this.qiYunDate = yun.getStartSolar().toYmdHms();
-
-    }
-
-    /**
-     * 计算生肖、星座
-     *
-     * @param setting 八字-设置
-     */
-    private void shengXiaoXingZuo(BaZiSetting setting) {
-
-        // 1、设置生肖
-        if (setting.getYearGanZhiSet() == 0) {
-            this.shengXiao = getLunar().getYearShengXiao(); // 以正月初一起算
-        } else if (setting.getYearGanZhiSet() == 1) {
-            this.shengXiao = getLunar().getYearShengXiaoByLiChun(); // 以立春当天起算
-        } else if (setting.getYearGanZhiSet() == 2) {
-            this.shengXiao = getLunar().getYearShengXiaoExact(); // 以立春交接时刻起算
-        }
-
-        // 2、设置星座
-        this.xingZuo = getSolar().getXingZuo() + "座";
-
-    }
-
-    /**
-     * 计算宿、宿吉凶、宿吉凶歌诀、星宿
-     */
-    private void xiu() {
-
-        Lunar lunar = getLunar();
-
-        this.xiu = lunar.getXiu(); // 宿
-        this.xiuJiXiong = lunar.getXiuLuck(); // 宿吉凶
-        this.xiuJiXiongGeJue = lunar.getXiuSong(); // 宿歌诀
-        this.xingXiu = lunar.getXiu() + "宿" + lunar.getGong() + "方" + lunar.getShou(); // 星宿
-
-    }
-
-    /**
-     * 计算命、命卦
-     *
-     * @param setting 八字-设置
-     */
-    private void ming(BaZiSetting setting) {
-
-        /*
-            一、男命：
-                1、年份中的每一个数字（例如：2000年→ 2+0+0+0=2）。
-                2、相加得到数字A（例如：2）。
-                3、用得到数字A的每一个数字相加再得到数字B（例如：2）。
-                4、若数字B小于10，则使用(11-数字B);若数字B大于10，则使用(数字B-11)。
-
-            二、女命：
-                1、年份中的每一个数字（例如：2000年→ 2+0+0+0=2）。
-                2、相加得到一个数字A（例如：2）。
-                3、用数字A+4得到数字B（例如：2+4=6）。
-                4、若数字B大于9，再用数字B-9；如没有余数或除尽则视为9。
-         */
-
-        // 1、计算命
-        this.ming = getYearGanZhiNaYin() + "命";
-
-        Map<Integer, List<String>> mingGua = BaZiMap.MING_GUA; // 命卦
-
-        // 2、计算年份合数
-        int yearCount = 0; // 年份合数
-        String yearStr = String.valueOf(getSolar().getYear());
-        for (int i = 0; i < yearStr.length(); i++) {
-            yearCount += Integer.parseInt(yearStr.split("")[i]);
-        }
-
-        // 3、男命
-        if (setting.getSex() == 1) {
-            // 3.1、若年份合数大于10，则继续使用年份合数相加，直至小于10为止
-            while (true) {
-                if (yearCount > 10) {
-                    String yearCountStr = String.valueOf(yearCount);
-                    yearCount = 0;
-                    for (int i = 0; i < yearCountStr.length(); i++) {
-                        yearCount += Integer.parseInt(yearCountStr.split("")[i]);
-                    }
-                } else break;
-            }
-            // 3.2、使用（11-数字之和）得出男命命卦宫位
-            this.mingGua = mingGua.get(11 - yearCount);
+        // 1、男命
+        if ("男".equals(getSex())) {
+            guZhong = Math.min(guZhong, 72); // 男命的最重骨重
+            Map<Integer, String> yunChengWan = BaZiMap.YUN_CHENG_WAN; // 骨重批注（男命）
+            this.guZhong = guZhongCharacters(guZhong); // 骨重转为文字
+            this.guZhongPiZhu = yunChengWan.get(guZhong);
         } else {
-            // 4、女命
-            int womManMingGuaGong = yearCount + 4; // 数字B
-            // 4.1、若数字B大于9，再用数字B-9；如没有余数或除尽则视为9
-            while (true) {
-                if (womManMingGuaGong > 9) {
-                    womManMingGuaGong -= 9;
-                } else break;
-            }
-            // 4.2、得出女命命卦宫位
-            this.mingGua = mingGua.get(womManMingGuaGong);
+            // 2、女命
+            guZhong = Math.min(guZhong, 71); // 女命的最重骨重
+            Map<Integer, String> yunChengWan = BaZiMap.YUN_CHENG_WOMAN; // 骨重批注（女命）
+            this.guZhong = guZhongCharacters(guZhong); // 骨重转为文字
+            this.guZhongPiZhu = yunChengWan.get(guZhong);
         }
 
     }
 
     /**
-     * 日柱论命
+     * 计算日柱论命
      */
     private void dayZhuLunMing() {
 
@@ -1190,7 +1411,7 @@ public class BaZi {
     }
 
     /**
-     * 姻缘
+     * 计算姻缘
      */
     private void yinYuan() {
 
@@ -1205,44 +1426,7 @@ public class BaZi {
     }
 
     /**
-     * 骨重
-     *
-     * @param setting 八字-设置
-     */
-    private void guZhong(BaZiSetting setting) {
-
-        Map<String, Double> yearMap = BaZiMap.YEAR_GU_ZHONG; // 出生年骨重
-        Map<String, Double> monthMap = BaZiMap.MONTH_GU_ZHONG; // 出生月骨重
-        Map<String, Double> dayMap = BaZiMap.DAY_GU_ZHONG; // 出生日骨重
-        Map<String, Double> hourMap = BaZiMap.HOUR_GU_ZHONG; // 出生时辰骨重
-
-        Double yearGuZhong = yearMap.get(getYearGanZhi()); // 出生年骨重
-        Double monthGuZhong = monthMap.get(String.valueOf(getLunar().getMonth() < 0 ? -getLunar().getMonth() : getLunar().getMonth())); // 出生月骨重
-        Double dayGuZhong = dayMap.get(String.valueOf(getLunar().getDay())); // 出生日骨重
-        Double hourGuZhong = hourMap.get(getHourZhi()); // 出生时辰骨重
-
-        double guZhong = yearGuZhong + monthGuZhong + dayGuZhong + hourGuZhong; // 命主骨重
-        guZhong = CommonUtil.getDouble(guZhong, 1); // 保留一位小数
-        if (guZhong < 2.1) guZhong = 2.1; // 男命和女命的最轻命
-
-        // 1、男命
-        if (setting.getSex() == 1) {
-            if (guZhong > 7.2) guZhong = 7.2; // 男命的最重命
-            Map<Double, String> yunChengWan = BaZiMap.YUN_CHENG_WAN; // 骨重批注（男命运程）
-            this.guZhong = guZhongCharacters(guZhong); // 骨重转为文字
-            this.guZhongInfo = yunChengWan.get(guZhong);
-        } else {
-            // 2、女命
-            if (guZhong > 7.1) guZhong = 7.1; // 女命的最重命
-            Map<Double, String> yunChengWan = BaZiMap.YUN_CHENG_WOMAN; // 骨重批注（女命运程）
-            this.guZhong = guZhongCharacters(guZhong); // 骨重转为文字
-            this.guZhongInfo = yunChengWan.get(guZhong);
-        }
-
-    }
-
-    /**
-     * 五行分析
+     * 计算五行分析
      */
     private void wuXingFenXi() {
 
@@ -1259,16 +1443,16 @@ public class BaZi {
      */
     private DaYun[] daYun(BaZiSetting setting) {
 
-        EightChar eightChar = getLunar().getEightChar();
+        EightChar ec = getLunar().getEightChar();
 
         // 初始化运
-        Yun yun = eightChar.getYun(setting.getSex(), setting.getQiYunLiuPai());
+        Yun yun = ec.getYun(setting.getSex(), setting.getQiYunLiuPai());
 
         List<List<String>> daYunList = new ArrayList<>(); // 大运
         List<List<String>> daYunShiShenList = new ArrayList<>(); // 大运十神
 
         // 获取指定轮数的大运
-        DaYun[] daYun = yun.getDaYun(10);
+        DaYun[] daYun = yun.getDaYun(12);
         for (DaYun key : daYun) {
             // 添加大运
             daYunList.add(new ArrayList<>(Arrays.asList(String.valueOf(key.getStartYear()), String.valueOf(key.getStartAge()), key.getGanZhi())));
@@ -1349,12 +1533,13 @@ public class BaZi {
     }
 
     /**
-     * 计算流月及流月十神
+     * 计算大运流月及大运流月十神
      *
-     * @param liuNian 流年
+     * @param liuNian 大运流年
      */
-    private void liuYue(LiuNian[] liuNian) {
+    private void daYunLiuYue(LiuNian[] liuNian) {
 
+        String[] shiErJie = BaZiMap.SHI_ER_JIE; // 十二节
         List<List<String>> liuYueList = new ArrayList<>(); // 流月
         List<List<String>> liuYueShiShenList = new ArrayList<>(); // 流月十神
 
@@ -1362,17 +1547,67 @@ public class BaZi {
         for (LiuNian ln : liuNian) {
             // 获取流月
             LiuYue[] liuYue = ln.getLiuYue();
-            for (LiuYue key : liuYue) {
+            for (int i = 0; i < liuYue.length; i++) {
                 // 添加流月
-                liuYueList.add(new ArrayList<>(Arrays.asList(key.getMonthInChinese() + "月", key.getGanZhi())));
+                liuYueList.add(new ArrayList<>(Arrays.asList(shiErJie[i], liuYue[i].getGanZhi())));
                 // 添加流月十神
-                List<String> shiShen = getShiShen(key.getGanZhi());
+                List<String> shiShen = getShiShen(liuYue[i].getGanZhi());
                 liuYueShiShenList.add(shiShen);
             }
         }
 
-        this.liuYue = liuYueList; // 流月
-        this.liuYueShiShen = liuYueShiShenList; // 流月十神
+        this.daYunLiuYue = liuYueList; // 流月
+        this.daYunLiuYueShiShen = liuYueShiShenList; // 流月十神
+
+    }
+
+    /**
+     * 计算小运流月及小运流月十神
+     */
+    private void xiaoYunLiuYue() {
+
+        String[] shiErJie = BaZiMap.SHI_ER_JIE; // 十二节
+        List<List<String>> liuYueList = new ArrayList<>(); // 小流月
+        List<List<String>> liuYueShiShenList = new ArrayList<>(); // 小流月十神
+
+        // 1、计算小运一共持续几年
+        int daYunStart = Integer.parseInt(getDaYun().get(1).get(1)); // 大运开始的年份
+        int xiaoYunStart = Integer.parseInt(getDaYun().get(0).get(1)); // 小运开始的年份
+        int xiaoYunCount = daYunStart - xiaoYunStart;
+        xiaoYunCount = xiaoYunCount == 0 ? 1 : xiaoYunCount;
+
+        // 2、计算传入日期的立春当月的干支
+        Lunar lunar = new Lunar(getLunar().getYear(), 1, 15);
+        String monthInGanZhi = lunar.getMonthInGanZhiExact();
+
+        // 3、遍历大运流月，查找月干支所处的索引
+        int index = 0;
+        List<List<String>> daYunLiuYue = getDaYunLiuYue();
+        for (int i = 0; i < daYunLiuYue.size(); i++) {
+            String ganZhi = daYunLiuYue.get(i).get(1);
+            if (ganZhi.equals(monthInGanZhi)) {
+                index = i;
+                break;
+            } else {
+                index++;
+            }
+        }
+
+        // 4、从月干支索引处向后依次添加小运流月
+        int shiEr = 0;
+        int xiaoYunLiuYueCount = xiaoYunCount * 12;
+        for (int i = 0; i < xiaoYunLiuYueCount; i++) {
+            // 添加流月
+            liuYueList.add(new ArrayList<>(Arrays.asList(shiErJie[shiEr], daYunLiuYue.get(i + index).get(1))));
+            // 添加流月十神
+            List<String> shiShen = getShiShen(daYunLiuYue.get(i + index).get(1));
+            liuYueShiShenList.add(shiShen);
+            shiEr++;
+            if (shiEr > 11) shiEr = 0;
+        }
+
+        this.xiaoYunLiuYue = liuYueList; // 小运流月
+        this.xiaoYunLiuYueShiShen = liuYueShiShenList; // 小运流月十神
 
     }
 
@@ -1398,12 +1633,12 @@ public class BaZi {
             List<String> pianCaiGanZhi = riZhuPianCai.get(dayGan); // 男女日主偏财干支
             // 遍历日干正财干支（偏财数量与正财相同）
             for (int j = 0; j < zhengCaiGanZhi.size(); j++) {
-                // 判断流年天干地支是否为正财
+                // 判断流年干支是否为正财
                 if (gan.equals(zhengCaiGanZhi.get(j)) || zhi.equals(zhengCaiGanZhi.get(j))) {
                     zhengCaiList.add(key);
                     break;
                 }
-                // 判断流年天干地支是否为偏财
+                // 判断流年干支是否为偏财
                 if (gan.equals(pianCaiGanZhi.get(j)) || zhi.equals(pianCaiGanZhi.get(j))) {
                     pianCaiList.add(key);
                     break;
@@ -1444,12 +1679,12 @@ public class BaZi {
                 List<String> pianCaiGanZhi = riZhuPianTaoHua.get(dayGan); // 女日主偏桃花干支
                 // 遍历日干正桃花干支（偏桃花数量与正桃花相同）
                 for (int j = 0; j < zhengCaiGanZhi.size(); j++) {
-                    // 判断流年天干地支是否为正桃花
+                    // 判断流年干支是否为正桃花
                     if (gan.equals(zhengCaiGanZhi.get(j)) || zhi.equals(zhengCaiGanZhi.get(j))) {
                         zhengTaoHuaList.add(key);
                         break;
                     }
-                    // 判断流年天干地支是否为偏桃花
+                    // 判断流年干支是否为偏桃花
                     if (gan.equals(pianCaiGanZhi.get(j)) || zhi.equals(pianCaiGanZhi.get(j))) {
                         pianTaoHuaList.add(key);
                         break;
@@ -1462,1109 +1697,7 @@ public class BaZi {
 
     }
 
-    /**
-     * 大运运势
-     * <p>
-     * TODO：测试中，仅供参考，不可对号入座
-     */
-    private void daYunYunShi() {
-
-        List<List<String>> list = new ArrayList<>();
-
-        Map<String, String> shenRuoYunCheng = BaZiMap.SHEN_RUO_YUN_CHENG; // 身弱运程
-        Map<String, String> shenQiangYunCheng = BaZiMap.SHEN_QIANG_YUN_CHENG; // 身强运程
-
-        List<List<String>> daYun = getDaYun(); // 大运
-
-        // 1、身弱运程
-        if ("身弱".equals(getBodyIntensity())) {
-            for (int i = 1; i < daYun.size(); i++) {
-                String front = "前5年", after = "后5年";
-                // 1.1、每一个大运（10年）的前五年运程
-                String gan = daYun.get(i).get(2).substring(0, 1); // 大运天干
-                front += shenRuoYunCheng.get(getDayGan() + gan);
-                // 1.2、每一个大运（10年）后前五年运程
-                String zhi = daYun.get(i).get(2).substring(1, 2); // 大运地支
-                after += shenRuoYunCheng.get(getDayGan() + zhi);
-                // 1.3、添加大运运程
-                int beginYear = Integer.parseInt(daYun.get(i).get(0)); // 每一轮大运开始的年份
-                int endYear = beginYear + 9; // 每一轮大运结束的年份
-                list.add(Arrays.asList(beginYear + "年~" + endYear + "年", front + "、" + after));
-            }
-            this.daYunYunShi = list;
-            return;
-        }
-
-        // 2、身强运程
-        if ("身强".equals(getBodyIntensity())) {
-            for (int i = 1; i < daYun.size(); i++) {
-                String front = "前5年", after = "后5年";
-                // 1.1、每一个大运（10年）的前5年运程
-                String gan = daYun.get(i).get(2).substring(0, 1); // 大运天干
-                front += shenQiangYunCheng.get(getDayGan() + gan);
-                // 1.2、每一个大运（10年）后前5年运程
-                String zhi = daYun.get(i).get(2).substring(1, 2); // 大运地支
-                after += shenQiangYunCheng.get(getDayGan() + zhi);
-                // 1.3、添加大运运程
-                int beginYear = Integer.parseInt(daYun.get(i).get(0)); // 每一轮大运开始的年份
-                int endYear = beginYear + 9; // 每一轮大运结束的年份
-                list.add(Arrays.asList(beginYear + "年~" + endYear + "年", front + "、" + after));
-            }
-            this.daYunYunShi = list;
-        }
-
-    }
-
-    /**
-     * 流年运势
-     * <p>
-     * TODO：测试中，仅供参考，不可对号入座
-     */
-    private void liuNianYunShi() {
-
-        List<List<String>> list = new ArrayList<>();
-
-        Map<String, String> shenRuoYunCheng = BaZiMap.SHEN_RUO_YUN_CHENG; // 身弱运程
-        Map<String, String> shenQiangYunCheng = BaZiMap.SHEN_QIANG_YUN_CHENG; // 身强运程
-
-        List<List<String>> liuNian = getLiuNian(); // 流年
-
-        // 1、身弱运程
-        if ("身弱".equals(getBodyIntensity())) {
-            for (int i = 1; i < liuNian.size(); i++) {
-                String front = "上半年", after = "下半年";
-                // 1.1、每一个流年（1年）的前6个月运程
-                String gan = liuNian.get(i).get(2).substring(0, 1); // 流年天干
-                front += shenRuoYunCheng.get(getDayGan() + gan);
-                // 1.2、每一个流年（1年）后前6个月运程
-                String zhi = liuNian.get(i).get(2).substring(1, 2); // 流年地支
-                after += shenRuoYunCheng.get(getDayGan() + zhi);
-                // 1.3、添加流年运程
-                list.add(Arrays.asList(liuNian.get(i).get(0) + "年", front + "、" + after));
-            }
-            this.liuNianYunShi = list;
-            return;
-        }
-
-        // 2、身强运程
-        if ("身强".equals(getBodyIntensity())) {
-            for (int i = 1; i < liuNian.size(); i++) {
-                String front = "上半年", after = "下半年";
-                // 1.1、每一个流年（1年）的前6个月运程
-                String gan = liuNian.get(i).get(2).substring(0, 1); // 流年天干
-                front += shenQiangYunCheng.get(getDayGan() + gan);
-                // 1.2、每一个流年（1年）后前6个月运程
-                String zhi = liuNian.get(i).get(2).substring(1, 2); // 流年地支
-                after += shenQiangYunCheng.get(getDayGan() + zhi);
-                // 1.3、添加流年运程
-                list.add(Arrays.asList(liuNian.get(i).get(0) + "年", front + "、" + after));
-            }
-            this.liuNianYunShi = list;
-        }
-
-    }
-
-    /**
-     * 计算并返回太极贵人【1】
-     *
-     * @return 太极贵人
-     */
-    private List<String> taiJiGuiRen() {
-
-        List<String> yearZhi = BaZiMap.TAI_JI_GUI_REN.get(getYearGan()); // 根据年干获取太极贵人所要落入的地支
-        List<String> dayZhi = BaZiMap.TAI_JI_GUI_REN.get(getDayGan()); // 根据日干获取太极贵人所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "太极贵人");
-
-    }
-
-    /**
-     * 计算并返回天乙贵人【1】
-     *
-     * @return 天乙贵人
-     */
-    private List<String> tianYiGuiRen() {
-
-        List<String> yearZhi = BaZiMap.TIAN_YI_GUI_REN.get(getYearGan()); // 根据年干获取天乙贵人所要落入的地支
-        List<String> dayZhi = BaZiMap.TIAN_YI_GUI_REN.get(getDayGan()); // 根据日干获取天乙贵人所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "天乙贵人");
-
-    }
-
-    /**
-     * 计算并返回福星贵人【1】
-     *
-     * @return 福星贵人
-     */
-    private List<String> fuXingGuiRen() {
-
-        List<String> yearZhi = BaZiMap.FU_XING_GUI_REN.get(getYearGan()); // 根据年干获取福星贵人所要落入的地支
-        List<String> dayZhi = BaZiMap.FU_XING_GUI_REN.get(getDayGan()); // 根据日干获取福星贵人所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "福星贵人");
-
-    }
-
-    /**
-     * 计算并返回文昌贵人【1】
-     *
-     * @return 文昌贵人
-     */
-    private List<String> wenChangGuiRen() {
-
-        List<String> yearZhi = BaZiMap.WEN_CHANG_GUI_REN.get(getYearGan()); // 根据年干获取文昌贵人所要落入的地支
-        List<String> dayZhi = BaZiMap.WEN_CHANG_GUI_REN.get(getDayGan()); // 根据日干获取文昌贵人所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "文昌贵人");
-
-    }
-
-    /**
-     * 计算并返回天厨贵人【1】
-     *
-     * @return 天厨贵人
-     */
-    private List<String> tianChuGuiRen() {
-
-        List<String> yearZhi = BaZiMap.TIAN_CHU_GUI_REN.get(getYearGan()); // 根据年干获取天厨贵人所要落入的地支
-        List<String> dayZhi = BaZiMap.TIAN_CHU_GUI_REN.get(getDayGan()); // 根据日干获取天厨贵人所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "天厨贵人");
-
-    }
-
-    /**
-     * 计算并返回国印【1】
-     *
-     * @return 国印
-     */
-    private List<String> guoYin() {
-
-        List<String> yearZhi = BaZiMap.GUO_YIN.get(getYearGan()); // 根据年干获取国印所要落入的地支
-        List<String> dayZhi = BaZiMap.GUO_YIN.get(getDayGan()); // 根据日干获取国印所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "国印");
-
-    }
-
-    /**
-     * 计算并返回金舆【1】
-     *
-     * @return 金舆
-     */
-    private List<String> jinYu() {
-
-        List<String> yearZhi = BaZiMap.JIN_YU.get(getYearGan()); // 根据年干获取金舆所要落入的地支
-        List<String> dayZhi = BaZiMap.JIN_YU.get(getDayGan()); // 根据日干获取金舆所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "金舆");
-
-    }
-
-    /**
-     * 计算并返回驿马【1】
-     *
-     * @return 驿马
-     */
-    private List<String> yiMa() {
-
-        List<String> yearZhi = BaZiMap.YI_MA.get(getYearZhi()); // 根据年支获取驿马所要落入的地支
-        List<String> dayZhi = BaZiMap.YI_MA.get(getDayZhi()); // 根据日支获取驿马所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "驿马");
-
-    }
-
-    /**
-     * 计算并返回华盖【1】
-     *
-     * @return 华盖
-     */
-    private List<String> huaGai() {
-
-        List<String> yearZhi = BaZiMap.HUA_GAI.get(getYearZhi()); // 根据年支获取华盖所要落入的地支
-        List<String> dayZhi = BaZiMap.HUA_GAI.get(getDayZhi()); // 根据日支获取华盖所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "华盖");
-
-    }
-
-    /**
-     * 计算并返回劫煞【1】
-     *
-     * @return 劫煞
-     */
-    private List<String> jieSha() {
-
-        List<String> yearZhi = BaZiMap.JIE_SHA.get(getYearZhi()); // 根据年支获取劫煞所要落入的地支
-        List<String> dayZhi = BaZiMap.JIE_SHA.get(getDayZhi()); // 根据日支获取劫煞所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "劫煞");
-
-    }
-
-    /**
-     * 计算并返回将星【1】
-     *
-     * @return 将星
-     */
-    private List<String> jiangXing() {
-
-        List<String> yearZhi = BaZiMap.JIANG_XING.get(getYearZhi()); // 根据年支获取将星所要落入的地支
-        List<String> dayZhi = BaZiMap.JIANG_XING.get(getDayZhi()); // 根据日支获取将星所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "将星");
-
-    }
-
-    /**
-     * 计算并返回桃花【1】
-     *
-     * @return 桃花
-     */
-    private List<String> taoHua() {
-
-        List<String> yearZhi = BaZiMap.TAO_HUA.get(getYearZhi()); // 根据年支获取桃花所要落入的地支
-        List<String> dayZhi = BaZiMap.TAO_HUA.get(getDayZhi()); // 根据日支获取桃花所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "桃花");
-
-    }
-
-    /**
-     * 计算并返回亡神【1】
-     *
-     * @return 亡神
-     */
-    private List<String> wangShen() {
-
-        List<String> yearZhi = BaZiMap.WANG_SHEN.get(getYearZhi()); // 根据年支获取亡神所要落入的地支
-        List<String> dayZhi = BaZiMap.WANG_SHEN.get(getDayZhi()); // 根据日支获取亡神所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "亡神");
-
-    }
-
-    /**
-     * 计算并返回丧门【1】
-     *
-     * @return 丧门
-     */
-    private List<String> sangMen() {
-
-        List<String> yearZhi = BaZiMap.SANG_MEN.get(getYearZhi()); // 根据年支获取丧门所要落入的地支
-        List<String> dayZhi = BaZiMap.SANG_MEN.get(getDayZhi()); // 根据日支获取丧门所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "丧门");
-
-    }
-
-    /**
-     * 计算并返回吊客【1】
-     *
-     * @return 吊客
-     */
-    private List<String> diaoKe() {
-
-        List<String> yearZhi = BaZiMap.DIAO_KE.get(getYearZhi()); // 根据年支获取吊客所要落入的地支
-        List<String> dayZhi = BaZiMap.DIAO_KE.get(getDayZhi()); // 根据日支获取吊客所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "吊客");
-
-    }
-
-    /**
-     * 计算并返回披麻【1】
-     *
-     * @return 披麻
-     */
-    private List<String> piMa() {
-
-        List<String> yearZhi = BaZiMap.PI_MA.get(getYearZhi()); // 根据年支获取披麻所要落入的地支
-        List<String> dayZhi = BaZiMap.PI_MA.get(getDayZhi()); // 根据日支获取披麻所要落入的地支
-        return insertShenSha(yearZhi, dayZhi, "披麻");
-
-    }
-
-    /**
-     * 计算并返回十恶大败【2】
-     *
-     * @return 十恶大败
-     */
-    private List<String> shiEDaBai() {
-
-        return insertShenSha(BaZiMap.SHI_E_DA_BAI, "十恶大败");
-
-    }
-
-    /**
-     * 计算并返回阴差阳错【2】
-     *
-     * @return 阴差阳错
-     */
-    private List<String> yinChaYangCuo() {
-
-        return insertShenSha(BaZiMap.YIN_CHA_YANG_CUO, "阴差阳错");
-
-    }
-
-    /**
-     * 计算并返回六秀日【2】
-     *
-     * @return 六秀日
-     */
-    private List<String> liuXiuRi() {
-
-        return insertShenSha(BaZiMap.LIU_XIU_RI, "六秀日");
-
-    }
-
-    /**
-     * 计算并返回十灵日【2】
-     *
-     * @return 十灵日
-     */
-    private List<String> shiLingRi() {
-
-        return insertShenSha(BaZiMap.SHI_LING_RI, "十灵日");
-
-    }
-
-    /**
-     * 计算并返回魁罡日【2】
-     *
-     * @return 魁罡日
-     */
-    private List<String> kuiGangRi() {
-
-        return insertShenSha(BaZiMap.KUI_GANG_RI, "魁罡日");
-
-    }
-
-    /**
-     * 计算并返回八专日【2】
-     *
-     * @return 八专日
-     */
-    private List<String> baZhuanRi() {
-
-        return insertShenSha(BaZiMap.BA_ZHUAN_RI, "八专日");
-
-    }
-
-    /**
-     * 计算并返回九丑日【2】
-     *
-     * @return 九丑日
-     */
-    private List<String> jiuChouRi() {
-
-        return insertShenSha(BaZiMap.JIU_CHOU_RI, "九丑日");
-
-    }
-
-    /**
-     * 计算并返回红艳煞【3】
-     *
-     * @return 红艳煞
-     */
-    private List<String> hongYanSha() {
-
-        return insertShenSha(BaZiMap.HONG_YAN_SHA.get(getDayGan()), "红艳煞");
-
-    }
-
-    /**
-     * 计算并返回羊刃【3】
-     *
-     * @return 羊刃
-     */
-    private List<String> yangRen() {
-
-        return insertShenSha(BaZiMap.YANG_REN.get(getDayGan()), "羊刃");
-
-    }
-
-    /**
-     * 计算并返回飞刃【3】
-     *
-     * @return 飞刃
-     */
-    private List<String> feiRen() {
-
-        return insertShenSha(BaZiMap.FEI_REN.get(getDayGan()), "飞刃");
-
-    }
-
-    /**
-     * 计算并返回血刃【3】
-     *
-     * @return 血刃
-     */
-    private List<String> xueRen() {
-
-        return insertShenSha(BaZiMap.XUE_REN.get(getMonthZhi()), "血刃");
-
-    }
-
-    /**
-     * 计算并返回流霞【3】
-     *
-     * @return 流霞
-     */
-    private List<String> liuXia() {
-
-        return insertShenSha(BaZiMap.LIU_XIA.get(getDayGan()), "流霞");
-
-    }
-
-    /**
-     * 计算并返回天医【3】
-     *
-     * @return 天医
-     */
-    private List<String> tianYi() {
-
-        return insertShenSha(BaZiMap.TIAN_YI.get(getMonthZhi()), "天医");
-
-    }
-
-    /**
-     * 计算并返回天喜【3】
-     *
-     * @return 天喜
-     */
-    private List<String> tianXi() {
-
-        return insertShenSha(BaZiMap.TIAN_XI.get(getYearZhi()), "天喜");
-
-    }
-
-    /**
-     * 计算并返回红鸾【3】
-     *
-     * @return 红鸾
-     */
-    private List<String> hongLuan() {
-
-        return insertShenSha(BaZiMap.HONG_LUAN.get(getYearZhi()), "红鸾");
-
-    }
-
-    /**
-     * 计算并返回灾煞【3】
-     *
-     * @return 灾煞
-     */
-    private List<String> zaiSha() {
-
-        return insertShenSha(BaZiMap.ZAI_SHA.get(getYearZhi()), "灾煞");
-
-    }
-
-    /**
-     * 计算并返回孤辰【3】
-     *
-     * @return 孤辰
-     */
-    private List<String> guChen() {
-
-        return insertShenSha(BaZiMap.GU_CHEN.get(getYearZhi()), "孤辰");
-
-    }
-
-    /**
-     * 计算并返回寡宿【3】
-     *
-     * @return 寡宿
-     */
-    private List<String> suGua() {
-
-        return insertShenSha(BaZiMap.SU_GUA.get(getYearZhi()), "寡宿");
-
-    }
-
-    /**
-     * 计算并返回禄神【3】
-     *
-     * @return 禄神
-     */
-    private List<String> luShen() {
-
-        return insertShenSha(BaZiMap.LU_SHEN.get(getDayGan()), "禄神");
-
-    }
-
-    /**
-     * 计算并返回词馆【4】
-     *
-     * @param search 1:禄命法。2:子平法（默认查法：禄命法）
-     * @return 词馆
-     */
-    private List<String> ciGuan(int search) {
-
-        // 数据校验
-        if (search < 1) search = 1;
-        if (search > 1) search = 2;
-
-        List<String> list = CommonUtil.addCharToList(4);
-
-        // 1、禄命法
-        if (search == 1) {
-            String yearMingWuXing = getYearGanZhiNaYin().substring(2, 3); // 年命五行
-            // 1.1、年命属木，月支或日支或时支有'寅'的，则为词馆。（'庚寅'为正词馆）
-            insertShenSha(list, yearMingWuXing, "木", "寅", "词馆");
-            // 1.2、年命属火，月支或日支或时支有'巳'的，则为词馆。（'乙巳'为正词馆）
-            insertShenSha(list, yearMingWuXing, "火", "巳", "词馆");
-            // 1.3、年命属土，月支或日支或时支有'亥'的，则为词馆。（'丁亥'为正词馆）
-            insertShenSha(list, yearMingWuXing, "土", "亥", "词馆");
-            // 1.4、年命属金，月支或日支或时支有'申'的，则为词馆。（'壬申'为正词馆）
-            insertShenSha(list, yearMingWuXing, "金", "申", "词馆");
-            // 1.5、年命属水，月支或日支或时支有'亥'的，则为词馆。（'癸亥'为正词馆）
-            insertShenSha(list, yearMingWuXing, "水", "亥", "词馆");
-        }
-
-        // 2、子平法
-        if (search == 2) {
-            List<String> ganZhi1 = BaZiMap.XUE_TANG.get(getYearGan()); // 根据年干获取学堂所要落入的天干或地支
-            List<String> ganZhi2 = BaZiMap.XUE_TANG.get(getDayGan()); // 根据日干获取学堂所要落入的天干或地支
-            insertShenSha2(list, ganZhi1, "词馆");
-            insertShenSha2(list, ganZhi2, "词馆");
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回学堂【4】
-     *
-     * @param search 1:禄命法。2:子平法（默认查法：禄命法）
-     * @return 学堂
-     */
-    private List<String> xueTang(int search) {
-
-        // 数据校验
-        if (search < 1) search = 1;
-        if (search > 1) search = 2;
-
-        List<String> list = CommonUtil.addCharToList(4);
-
-        // 1、禄命法
-        if (search == 1) {
-            String yearMingWuXing = getYearGanZhiNaYin().substring(2, 3); // 年命五行
-            // 1.1、年命属木，月支或日支或时支有'亥'的，则为学堂。（'己亥'为正学堂）
-            insertShenSha(list, yearMingWuXing, "木", "亥", "学堂");
-            // 1.2、年命属火，月支或日支或时支有'寅'的，则为学堂。（'丙寅'为正学堂）
-            insertShenSha(list, yearMingWuXing, "火", "寅", "学堂");
-            // 1.3、年命属土，月支或日支或时支有'申'的，则为学堂。（'戊申'为正学堂）
-            insertShenSha(list, yearMingWuXing, "土", "申", "学堂");
-            // 1.4、年命属金，月支或日支或时支有'巳'的，则为学堂。（'辛巳'为正学堂）
-            insertShenSha(list, yearMingWuXing, "金", "巳", "学堂");
-            // 1.5、年命属水，月支或日支或时支有'申'的，则为学堂。（'甲申'为正学堂）
-            insertShenSha(list, yearMingWuXing, "水", "申", "学堂");
-        }
-
-        // 2、子平法
-        if (search == 2) {
-            List<String> ganZhi1 = BaZiMap.XUE_TANG.get(getYearGan()); // 根据年干获取学堂所要落入的天干或地支
-            List<String> ganZhi2 = BaZiMap.XUE_TANG.get(getDayGan()); // 根据日干获取学堂所要落入的天干或地支
-            insertShenSha2(list, ganZhi1, "学堂");
-            insertShenSha2(list, ganZhi2, "学堂");
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回天德贵人【∞】
-     *
-     * @return 天德贵人
-     */
-    private List<String> tianDeGuiRen() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String ganZhi = BaZiMap.TIAN_DE_GUI_REN.get(getMonthZhi()); // 根据月支获取天德贵人所要落入的天干或地支
-
-        // 1、判断年柱，若匹配则插入年柱神煞
-        if (getYearGan().equals(ganZhi) || getYearZhi().equals(ganZhi)) {
-            list.set(0, "天德贵人");
-        }
-        // 2、判断月柱，若匹配则插入月柱神煞
-        if (getMonthGan().equals(ganZhi) || getMonthZhi().equals(ganZhi)) {
-            list.set(1, "天德贵人");
-        }
-        // 3、判断日柱，若匹配则插入日柱神煞
-        if (getDayGan().equals(ganZhi) || getDayZhi().equals(ganZhi)) {
-            list.set(2, "天德贵人");
-        }
-        // 4、判断时柱，若匹配则插入时柱神煞
-        if (getHourGan().equals(ganZhi) || getHourZhi().equals(ganZhi)) {
-            list.set(3, "天德贵人");
-        }
-
-        return list;
-    }
-
-    /**
-     * 计算并返回月德贵人【∞】
-     *
-     * @return 月德贵人
-     */
-    private List<String> yueDeGuiRen() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String gan = BaZiMap.YUE_DE_GUI_REN.get(getMonthZhi()); // 根据月支获取月德贵人所要落入的天干
-
-        // 1、判断年干，若匹配则插入年柱神煞
-        if (getYearGan().equals(gan)) {
-            list.set(0, "月德贵人");
-        }
-        // 2、判断月干，若匹配则插入月柱神煞
-        if (getMonthGan().equals(gan)) {
-            list.set(1, "月德贵人");
-        }
-        // 3、判断日干，若匹配则插入日柱神煞
-        if (getDayGan().equals(gan)) {
-            list.set(2, "月德贵人");
-        }
-        // 4、判断时干，若匹配则插入时柱神煞
-        if (getHourGan().equals(gan)) {
-            list.set(3, "月德贵人");
-        }
-
-        return list;
-    }
-
-    /**
-     * 计算并返回德秀贵人【∞】
-     *
-     * @return 德秀贵人
-     */
-    private List<String> deXiuGuiRen() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        List<String> ganList = BaZiMap.DE_XIU_GUI_REN.get(getMonthZhi());// 根据月支获取德秀贵人所要落入的天干
-
-        for (String key : ganList) {
-            // 1、判断年干，若匹配则插入年柱神煞
-            if (getYearGan().equals(key)) {
-                list.set(0, "德秀贵人");
-            }
-            // 2、判断月干，若匹配则插入月柱神煞
-            if (getMonthGan().equals(key)) {
-                list.set(1, "德秀贵人");
-            }
-            // 3、判断日干，若匹配则插入日柱神煞
-            if (getDayGan().equals(key)) {
-                list.set(2, "德秀贵人");
-            }
-            // 4、判断时干，若匹配则插入时柱神煞
-            if (getHourGan().equals(key)) {
-                list.set(3, "德秀贵人");
-            }
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回三奇贵人【∞】
-     *
-     * @return 三奇贵人
-     */
-    private List<String> sanQiGuiRen() {
-
-        String ymdS = getYearGan() + getMonthGan() + getDayGan(); // 获取年月日天干组合
-        String ymdN = getDayGan() + getMonthGan() + getYearGan(); // 获取日月年天干组合
-        String mdhS = getMonthGan() + getDayGan() + getHourGan(); // 获取月日时天干组合
-        String mdhN = getHourGan() + getDayGan() + getMonthGan(); // 获取时日月天干组合
-
-        // 1、判断年干、月干、日干、时干是否构成三奇贵人
-        List<String> list = Arrays.asList("", "", "", "");
-        String[] sanQiGuiRen = BaZiMap.SAN_QI_GUI_REN; // 三奇贵人
-        for (String key : sanQiGuiRen) {
-            if (ymdS.equals(key) || ymdN.equals(key)) {
-                list.set(0, "三奇贵人"); // 插入年柱神煞
-                list.set(1, "三奇贵人"); // 插入月柱神煞
-                list.set(2, "三奇贵人"); // 插入日柱神煞
-            }
-            if (mdhS.equals(key) || mdhN.equals(key)) {
-                list.set(1, "三奇贵人"); // 插入月柱神煞
-                list.set(2, "三奇贵人"); // 插入日柱神煞
-                list.set(3, "三奇贵人"); // 插入时柱神煞
-            }
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回童子煞【∞】
-     *
-     * @return 童子煞
-     */
-    private List<String> tongZiSha() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String season = getLunar().getSeason().substring(1, 2); // 获取季节简称（如：春）
-        String yearMingWuXing = getYearGanZhiNaYin().substring(2, 3); // 年干支纳音五行
-
-        // 1、春秋寅子贵：春天和秋天出生的，日支或时支有'寅'或者'子'为童子煞
-        if ("春".equals(season) || "秋".equals(season)) {
-            if ("寅".equals(getDayZhi()) || "子".equals(getDayZhi())) list.set(2, "童子煞");
-            if ("寅".equals(getHourZhi()) || "子".equals(getHourZhi())) list.set(3, "童子煞");
-        }
-
-        // 2、冬夏卯未辰：夏天和冬天出生的，日支或时支有'卯'或者'未'或者'辰'为童子煞
-        if ("夏".equals(season) || "冬".equals(season)) {
-            if ("卯".equals(getDayZhi()) || "未".equals(getDayZhi()) || "辰".equals(getDayZhi())) list.set(2, "童子煞");
-            if ("卯".equals(getHourZhi()) || "未".equals(getHourZhi()) || "辰".equals(getDayZhi())) list.set(3, "童子煞");
-        }
-
-        // 3、金木午卯合：年命属金或木，日支或时支有'午'或者'卯'为童子煞
-        if ("金".equals(yearMingWuXing) || "木".equals(yearMingWuXing)) {
-            if ("午".equals(getDayZhi()) || "卯".equals(getDayZhi())) list.set(2, "童子煞");
-            if ("午".equals(getHourZhi()) || "卯".equals(getHourZhi())) list.set(3, "童子煞");
-        }
-
-        // 4、水火酉戍多：年命属水或火，日支或时支有'酉'或者'戍'为童子煞
-        if ("水".equals(yearMingWuXing) || "火".equals(yearMingWuXing)) {
-            if ("酉".equals(getDayZhi()) || "戍".equals(getDayZhi())) list.set(2, "童子煞");
-            if ("酉".equals(getHourZhi()) || "戍".equals(getHourZhi())) list.set(3, "童子煞");
-        }
-
-        // 5、土命逢辰巳：年命属土，日支或时支有'辰'或者'巳'为童子煞
-        if ("土".equals(yearMingWuXing)) {
-            if ("辰".equals(getDayZhi()) || "巳".equals(getDayZhi())) list.set(2, "童子煞");
-            if ("辰".equals(getHourZhi()) || "巳".equals(getHourZhi())) list.set(3, "童子煞");
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回四废日【∞】
-     *
-     * @return 四废日
-     */
-    private List<String> siFeiRi() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String season = getLunar().getSeason().substring(1, 2); // 获取季节简称（如：春）
-        List<String> dayZhu = BaZiMap.SI_FEI_RI.get(season);// 根据季节获取德秀贵人所要落入的日柱
-
-        for (String key : dayZhu) {
-            if (key.equals(getDayGanZhi())) list.set(2, "四废日"); // 判断日支，若匹配则插入日柱神煞
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回拱禄【∞】
-     *
-     * @return 拱禄
-     */
-    private List<String> gongLu() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String diZhi = BaZiMap.GONG_LU.get(Arrays.asList(getDayGanZhi(), getHourGanZhi())); // 根据日柱和时柱获取拱禄所要落入的地支
-        if (getYearZhi().equals(diZhi)) list.set(0, "拱禄"); // 判断年柱，若匹配则插入年柱神煞
-        if (getMonthZhi().equals(diZhi)) list.set(1, "拱禄"); // 判断月柱，若匹配则插入月柱神煞
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回天赦【∞】
-     *
-     * @return 天赦
-     */
-    private List<String> tianShe() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String dayZhu = BaZiMap.TIAN_SHE.get(getMonthZhi()); // 根据月支获取天赦所要落入的日柱
-        if (getDayGanZhi().equals(dayZhu)) list.set(2, "天赦"); // 判断日柱，若匹配则插入日柱神煞
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回天转【∞】
-     *
-     * @return 天转
-     */
-    private List<String> tianZhuan() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String dayZhu = BaZiMap.TIAN_ZHUAN.get(getMonthZhi()); // 根据月支获取天转所要落入的日柱
-        if (getDayGanZhi().equals(dayZhu)) list.set(2, "天转"); // 判断日柱，若匹配则插入日柱神煞
-
-        return list;
-
-    }
-
-    /**
-     * 计算并返回地转【∞】
-     *
-     * @return 地转
-     */
-    private List<String> diZhuan() {
-
-        List<String> list = Arrays.asList("", "", "", "");
-        String dayZhu = BaZiMap.DI_ZHUAN.get(getMonthZhi()); // 根据月支获取天转所要落入的日柱
-        if (getDayGanZhi().equals(dayZhu)) list.set(2, "地转"); // 判断日柱，若匹配则插入日柱神煞
-
-        return list;
-
-    }
-
-    /**
-     * 计算常用神煞
-     *
-     * @param setting 八字-设置
-     */
-    private void shenSha(BaZiSetting setting) {
-
-        // 1、初始化集合
-        List<String> yearShenSha = new ArrayList<>(); // 保存年柱神煞
-        List<String> monthShenSha = new ArrayList<>(); // 保存月柱神煞
-        List<String> dayShenSha = new ArrayList<>(); // 保存日柱神煞
-        List<String> hourShenSha = new ArrayList<>(); // 保存时柱神煞
-
-        // 2、添加四柱神煞
-        saveShenSha(taiJiGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 太极贵人【1】
-        saveShenSha(tianYiGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天乙贵人【1】
-        saveShenSha(fuXingGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 福星贵人【1】
-        saveShenSha(wenChangGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 文昌贵人【1】
-        saveShenSha(tianChuGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天厨贵人【1】
-        saveShenSha(guoYin(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 国印【1】
-        saveShenSha(jinYu(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 金舆【1】
-        saveShenSha(yiMa(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 驿马【1】
-        saveShenSha(huaGai(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 华盖【1】
-        saveShenSha(jieSha(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 劫煞【1】
-        saveShenSha(jiangXing(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 将星【1】←
-        saveShenSha(taoHua(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 桃花【1】
-        saveShenSha(wangShen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 亡神【1】
-        saveShenSha(sangMen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 丧门【1】
-        saveShenSha(diaoKe(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 吊客【2】
-        saveShenSha(piMa(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 披麻【1】
-        saveShenSha(shiEDaBai(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 十恶大败【2】
-        saveShenSha(yinChaYangCuo(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 阴差阳错【2】
-        saveShenSha(liuXiuRi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 六秀日【2】
-        saveShenSha(shiLingRi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 十灵日【2】
-        saveShenSha(kuiGangRi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 魁罡日【2】
-        saveShenSha(baZhuanRi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 八专日【2】
-        saveShenSha(jiuChouRi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 九丑日【2】
-        saveShenSha(hongYanSha(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 红艳煞【3】
-        saveShenSha(yangRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 羊刃【3】
-        saveShenSha(feiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 飞刃【3】
-        saveShenSha(xueRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 血刃【3】
-        saveShenSha(liuXia(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 流霞【3】
-        saveShenSha(tianYi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天医【3】
-        saveShenSha(tianXi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天喜【3】
-        saveShenSha(hongLuan(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 红鸾【3】
-        saveShenSha(zaiSha(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 灾煞【3】
-        saveShenSha(guChen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 孤辰【3】
-        saveShenSha(suGua(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 寡宿【3】
-        saveShenSha(luShen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 禄神【3】
-        saveShenSha(xueTang(setting.getXueTang()), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 学堂【4】
-        saveShenSha(ciGuan(setting.getCiGuan()), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 词馆【4】
-        saveShenSha(tianDeGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天德贵人【∞】
-        saveShenSha(yueDeGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 月德贵人【∞】
-        saveShenSha(deXiuGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 德秀贵人【∞】
-        saveShenSha(sanQiGuiRen(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 三奇贵人【∞】
-        saveShenSha(tongZiSha(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 童子煞【∞】
-        saveShenSha(siFeiRi(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 四废日【∞】
-        saveShenSha(gongLu(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 拱禄【∞】
-        saveShenSha(tianShe(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天赦【∞】
-        saveShenSha(tianZhuan(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 天转【∞】
-        saveShenSha(diZhuan(), yearShenSha, monthShenSha, dayShenSha, hourShenSha); // 地转【∞】
-
-        // 3、删除list集合中的空元素
-        CommonUtil.removeElementList(yearShenSha, "");
-        CommonUtil.removeElementList(monthShenSha, "");
-        CommonUtil.removeElementList(dayShenSha, "");
-        CommonUtil.removeElementList(hourShenSha, "");
-
-        // 4、设置四柱神煞
-        this.yearGanZhiShenSha = yearShenSha;
-        this.monthGanZhiShenSha = monthShenSha;
-        this.dayGanZhiShenSha = dayShenSha;
-        this.hourGanZhiShenSha = hourShenSha;
-
-    }
-
 //------------------------------------------------------------------------------------------------------------------------------------
-
-    /**
-     * 获取公历日期
-     *
-     * @return 公历日期
-     */
-    public String getSolarStr() {
-        return CommonUtil.solarStr(getSolar());
-    }
-
-    /**
-     * 获取农历日期
-     *
-     * @return 农历日期
-     */
-    public String getLunarStr() {
-        return CommonUtil.lunarStr(getLunar());
-    }
-
-    /**
-     * 插入并返回神煞【1】
-     *
-     * @param diZhi1      神煞所要落入的地支1
-     * @param diZhi2      神煞所要落入的地支2
-     * @param shenShaName 神煞名称
-     */
-    private List<String> insertShenSha(List<String> diZhi1, List<String> diZhi2, String shenShaName) {
-
-        List<String> list = Arrays.asList("", "", "", "");
-
-        // 1、判断年支，若匹配则插入年柱神煞
-        for (String key : diZhi1) {
-            if (getYearZhi().equals(key)) list.set(0, shenShaName);
-        }
-        for (String key : diZhi2) {
-            if (getYearZhi().equals(key)) list.set(0, shenShaName);
-        }
-        // 2、判断月支，若匹配则插入月柱神煞
-        for (String key : diZhi1) {
-            if (getMonthZhi().equals(key)) list.set(1, shenShaName);
-        }
-        for (String key : diZhi2) {
-            if (getMonthZhi().equals(key)) list.set(1, shenShaName);
-        }
-        // 3、判断日支，若匹配则插入日柱神煞
-        for (String key : diZhi1) {
-            if (getDayZhi().equals(key)) list.set(2, shenShaName);
-        }
-        for (String key : diZhi2) {
-            if (getDayZhi().equals(key)) list.set(2, shenShaName);
-        }
-        // 4、判断时支，若匹配则插入时柱神煞
-        for (String key : diZhi1) {
-            if (getHourZhi().equals(key)) list.set(3, shenShaName);
-        }
-        for (String key : diZhi2) {
-            if (getHourZhi().equals(key)) list.set(3, shenShaName);
-        }
-
-        // 5、返回四柱神煞
-        return list;
-
-    }
-
-    /**
-     * 插入并返回神煞【2】
-     *
-     * @param strs        集合
-     * @param shenShaName 神煞名称
-     */
-    private List<String> insertShenSha(String[] strs, String shenShaName) {
-
-        List<String> list = Arrays.asList("", "", "", "");
-
-        for (String key : strs) {
-            if (getDayGanZhi().equals(key)) list.set(2, shenShaName);
-        }
-
-        return list;
-
-    }
-
-    /**
-     * 插入并返回神煞【3】
-     *
-     * @param diZhi       地支
-     * @param shenShaName 神煞名称
-     */
-    private List<String> insertShenSha(String diZhi, String shenShaName) {
-
-        List<String> list = Arrays.asList("", "", "", "");
-
-        // 1、判断年支，若匹配则插入年柱神煞
-        if (getYearZhi().equals(diZhi)) list.set(0, shenShaName);
-        // 2、判断月支，若匹配则插入月柱神煞
-        if (getMonthZhi().equals(diZhi)) list.set(1, shenShaName);
-        // 3、判断日支，若匹配则插入日柱神煞
-        if (getDayZhi().equals(diZhi)) list.set(2, shenShaName);
-        // 4、判断时支，若匹配则插入时柱神煞
-        if (getHourZhi().equals(diZhi)) list.set(3, shenShaName);
-
-        return list;
-
-    }
-
-    /**
-     * 插入并返回神煞【4-1：禄命法】
-     *
-     * @param list           神煞集合
-     * @param yearMingWuXing 年命五行
-     * @param wuXing         五行
-     * @param zhi            月支或日支或时支
-     * @param shenShaName    神煞名称
-     */
-    private void insertShenSha(List<String> list, String yearMingWuXing, String wuXing, String zhi, String shenShaName) {
-
-        if (wuXing.equals(yearMingWuXing)) {
-            if (getMonthZhi().equals(zhi)) list.set(1, shenShaName); // 插入月柱神煞
-            if (getDayZhi().equals(zhi)) list.set(2, shenShaName); // 插入日柱神煞
-            if (getHourZhi().equals(zhi)) list.set(3, shenShaName); // 插入时柱神煞
-        }
-
-    }
-
-    /**
-     * 插入并返回神煞【4-2：子平法】
-     *
-     * @param list        神煞集合
-     * @param ganOrZhi    天干或地支
-     * @param shenShaName 神煞名称
-     */
-    private void insertShenSha2(List<String> list, List<String> ganOrZhi, String shenShaName) {
-
-        for (String key : ganOrZhi) {
-            // 1、判断年柱，若匹配则插入年柱神煞
-            if (getYearGan().equals(key) || getYearZhi().equals(key)) {
-                list.set(0, shenShaName);
-            }
-            // 2、判断月柱，若匹配则插入月柱神煞
-            if (getMonthGan().equals(key) || getMonthZhi().equals(key)) {
-                list.set(1, shenShaName);
-            }
-            // 3、判断日柱，若匹配则插入日柱神煞
-            if (getDayGan().equals(key) || getDayZhi().equals(key)) {
-                list.set(2, shenShaName);
-            }
-            // 4、判断时柱，若匹配则插入时柱神煞
-            if (getHourGan().equals(key) || getHourZhi().equals(key)) {
-                list.set(3, shenShaName);
-            }
-        }
-
-    }
-
-    /**
-     * 添加四柱神煞
-     *
-     * @param list   四柱神煞
-     * @param yearS  年柱神煞
-     * @param monthS 月柱神煞
-     * @param dayS   日柱神煞
-     * @param hourS  时柱神煞
-     */
-    private void saveShenSha(List<String> list, List<String> yearS, List<String> monthS, List<String> dayS, List<String> hourS) {
-
-        try {
-            yearS.add(list.get(0)); // 年柱神煞
-            monthS.add(list.get(1)); // 月柱神煞
-            dayS.add(list.get(2)); // 日柱神煞
-            hourS.add(list.get(3)); // 时柱神煞
-        } catch (Exception e) {
-            throw new NullPointerException("神煞添加失败");
-        }
-
-    }
 
     /**
      * 返回加分
@@ -2636,18 +1769,57 @@ public class BaZi {
     }
 
     /**
+     * 添加地支留意
+     *
+     * @param set 地支组合
+     * @param map 地支六合、相冲、相破、相害
+     */
+    private void saveDiZhiLiuYi2(Set<String> set, Map<String, String> map) {
+
+        set.add(map.get(getYearZhi() + getMonthZhi() + getDayZhi()));  // 年支+月支+日支
+        set.add(map.get(getYearZhi() + getMonthZhi() + getHourZhi())); // 年支+月支+时支
+        set.add(map.get(getYearZhi() + getDayZhi() + getMonthZhi()));  // 年支+日支+月支
+        set.add(map.get(getYearZhi() + getDayZhi() + getHourZhi()));   // 年支+日支+时支
+        set.add(map.get(getYearZhi() + getHourZhi() + getMonthZhi())); // 年支+时支+月支
+        set.add(map.get(getYearZhi() + getHourZhi() + getDayZhi()));   // 年支+时支+日支
+
+        set.add(map.get(getMonthZhi() + getYearZhi() + getDayZhi()));  // 月支+年支+日支
+        set.add(map.get(getMonthZhi() + getYearZhi() + getHourZhi())); // 月支+年支+时支
+        set.add(map.get(getMonthZhi() + getDayZhi() + getYearZhi()));  // 月支+日支+年支
+        set.add(map.get(getMonthZhi() + getDayZhi() + getHourZhi()));  // 月支+日支+时支
+        set.add(map.get(getMonthZhi() + getHourZhi() + getYearZhi())); // 月支+时支+年支
+        set.add(map.get(getMonthZhi() + getHourZhi() + getDayZhi()));  // 月支+时支+日支
+
+        set.add(map.get(getDayZhi() + getYearZhi() + getMonthZhi())); // 日支+年支+月支
+        set.add(map.get(getDayZhi() + getYearZhi() + getHourZhi()));  // 日支+年支+时支
+        set.add(map.get(getDayZhi() + getMonthZhi() + getYearZhi())); // 日支+月支+年支
+        set.add(map.get(getDayZhi() + getMonthZhi() + getHourZhi())); // 日支+月支+时支
+        set.add(map.get(getDayZhi() + getHourZhi() + getYearZhi()));  // 日支+时支+年支
+        set.add(map.get(getDayZhi() + getHourZhi() + getMonthZhi())); // 日支+时支+月支
+
+        set.add(map.get(getHourZhi() + getYearZhi() + getMonthZhi())); // 时支+年支+月支
+        set.add(map.get(getHourZhi() + getYearZhi() + getDayZhi()));   // 时支+年支+日支
+        set.add(map.get(getHourZhi() + getMonthZhi() + getYearZhi())); // 时支+月支+年支
+        set.add(map.get(getHourZhi() + getMonthZhi() + getDayZhi()));  // 时支+月支+日支
+        set.add(map.get(getHourZhi() + getDayZhi() + getYearZhi()));   // 时支+日支+年支
+        set.add(map.get(getHourZhi() + getDayZhi() + getMonthZhi()));  // 时支+日支+月支
+
+    }
+
+    /**
      * 骨重转为文字
      *
      * @param guZhong 骨重
      * @return 骨重文字
      */
-    private String guZhongCharacters(Double guZhong) {
+    private String guZhongCharacters(Integer guZhong) {
 
-        String[] split = guZhong.toString().split("\\.");
+        long liang = Long.parseLong(guZhong.toString().substring(0, 1)); // 两重
+        long qian = Long.parseLong(guZhong.toString().substring(1, 2)); // 钱重
 
-        String newGuZhong = split[0] + "两";
-        if (!split[1].equals("0")) {
-            newGuZhong += split[1] + "钱";
+        String newGuZhong = CommonUtil.shuToHan(liang) + "两";
+        if (0 != qian) {
+            newGuZhong += CommonUtil.shuToHan(qian) + "钱";
         }
 
         return newGuZhong;
@@ -2676,66 +1848,84 @@ public class BaZi {
 
     }
 
+    /**
+     * 获取公历日期
+     *
+     * @return 公历日期
+     */
+    public String getSolarStr() {
+        return CommonUtil.solarStr(getSolar());
+    }
+
+    /**
+     * 获取农历日期
+     *
+     * @return 农历日期
+     */
+    public String getLunarStr() {
+        return CommonUtil.lunarStr(getLunar());
+    }
+
     @Override
     public String toString() {
 
-        StringBuilder s = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-        s.append("公历:").append(getSolarStr());
-        s.append("   ");
-        s.append("农历:").append(getLunarStr());
-        s.append("   ");
-        s.append("星期:").append(getWeek());
-        s.append("   ");
-        s.append("八字:").append(getBaZi());
-        s.append("   ");
-        s.append("八字五行:").append(getBaZiWuXing());
-        s.append("   ");
-        s.append("八字纳音:").append(getBaZiNaYin());
-        s.append("   ");
-        s.append("八字旬空:").append(getBaZiXunKong());
-        s.append("   ");
-        s.append("年干支主星:").append(getYearGanZhiZhuXing());
-        s.append("   ");
-        s.append("月干支主星:").append(getMonthGanZhiZhuXing());
-        s.append("   ");
-        s.append("日干支主星:").append(getDayGanZhiZhuXing());
-        s.append("   ");
-        s.append("时干支主星:").append(getHourGanZhiZhuXing());
-        s.append("   ");
-        s.append("年支藏干:").append(getYearZhiCangGan());
-        s.append("   ");
-        s.append("月支藏干:").append(getMonthZhiCangGan());
-        s.append("   ");
-        s.append("日支藏干:").append(getDayZhiCangGan());
-        s.append("   ");
-        s.append("时支藏干:").append(getHourZhiCangGan());
-        s.append("   ");
-        s.append("年干支副星:").append(getYearGanZhiFuXing());
-        s.append("   ");
-        s.append("月干支副星:").append(getMonthGanZhiFuXing());
-        s.append("   ");
-        s.append("日干支副星:").append(getDayGanZhiFuXing());
-        s.append("   ");
-        s.append("时干支副星:").append(getHourGanZhiFuXing());
-        s.append("   ");
-        s.append("年支地势:").append(getYearGanZhiDiShi());
-        s.append("   ");
-        s.append("月支地势:").append(getMonthGanZhiDiShi());
-        s.append("   ");
-        s.append("日支地势:").append(getDayGanZhiDiShi());
-        s.append("   ");
-        s.append("时支地势:").append(getHourGanZhiDiShi());
-        s.append("   ");
-        s.append("胎元:").append(getTaiYuan());
-        s.append("   ");
-        s.append("胎息:").append(getTaiXi());
-        s.append("   ");
-        s.append("命宫:").append(getMingGong());
-        s.append("   ");
-        s.append("身宫:").append(getShenGong());
+        sb.append("公历:").append(getSolarStr());
+        sb.append("   ");
+        sb.append("农历:").append(getLunarStr());
+        sb.append("   ");
+        sb.append("星期:").append(getWeek());
+        sb.append("   ");
+        sb.append("八字:").append(getBaZi());
+        sb.append("   ");
+        sb.append("八字五行:").append(getBaZiWuXing());
+        sb.append("   ");
+        sb.append("八字纳音:").append(getBaZiNaYin());
+        sb.append("   ");
+        sb.append("八字旬空:").append(getBaZiXunKong());
+        sb.append("   ");
+        sb.append("年干支主星:").append(getYearGanZhiZhuXing());
+        sb.append("   ");
+        sb.append("月干支主星:").append(getMonthGanZhiZhuXing());
+        sb.append("   ");
+        sb.append("日干支主星:").append(getDayGanZhiZhuXing());
+        sb.append("   ");
+        sb.append("时干支主星:").append(getHourGanZhiZhuXing());
+        sb.append("   ");
+        sb.append("年支藏干:").append(getYearZhiCangGan());
+        sb.append("   ");
+        sb.append("月支藏干:").append(getMonthZhiCangGan());
+        sb.append("   ");
+        sb.append("日支藏干:").append(getDayZhiCangGan());
+        sb.append("   ");
+        sb.append("时支藏干:").append(getHourZhiCangGan());
+        sb.append("   ");
+        sb.append("年干支副星:").append(getYearGanZhiFuXing());
+        sb.append("   ");
+        sb.append("月干支副星:").append(getMonthGanZhiFuXing());
+        sb.append("   ");
+        sb.append("日干支副星:").append(getDayGanZhiFuXing());
+        sb.append("   ");
+        sb.append("时干支副星:").append(getHourGanZhiFuXing());
+        sb.append("   ");
+        sb.append("年支地势:").append(getYearGanZhiDiShi());
+        sb.append("   ");
+        sb.append("月支地势:").append(getMonthGanZhiDiShi());
+        sb.append("   ");
+        sb.append("日支地势:").append(getDayGanZhiDiShi());
+        sb.append("   ");
+        sb.append("时支地势:").append(getHourGanZhiDiShi());
+        sb.append("   ");
+        sb.append("胎元:").append(getTaiYuan());
+        sb.append("   ");
+        sb.append("胎息:").append(getTaiXi());
+        sb.append("   ");
+        sb.append("命宫:").append(getMingGong());
+        sb.append("   ");
+        sb.append("身宫:").append(getShenGong());
 
-        return s.toString();
+        return sb.toString();
 
     }
 

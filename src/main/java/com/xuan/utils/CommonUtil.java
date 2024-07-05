@@ -189,6 +189,23 @@ public class CommonUtil {
     }
 
     /**
+     * 删除list数组中重复的元素
+     *
+     * @param list list数组
+     * @return list数组
+     */
+    public static List<String> removeDuplicates(List<String> list) {
+
+        // 删除所有null
+        list.removeAll(Collections.singleton(null));
+
+        // 删除所有重复数据
+        Set<String> set = new LinkedHashSet<>(list);
+        return new ArrayList<>(set);
+
+    }
+
+    /**
      * 获取指定个数的随机数
      *
      * @param count 数量

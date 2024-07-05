@@ -12,27 +12,26 @@ import java.util.Date;
  */
 public class BaZiTest {
 
-    /**
-     * 八字
-     */
     @Test
     public void baZiTest() {
 
-        // 1、日期
+        // 1、地区
+        String address = "某某地区";
+        // 1.2、日期
         Date date;
         Calendar c = Calendar.getInstance();
         c.set(2024, 1 - 1, 1, 0, 0, 0);
         date = c.getTime();
-        // 1.1、真太阳时
-//        date = TrueSolarDateUtil.getTrueSolarDate(date, "某某地区"); // 获取真太阳时（TODO：请填写真实地区）
+        // 1.3、真太阳时
+//        date = TrueSolarDateUtil.getTrueSolarDate(date, address); // 获取真太阳时（TODO：请填写真实地区）
 
 
         // 2、设置
         BaZiSetting setting = new BaZiSetting();
         setting.setSex(1); // 性别（0:女。1:男）
         setting.setName("某某人"); // 姓名
-        setting.setOccupy("某某事"); // 测事
-        setting.setAddress("某某地区"); // 地区
+        setting.setOccupy("某某事"); // 占事
+        setting.setAddress(address); // 地区
         setting.setDate(date); // 日期
         setting.setDateType(0); // 日期类型（0:公历。1:农历）
         setting.setLeapMonth(0); // 闰月（0:不使用闰月。1:使用闰月）
@@ -41,14 +40,13 @@ public class BaZiTest {
         setting.setMonthGanZhiSet(1); // 月干支设置（0:以节交接当天起算。1:以节交接时刻起算）
         setting.setDayGanZhiSet(1); // 日干支设置（0:晚子时日干支算当天。1:晚子时日干支算明天）
         setting.setHourGanZhiSet(0); // 时干支设置（0:支持早子时和晚子时）
-        setting.setCiGuan(0); // 词馆设置（0:禄命法。1:子平法）
-        setting.setXueTang(0); // 学堂设置（0:禄命法。1:子平法）
+        setting.setRenYuan(0); // 人元司令分野类型（0:子平真诠法决。1:渊海子平法决。2:星平会海法决。3:三命通会法决。4:神峰通考法决。5:万育吾之法决）
 
 
         // 3、初始化
 //        BaZi baZi = new BaZi(); // 使用默认设置初始化（默认使用当前公历日期）
 //        BaZi baZi = new BaZi(date); // 使用公历日期初始化
-//        BaZi baZi = new BaZi(date, 1); // 使用日期初始化
+//        BaZi baZi = new BaZi(date, 1); // 使用日期、日期类型初始化
 //        BaZi baZi = new BaZi(2024, 1, 1, 0, 0, 0); // 使用公历年月日时分秒初始化
 //        BaZi baZi = new BaZi(2024, 1, 1, 0, 0, 0, 1); // 使用年月日时分秒、日期类型初始化
         BaZi baZi = new BaZi(setting); // 使用自定义设置初始化
@@ -59,16 +57,20 @@ public class BaZiTest {
         System.out.println("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ ☯ 八字 ☯ ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐");
         System.out.println("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐\n");
 
-        System.out.println("姓名：" + setting.getName());
-        System.out.println("性别：" + (setting.getSex() == 0 ? "女" : "男"));
-        System.out.println("测事：" + setting.getOccupy());
-        System.out.println("地区：" + setting.getAddress());
-
-        System.out.println("\n==============================================================================================================\n");
-
+        // 4、数据
+        System.out.println("姓名：" + baZi.getName());
+        System.out.println("性别：" + baZi.getSex() + "（" + baZi.getZao() + "）");
+        System.out.println("占事：" + baZi.getOccupy());
+        System.out.println("地区：" + baZi.getAddress());
         System.out.println("公历：" + baZi.getSolarStr());
         System.out.println("农历：" + baZi.getLunarStr());
         System.out.println("星期：" + baZi.getWeek());
+        System.out.println("季节：" + baZi.getSeason());
+        System.out.println("生肖：" + baZi.getZodiac());
+        System.out.println("星座：" + baZi.getConstellation());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
         System.out.println("八字：" + baZi.getBaZi());
         System.out.println("八字五行：" + baZi.getBaZiWuXing());
         System.out.println("八字纳音：" + baZi.getBaZiNaYin());
@@ -125,14 +127,23 @@ public class BaZiTest {
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
-        System.out.println("八字五行缺失：" + baZi.getBaZiWuXingQueShi());
-        System.out.println("八字五行格局：" + baZi.getBaZiWuXingGeJu());
-        System.out.println("身体强弱：" + baZi.getBodyIntensity());
-        System.out.println("喜用神：" + baZi.getXiYongShen());
-        System.out.println("喜用神方位：" + baZi.getXiYongShenFangWei());
-        System.out.println("五行旺衰：" + baZi.getWuXingWangShuai());
         System.out.println("天干留意：" + baZi.getTianGanLiuYi());
         System.out.println("地支留意：" + baZi.getDiZhiLiuYi());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("起运：" + baZi.getQiYun());
+        System.out.println("起运日期：" + baZi.getQiYunDate());
+        System.out.println("人元司令分野：" + baZi.getRenYuan());
+        System.out.println("出生节气：" + baZi.getBirthSolarTerms());
+        System.out.println(baZi.getPrevJieQi() + "：" + baZi.getPrevJieQiDate());
+        System.out.println(baZi.getNextJieQi() + "：" + baZi.getNextJieQiDate());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("星宿：" + baZi.getXingXiu());
+        System.out.println("星宿吉凶：" + baZi.getXiuJiXiong());
+        System.out.println("星宿吉凶歌诀：" + baZi.getXiuJiXiongGeJue());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
@@ -140,25 +151,40 @@ public class BaZiTest {
         System.out.println("胎息：" + baZi.getTaiXi());
         System.out.println("命宫：" + baZi.getMingGong());
         System.out.println("身宫：" + baZi.getShenGong());
-        System.out.println("起运：" + baZi.getQiYun());
-        System.out.println("起运日期：" + baZi.getQiYunDate());
-        System.out.println("生肖：" + baZi.getShengXiao());
-        System.out.println("星座：" + baZi.getXingZuo());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
-        System.out.println("宿：" + baZi.getXiu());
-        System.out.println("宿吉凶：" + baZi.getXiuJiXiong());
-        System.out.println("宿吉凶歌诀：" + baZi.getXiuJiXiongGeJue());
-        System.out.println("星宿：" + baZi.getXingXiu());
         System.out.println("命：" + baZi.getMing());
         System.out.println("命卦：" + baZi.getMingGua());
+        System.out.println("命卦信息：" + baZi.getMingGuaInfo());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("五行缺失：" + baZi.getBaZiWuXingQueShi());
+        System.out.println("五行数量：" + baZi.getBaZiWuXingCount());
+        System.out.println("五行旺衰：" + baZi.getWuXingWangShuai());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("身体强弱：" + baZi.getBodyIntensity());
+        System.out.println("喜用神：" + baZi.getXiYongShen());
+        System.out.println("喜用神方位：" + baZi.getXiYongShenFangWei());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("骨重：" + baZi.getGuZhong());
+        System.out.println("骨重批注：" + baZi.getGuZhongPiZhu());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println("日柱论命：" + baZi.getDayZhuLunMing());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
         System.out.println("姻缘：" + baZi.getYinYuan());
-        System.out.println("骨重：" + baZi.getGuZhong() + "。" + baZi.getGuZhongInfo());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
         System.out.println("五行分析：" + baZi.getWuXingFenXi());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
@@ -181,29 +207,32 @@ public class BaZiTest {
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
-        System.out.println("流月(农历月、干支)：" + baZi.getLiuYue());
+        System.out.println("大运流月(节气、干支)：" + baZi.getDaYunLiuYue());
         System.out.println();
-        System.out.println("流月十神(天干、地支)：" + baZi.getLiuYueShiShen());
+        System.out.println("大运流月十神(天干、地支)：" + baZi.getDaYunLiuYueShiShen());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
-        System.out.println("正财(年份、年龄、干支)：" + baZi.getZhengCaiYun());
+        System.out.println("小运流月(节气、干支)：" + baZi.getXiaoYunLiuYue());
         System.out.println();
-        System.out.println("偏财(年份、年龄、干支)：" + baZi.getPianCaiYun());
+        System.out.println("小运流月十神(天干、地支)：" + baZi.getXiaoYunLiuYueShiShen());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("正财(年份、年龄、干支)：" + baZi.getZhengTaoHua());
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println("偏财(年份、年龄、干支)：" + baZi.getPianTaoHua());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println("正桃花(年份、年龄、干支)：" + baZi.getZhengTaoHua());
-        System.out.println();
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
+
         System.out.println("偏桃花(年份、年龄、干支)：" + baZi.getPianTaoHua());
 
-        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
-
-        System.out.println("大运运势：" + baZi.getDaYunYunShi());
-
-        System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
-
-        System.out.println("流年运势：" + baZi.getLiuNianYunShi());
 
     }
 

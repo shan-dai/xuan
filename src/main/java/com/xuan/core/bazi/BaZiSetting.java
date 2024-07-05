@@ -74,14 +74,9 @@ public class BaZiSetting {
     private int hourGanZhiSet;
 
     /**
-     * 神煞：词馆（0:禄命法。1:子平法）
+     * 人元司令分野类型（0:子平真诠法决。1:渊海子平法决。2:星平会海法决。3:三命通会法决。4:神峰通考法决。5:万育吾之法决）
      */
-    private int ciGuan;
-
-    /**
-     * 神煞：学堂（0:禄命法。1:子平法）
-     */
-    private int xueTang;
+    private int renYuan;
 
 //****************************************************************************************************************************************************
 
@@ -159,8 +154,7 @@ public class BaZiSetting {
         this.monthGanZhiSet = 1; // 月干支设置（默认→ 以节交接时刻起算）
         this.dayGanZhiSet = 0; // 日干支设置，同子时流派（默认→ 晚子时日柱按当天）
         this.hourGanZhiSet = 0; // 时干支设置（默认→ 支持早子时和晚子时）
-        this.ciGuan = 0; // 神煞：词馆（默认→ 禄命法）
-        this.xueTang = 0; // 神煞：学堂（默认→ 禄命法）
+        this.renYuan = 0; // 人元司令分野类型（默认→ 子平真诠法决）
 
     }
 
@@ -246,23 +240,13 @@ public class BaZiSetting {
     }
 
     /**
-     * 神煞：词馆设置
+     * 人元司令分野类型
      *
-     * @param ciGuan 神煞：词馆设置（0:禄命法。1:子平法）
+     * @param renYuan 人元司令分野类型（0:子平真诠法决。1:渊海子平法决。2:星平会海法决。3:三命通会法决。4:神峰通考法决。5:万育吾之法决）
      */
-    public void setCiGuan(int ciGuan) {
-        boolean boo = (ciGuan == 0 || ciGuan == 1);
-        this.ciGuan = boo ? ciGuan : 0;
-    }
-
-    /**
-     * 神煞：学堂设置
-     *
-     * @param xueTang 神煞：学堂设置（0:禄命法。1:子平法）
-     */
-    public void setXueTang(int xueTang) {
-        boolean boo = (xueTang == 0 || xueTang == 1);
-        this.xueTang = boo ? xueTang : 0;
+    public void setRenYuan(int renYuan) {
+        boolean boo = (renYuan == 0 || renYuan == 1 || renYuan == 2 || renYuan == 3 || renYuan == 4 || renYuan == 5);
+        this.renYuan = boo ? renYuan : 0;
     }
 
 
