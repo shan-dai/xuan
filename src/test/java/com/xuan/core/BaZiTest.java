@@ -136,8 +136,8 @@ public class BaZiTest {
         System.out.println("起运日期：" + baZi.getQiYunDate());
         System.out.println("人元司令分野：" + baZi.getRenYuan());
         System.out.println("出生节气：" + baZi.getBirthSolarTerms());
-        System.out.println(baZi.getPrevJieQi() + "：" + baZi.getPrevJieQiDate());
-        System.out.println(baZi.getNextJieQi() + "：" + baZi.getNextJieQiDate());
+        System.out.println(baZi.getPrevJie() + "：" + baZi.getPrevJieDate());
+        System.out.println(baZi.getNextJie() + "：" + baZi.getNextJieDate());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 

@@ -3,13 +3,13 @@
     <span style="font-size:14px; text-shadow:none; color:rgb(130,130,130);">简易版</span>
 </h1>
 <p align="center">
-    在线地址：
+    演示地址：
     <a href="https://www.muxuange.cn/tool">
     	https://www.muxuange.cn
     </a>
 </p>
 <p align="center" style="font-size:17px; background-color:rgb(245, 245, 245); border-radius:50px;">
-    v1.0.22
+    v1.0.26
 </p>
 
 # **【八字排盘】**
