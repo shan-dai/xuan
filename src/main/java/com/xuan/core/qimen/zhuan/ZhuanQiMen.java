@@ -1218,19 +1218,19 @@ public class ZhuanQiMen {
             }
         }
 
-        // 2、星伏吟（判断宫位数据是否符合：坎一宫有天英星，离九宫有天蓬星）
+        // 2、星反吟（判断宫位数据是否符合：坎一宫有天英星，离九宫有天蓬星）
         if ("天英".equals(getTianPan().get(0)) && "天蓬".equals(getTianPan().get(8))) {
-            list.add("九星伏吟");
+            list.add("九星反吟");
         }
 
-        // 3、门伏吟（判断宫位数据是否符合：坎一宫有景门，离九宫有休门）
+        // 3、门反吟（判断宫位数据是否符合：坎一宫有景门，离九宫有休门）
         if ("景门".equals(getRenPan().get(0)) && "休门".equals(getRenPan().get(8))) {
-            list.add("八门伏吟");
+            list.add("八门反吟");
         }
 
-        // 4、神伏吟（判断宫位数据是否符合：坎一宫有白虎，离九宫有值符）
+        // 4、神反吟（判断宫位数据是否符合：坎一宫有白虎，离九宫有值符）
         if ("白虎".equals(getShenPan().get(0)) && "值符".equals(getShenPan().get(8))) {
-            list.add("八神伏吟");
+            list.add("八神反吟");
         }
 
         this.fanYin = list;
