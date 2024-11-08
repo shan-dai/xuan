@@ -365,7 +365,7 @@ public class LiuYaoMap {
             put("䷖", Arrays.asList("--", "--", "--", "--", "--", "—"));
             put("䷗", Arrays.asList("—", "--", "--", "--", "--", "--"));
             put("䷘", Arrays.asList("—", "--", "--", "—", "—", "—"));
-            put("䷙", Arrays.asList("—", "—", "--", "--", "—"));
+            put("䷙", Arrays.asList("—", "—", "—", "--", "--", "—"));
             put("䷚", Arrays.asList("—", "--", "--", "--", "--", "—"));
             put("䷛", Arrays.asList("--", "—", "—", "—", "—", "--"));
             put("䷜", Arrays.asList("--", "—", "--", "--", "—", "--"));
