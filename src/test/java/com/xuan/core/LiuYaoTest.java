@@ -109,56 +109,56 @@ public class LiuYaoTest {
 
         System.out.println("变卦：" + liuYao.getBianGua());
         System.out.println("变卦卦象：" + liuYao.getBianGuaAs());
-        System.out.println("本卦卦辞：" + liuYao.getBianGuaGuaCi());
+        System.out.println("变卦卦辞：" + liuYao.getBianGuaGuaCi());
         System.out.println("变卦爻名：" + liuYao.getBianGuaLiuYaoName());
         System.out.println("变卦爻象：" + liuYao.getBianGuaLiuYaoAs());
-        System.out.println("本卦世应：" + liuYao.getBianGuaLiuYaoShiYing());
-        System.out.println("本卦六亲：" + liuYao.getBianGuaLiuYaoLiuQin());
-        System.out.println("本卦干支：" + liuYao.getBianGuaLiuYaoGanZhi());
-        System.out.println("本卦五行：" + liuYao.getBianGuaLiuYaoWuXing());
-        System.out.println("本卦六神：" + liuYao.getBianGuaLiuYaoLiuShen());
+        System.out.println("变卦世应：" + liuYao.getBianGuaLiuYaoShiYing());
+        System.out.println("变卦六亲：" + liuYao.getBianGuaLiuYaoLiuQin());
+        System.out.println("变卦干支：" + liuYao.getBianGuaLiuYaoGanZhi());
+        System.out.println("变卦五行：" + liuYao.getBianGuaLiuYaoWuXing());
+        System.out.println("变卦六神：" + liuYao.getBianGuaLiuYaoLiuShen());
         System.out.println("变卦爻辞：" + liuYao.getBianGuaLiuYaoYaoCi());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println("互卦：" + liuYao.getHuGua());
         System.out.println("互卦卦象：" + liuYao.getHuGuaAs());
-        System.out.println("本卦卦辞：" + liuYao.getHuGuaGuaCi());
+        System.out.println("互卦卦辞：" + liuYao.getHuGuaGuaCi());
         System.out.println("互卦爻名：" + liuYao.getHuGuaLiuYaoName());
         System.out.println("互卦爻象：" + liuYao.getHuGuaLiuYaoAs());
-        System.out.println("本卦世应：" + liuYao.getHuGuaLiuYaoShiYing());
-        System.out.println("本卦六亲：" + liuYao.getHuGuaLiuYaoLiuQin());
-        System.out.println("本卦干支：" + liuYao.getHuGuaLiuYaoGanZhi());
-        System.out.println("本卦五行：" + liuYao.getHuGuaLiuYaoWuXing());
-        System.out.println("本卦六神：" + liuYao.getHuGuaLiuYaoLiuShen());
+        System.out.println("互卦世应：" + liuYao.getHuGuaLiuYaoShiYing());
+        System.out.println("互卦六亲：" + liuYao.getHuGuaLiuYaoLiuQin());
+        System.out.println("互卦干支：" + liuYao.getHuGuaLiuYaoGanZhi());
+        System.out.println("互卦五行：" + liuYao.getHuGuaLiuYaoWuXing());
+        System.out.println("互卦六神：" + liuYao.getHuGuaLiuYaoLiuShen());
         System.out.println("互卦爻辞：" + liuYao.getHuGuaLiuYaoYaoCi());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println("错卦：" + liuYao.getCuoGua());
         System.out.println("错卦卦象：" + liuYao.getCuoGuaAs());
-        System.out.println("本卦卦辞：" + liuYao.getCuoGuaGuaCi());
+        System.out.println("错卦卦辞：" + liuYao.getCuoGuaGuaCi());
         System.out.println("错卦爻名：" + liuYao.getCuoGuaLiuYaoName());
         System.out.println("错卦爻象：" + liuYao.getCuoGuaLiuYaoAs());
-        System.out.println("本卦世应：" + liuYao.getCuoGuaLiuYaoShiYing());
-        System.out.println("本卦六亲：" + liuYao.getCuoGuaLiuYaoLiuQin());
-        System.out.println("本卦干支：" + liuYao.getCuoGuaLiuYaoGanZhi());
-        System.out.println("本卦五行：" + liuYao.getCuoGuaLiuYaoWuXing());
-        System.out.println("本卦六神：" + liuYao.getCuoGuaLiuYaoLiuShen());
+        System.out.println("错卦世应：" + liuYao.getCuoGuaLiuYaoShiYing());
+        System.out.println("错卦六亲：" + liuYao.getCuoGuaLiuYaoLiuQin());
+        System.out.println("错卦干支：" + liuYao.getCuoGuaLiuYaoGanZhi());
+        System.out.println("错卦五行：" + liuYao.getCuoGuaLiuYaoWuXing());
+        System.out.println("错卦六神：" + liuYao.getCuoGuaLiuYaoLiuShen());
         System.out.println("错卦爻辞：" + liuYao.getCuoGuaLiuYaoYaoCi());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println("综卦：" + liuYao.getZongGua());
         System.out.println("综卦卦象：" + liuYao.getZongGuaAs());
-        System.out.println("本卦卦辞：" + liuYao.getZongGuaGuaCi());
+        System.out.println("综卦卦辞：" + liuYao.getZongGuaGuaCi());
         System.out.println("综卦爻名：" + liuYao.getZongGuaLiuYaoName());
         System.out.println("综卦爻象：" + liuYao.getZongGuaLiuYaoAs());
-        System.out.println("本卦世应：" + liuYao.getZongGuaLiuYaoShiYing());
-        System.out.println("本卦六亲：" + liuYao.getZongGuaLiuYaoLiuQin());
-        System.out.println("本卦干支：" + liuYao.getZongGuaLiuYaoGanZhi());
-        System.out.println("本卦五行：" + liuYao.getZongGuaLiuYaoWuXing());
-        System.out.println("本卦六神：" + liuYao.getZongGuaLiuYaoLiuShen());
+        System.out.println("综卦世应：" + liuYao.getZongGuaLiuYaoShiYing());
+        System.out.println("综卦六亲：" + liuYao.getZongGuaLiuYaoLiuQin());
+        System.out.println("综卦干支：" + liuYao.getZongGuaLiuYaoGanZhi());
+        System.out.println("综卦五行：" + liuYao.getZongGuaLiuYaoWuXing());
+        System.out.println("综卦六神：" + liuYao.getZongGuaLiuYaoLiuShen());
         System.out.println("综卦爻辞：" + liuYao.getZongGuaLiuYaoYaoCi());
 
         System.out.println("\n--------------------------------------------------------------------------------------------------------------\n");
