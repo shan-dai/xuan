@@ -12,9 +12,6 @@ import java.util.Date;
  */
 public class LiuYaoTest {
 
-    /**
-     * 六爻
-     */
     @Test
     public void liuYaoTest() {
 

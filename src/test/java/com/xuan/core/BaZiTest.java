@@ -233,7 +233,6 @@ public class BaZiTest {
 
         System.out.println("偏桃花(年份、年龄、干支)：" + baZi.getPianTaoHua());
 
-
     }
 
 

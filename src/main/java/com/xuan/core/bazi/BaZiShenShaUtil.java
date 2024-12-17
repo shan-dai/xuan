@@ -1,6 +1,5 @@
-package com.xuan.core.bazi.shensha;
+package com.xuan.core.bazi;
 
-import com.xuan.core.bazi.BaZiMap;
 import com.xuan.utils.CommonUtil;
 import lombok.Data;
 

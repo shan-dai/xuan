@@ -74,7 +74,7 @@ public class BaZiSetting {
     private int hourGanZhiSet;
 
     /**
-     * 人元司令分野类型（0:子平真诠法决。1:渊海子平法决。2:星平会海法决。3:三命通会法决。4:神峰通考法决。5:万育吾之法决）
+     * 人元司令分野类型（0:子平真诠法诀。1:渊海子平法诀。2:星平会海法诀。3:三命通会法诀。4:神峰通考法诀。5:万育吾之法诀）
      */
     private int renYuan;
 
@@ -154,7 +154,7 @@ public class BaZiSetting {
         this.monthGanZhiSet = 1; // 月干支设置（默认→ 以节交接时刻起算）
         this.dayGanZhiSet = 0; // 日干支设置，同子时流派（默认→ 晚子时日柱按当天）
         this.hourGanZhiSet = 0; // 时干支设置（默认→ 支持早子时和晚子时）
-        this.renYuan = 0; // 人元司令分野类型（默认→ 子平真诠法决）
+        this.renYuan = 0; // 人元司令分野类型（默认→ 子平真诠法诀）
 
     }
 

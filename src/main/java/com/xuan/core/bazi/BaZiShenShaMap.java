@@ -1,4 +1,4 @@
-package com.xuan.core.bazi.shensha;
+package com.xuan.core.bazi;
 
 import java.util.HashMap;
 import java.util.Map;

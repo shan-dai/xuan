@@ -29,7 +29,7 @@ public class CommonUtil {
      */
     public static String solarStr(Solar solar) {
 
-        return solar.getYear() + "年" + solar.getMonth() + "月" + solar.getDay() + "日" + solar.getHour() + "时";
+        return solar.getYear() + "年" + solar.getMonth() + "月" + solar.getDay() + "日" + solar.getHour() + "时" + solar.getMinute() + "分" + solar.getSecond() + "秒";
 
     }
 

@@ -12,9 +12,6 @@ import java.util.Date;
  */
 public class MeiHuaTest {
 
-    /**
-     * 梅花易数
-     */
     @Test
     public void meiHuaTest() {
 

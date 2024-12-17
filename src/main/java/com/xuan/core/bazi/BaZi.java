@@ -5,7 +5,6 @@ import com.nlf.calendar.JieQi;
 import com.nlf.calendar.Lunar;
 import com.nlf.calendar.Solar;
 import com.nlf.calendar.eightchar.*;
-import com.xuan.core.bazi.shensha.BaZiShenShaUtil;
 import com.xuan.utils.CommonUtil;
 import com.xuan.utils.DateUtil;
 import lombok.Getter;
@@ -580,7 +579,7 @@ public class BaZi {
         baZiWuXing(); // 计算八字五行
         baZiNaYin(); // 计算八字纳音
         baZiXunKong(); // 计算八字旬空
-        zhuXing(setting); // 计算主星
+        zhuXing(); // 计算主星
         diZhiCangGan(); // 计算地支藏干
         fuXing(); // 计算副星
         diShi(); // 计算地势
@@ -755,10 +754,8 @@ public class BaZi {
 
     /**
      * 计算主星
-     *
-     * @param setting 八字-设置
      */
-    private void zhuXing(BaZiSetting setting) {
+    private void zhuXing() {
 
         /*
             ★计算方法：根据日干与年干、月干、时干的生克关系得出
@@ -993,7 +990,7 @@ public class BaZi {
         if (yun.getStartYear() != 0) qiYun += yun.getStartYear() + "年";
         if (yun.getStartMonth() != 0) qiYun += yun.getStartMonth() + "个月";
         if (yun.getStartDay() != 0) qiYun += yun.getStartDay() + "天";
-        if (yun.getStartHour() != 0) qiYun += yun.getStartHour() + "分钟";
+        if (yun.getStartHour() != 0) qiYun += yun.getStartHour() + "小时";
         qiYun += "后开始起运";
 
         this.qiYun = qiYun;
@@ -1028,13 +1025,19 @@ public class BaZi {
         Map<String, Long> nextMap = DateUtil.dateInterval(solar.toYmdHms(), nextSolar);
 
         // 5、设置数据
-        this.prevJieDayNumber = Math.toIntExact(prevMap.get("days")); // 所选日期距上一节天数
-        this.nextJieDayNumber = Math.toIntExact(nextMap.get("days")); // 所选日期距下一节天数
-        String prevStr = "出生于" + prevJie + "后" + prevMap.get("days") + "天" + prevMap.get("hours") + "小时" + prevMap.get("minutes") + "分" + prevMap.get("seconds") + "秒";
-        String nexStr = nextJie + "前" + nextMap.get("days") + "天" + nextMap.get("hours") + "小时" + nextMap.get("minutes") + "分" + nextMap.get("seconds") + "秒";
-//        String prevStr = "出生于" + prevJie + "后" + prevMap.get("days") + "天" + prevMap.get("hours") + "小时";
-//        String nexStr = nextJie + "前" + nextMap.get("days") + "天" + nextMap.get("hours") + "小时";
-        this.birthSolarTerms = prevStr + "，" + nexStr;
+        this.prevJieDayNumber = Math.toIntExact(prevMap.get("days")); // 所选日期距上一节气天数
+        this.nextJieDayNumber = Math.toIntExact(nextMap.get("days")); // 所选日期距下一节气天数
+        long prevDay = prevMap.get("days") > 0 ? prevMap.get("days") : -prevMap.get("days"); // 天
+        long prevHours = prevMap.get("hours") > 0 ? prevMap.get("hours") : -prevMap.get("hours"); // 小时
+        long prevMinutes = prevMap.get("minutes") > 0 ? prevMap.get("minutes") : -prevMap.get("minutes"); // 分
+        long prevSeconds = prevMap.get("seconds") > 0 ? prevMap.get("seconds") : -prevMap.get("seconds"); // 秒
+        long nextDay = nextMap.get("days") > 0 ? nextMap.get("days") : -nextMap.get("days"); // 天
+        long nextHours = nextMap.get("hours") > 0 ? nextMap.get("hours") : -nextMap.get("hours"); // 小时
+        long nextMinutes = nextMap.get("minutes") > 0 ? nextMap.get("minutes") : -nextMap.get("minutes"); // 分
+        long nextSeconds = nextMap.get("seconds") > 0 ? nextMap.get("seconds") : -nextMap.get("seconds"); // 秒
+        String prevStr = "出生于" + prevJie + "后" + prevDay + "天" + prevHours + "小时" + prevMinutes + "分" + prevSeconds + "秒";
+        String nextStr = nextJie + "前" + nextDay + "天" + nextHours + "小时" + nextMinutes + "分" + nextSeconds + "秒";
+        this.birthSolarTerms = prevStr + "、" + nextStr;
 
     }
 
