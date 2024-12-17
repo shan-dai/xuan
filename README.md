@@ -3,16 +3,15 @@
 </h1>
 <p align="center">
     在线演示:
-    <a href="https://muxuange.cn/tool">
-    	点击查看
-    </a>
-    | 最新代码:
-    <a href="https://gitee.com/shan-dai/xuan">
+    <a href="https://muxuange.cn/tool" target="_blank">
     	点击查看
     </a>
 </p>
 <p align="center">
-
+    最新代码:
+    <a href="https://gitee.com/shan-dai/xuan" target="_blank">
+    	点击查看
+    </a>
 </p>
 <p align="center" style="font-size:15px; background-color:rgb(245, 245, 245); border-radius:50px;">
     v1.0.27 - 更新停止
